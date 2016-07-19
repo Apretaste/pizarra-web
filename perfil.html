@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Configuraci&oacute;n</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/pizarra.css">
+  <script src="js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/logoApretaste.png">
+  <link rel="apple-touch-icon" href="images/logoApretaste.png">
+
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="w-section mobile-wrapper">
+
+    <div class="page-content" id="main-stack">
+      <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+        <div class="w-container">
+          <nav class="w-nav-menu nav-menu" role="navigation">
+            <div class="nav-menu-header">
+              <div class="logo">Pizarra</div>
+              <div class="slogan">Conectando a Cuba.</div>
+            </div>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="index.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-home-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Bienvenida</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="login.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-download-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Inicia sesión</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="registrate.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-cloud-upload-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Regístrate</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="recuperar.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-unlocked-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Recuperar Contraseña</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="mensajes.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-albums-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Mensajes</div>
+              <div class="nav-menu-text-right">4</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="chat.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-chatboxes-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Chat</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="acerca.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-person-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Sobre Pizarra</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link" href="perfil.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-gear-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Perfil</div>
+            </a>
+            <a class="w-clearfix w-inline-block nav-menu-link last" href="terms.html" data-load="1">
+              <div class="icon-list-menu">
+                <div class="icon ion-ios-bookmarks-outline"></div>
+              </div>
+              <div class="nav-menu-titles">Términos y Condiciones</div>
+            </a>
+            <div class="separator-bottom"></div>
+            <div class="separator-bottom"></div>
+            <div class="separator-bottom"></div>
+          </nav>
+          <div class="wrapper-mask" data-ix="menu-mask"></div>
+          <div class="navbar-title">PERFIL</div>
+          <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
+            <div class="navbar-button-icon home-icon">
+              <div class="bar-home-icon"></div>
+              <div class="bar-home-icon"></div>
+              <div class="bar-home-icon"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body padding">
+        <div class="logo-login smaller"></div>
+        <div class="w-form">
+          <form id="email-form" name="email-form" data-name="Email Form" action="#">
+            <div>
+              <label class="label-form" for="full-name-field">NOMBRE COMPLETO</label>
+              <input class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" required="required">
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <label class="label-form" for="email-field">EMAIL</label>
+              <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" required="required">
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <label class="label-form" for="password-ield">CONTRASEÑA</label>
+              <input class="w-input input-form" id="password-ield" type="password" name="password" data-name="password" required="required">
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <label class="label-form" for="birthday-field">FECHA DE NACIMIENTO</label>
+              <input class="w-input input-form" id="birthday-field" type="text" name="birthday" data-name="birthday" required="required">
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <label class="label-form" for="full-name-field">CIUDAD</label>
+              <input class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" required="required">
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">GÉNERO</label>
+                <div class="w-clearfix radios-container">
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement"></div>
+                    <input class="w-radio-input radio-bullet" id="node" type="radio" name="Radio1" value="1" data-name="Radio1">
+                    <label class="w-form-label" for="node">Femenino</label>
+                  </div>
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement checked"></div>
+                    <input class="w-radio-input radio-bullet" id="node-2" type="radio" name="Radio1" value="0" data-name="Radio1">
+                    <label class="w-form-label" for="node-2">Masculino</label>
+                  </div>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">ACTIVIDAD</label>
+                <div class="w-clearfix radios-container">
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement"></div>
+                    <input class="w-radio-input radio-bullet" id="node-9" type="radio" name="Radio3" value="2" data-name="Radio3">
+                    <label class="w-form-label" for="node-9">Alta</label>
+                  </div>
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement checked"></div>
+                    <input class="w-radio-input radio-bullet" id="node-6" type="radio" name="Radio3" value="1" data-name="Radio3">
+                    <label class="w-form-label" for="node-6">Media</label>
+                  </div>
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement"></div>
+                    <input class="w-radio-input radio-bullet" id="node-5" type="radio" name="Radio3" value="0" data-name="Radio3">
+                    <label class="w-form-label" for="node-5">Baja</label>
+                  </div>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">NOTIFICACIONES</label>
+                <div class="w-clearfix radios-container">
+                  <div class="w-checkbox w-clearfix checkbox-field">
+                    <div class="checkbox-handle"></div>
+                    <input class="w-checkbox-input checkbox-input" id="checkbox" type="checkbox" name="checkbox" data-name="Checkbox">
+                    <label class="w-form-label checkbox-label" for="checkbox"></label>
+                  </div>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line last">
+                <label class="label-form middle" for="email">CHATS</label>
+                <div class="w-clearfix radios-container">
+                  <div class="w-checkbox w-clearfix checkbox-field">
+                    <div class="checkbox-handle checked"></div>
+                    <input class="w-checkbox-input checkbox-input" id="checkbox-2" type="checkbox" name="checkbox-2" data-name="Checkbox 2" checked="checked">
+                    <label class="w-form-label checkbox-label checked" for="checkbox-2"></label>
+                  </div>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+          </form>
+          <div class="w-form-done">
+            <p>¡Gracias! Hemos recibido su petición.</p>
+          </div>
+          <div class="w-form-fail">
+            <p>¡Ups! Algo salió mal con el formulario.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-d"></div>
+      </div>
+    </div>
+    <div class="shadow-layer"></div>
+  </section>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>

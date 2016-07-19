@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>@saide1 está escribiendo...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/pizarra.css">
+  <script src="js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/logoStandford32.ico">
+  <link rel="apple-touch-icon" href="images/logoStandford32.ico">
+
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="w-section mobile-wrapper">
+
+    <div class="page-content" id="main-stack">
+      <div class="w-nav navbar" data-collapse="all" data-animation="over-left" data-duration="400" data-contain="1" data-easing="ease-out-quint" data-no-scroll="1">
+        <div class="w-container">
+          <div class="wrapper-mask" data-ix="menu-mask"></div>
+          <div class="navbar-title">@saide1</div>
+          <a class="w-inline-block navbar-button" href="mensajes.html" data-load="1">
+            <div class="navbar-button-icon icon ion-ios-arrow-thin-left"></div>
+          </a>
+          <a class="w-inline-block navbar-button right" href="perfil.html" data-ix="search-box">
+            <div class="navbar-button-icon smaller icon ion-ios-gear-outline" data-load="1"></div>
+          </a>
+        </div>
+      </div>
+      <div class="body">
+        <ul class="list list-chats">
+          <li class="w-clearfix list-chat" data-ix="list-item">
+            <div class="column-left chat">
+              <div class="image-message chat"><img src="images/128 (3).jpg">
+              </div>
+            </div>
+            <div class="w-clearfix column-right chat">
+              <div class="arrow-globe"></div>
+              <div class="chat-text">Hola!! Fui yo la ganadora d la rifa dl mes pasado?</div>
+              <div class="chat-time">Hace 3 horas</div>
+            </div>
+          </li>
+          <li class="list-chat right" data-ix="list-item">
+            <div class="w-clearfix column-right chat right">
+              <div class="arrow-globe right"></div>
+              <div class="chat-text right">Si, felicidades! :) dime como quieres que te ponga tu premio. Te mande un mail <br>preguntandote. Gracias por invitar tanta gente!</div>
+              <div class="chat-time right">Hace 1 hora</div>
+            </div>
+          </li>
+          <li class="w-clearfix list-chat" data-ix="list-item">
+            <div class="column-left chat">
+              <div class="image-message chat"><img src="images/128 (3).jpg">
+              </div>
+            </div>
+            <div class="w-clearfix column-right chat">
+              <div class="arrow-globe"></div>
+              <div class="chat-text">Disculpe es que el correo me esta dando bateo, m lo puede poner en el movil cd alla recarga d etecsa??.</div>
+              <div class="chat-time">Hace 30 min</div>
+            </div>
+          </li>
+          <li class="list-chat right" data-ix="list-item">
+            <div class="w-clearfix column-right chat right">
+              <div class="arrow-globe right"></div>
+              <div class="chat-text right">Dime tu número de mobil, creo que hay una recarga ahora</div>
+              <div class="chat-time right">Hace 50 seg</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="input-chat-block">
+        <div class="w-form">
+          <form class="w-clearfix" id="wf-form-Send" name="wf-form-Send" data-name="Send" action="#">
+            <input class="w-input input-chat" id="chat-message" type="text" placeholder="Escribe un mensaje..." name="email" data-name="Email" required="required">
+            <input class="w-button chat-button" type="submit" value="ENVIAR" data-wait="Por favor espere...">
+          </form>
+          <div class="w-form-done">
+            <p>¡Gracias! Su petición ha sido recibida</p>
+          </div>
+          <div class="w-form-fail">
+            <p>¡Ups! Algo salió mal con su formulario</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-d"></div>
+      </div>
+    </div>
+    <div class="shadow-layer"></div>
+  </section>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
