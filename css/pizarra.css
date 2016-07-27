@@ -114,7 +114,9 @@ a {
 .navbar-button-icon {
   width: 45px;
   height: 45px;
-  font-size: 40px;
+  font-size: 30px;
+  padding:0;
+  line-height: 40px;
 }
 .navbar-button-icon.home-icon {
   display: inline-block;
@@ -134,7 +136,7 @@ a {
   margin-right: auto;
   margin-left: auto;
   font-size: 15px;
-  line-height: 45px;
+  line-height: 40px;
   text-align: center;
 }
 .body {
