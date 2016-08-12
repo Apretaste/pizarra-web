@@ -1,73 +1,75 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>Ingresar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/framework.css">
-  <link rel="stylesheet" type="text/css" href="css/pizarra.css">
-  <script src="js/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ["Montserrat:400,700"]
-      }
-    });
-  </script>
-  <script type="text/javascript" src="js/modernizr.js"></script>
-  <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
-  <link rel="apple-touch-icon" href="images/iconApretaste.png">
-
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+<title>Pizarra by Apretaste</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/8b41577289.js"></script>
+  <link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" charset="utf-8">
 </head>
-<body>
-  <section class="w-section mobile-wrapper">
+<body id="top" data-spy="scroll" data-target=".navbar-fixed-top" class="full">
+  <nav class="navbar navbar-default navbar-fixed-top navbar-custom" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand main-header mid" href="#top">Pizarra</a>
+      </div>
 
-    <div class="page-content" id="main-stack" data-scroll="0">
-      <div class="w-nav navbar"></div>
-      <div class="body padding">
-        <div class="logo-login"></div>
-        <div class="bottom-section padding">
-          <div class="w-form">
-            <form id="submit-form" name="email-form" data-name="Email Form" data-redirect="perfil.html" action="#">
-              <div>
-                <label class="label-form" for="email-field">EMAIL</label>
-                <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                <div class="separator-fields"></div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-main-collapse" id="collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/acerca.html">Acerca</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <div id="app" class="jumbotron clearfix m-x-auto">
+    <div class="container-fluid vertical-center" id="login">
+      <h1 class="main-header">Pizarra</h1>
+      <div class="row">
+        <form role="form">
+          <div class="col-xs-12">
+            <component :is="currentView" keep-alive transition="fade" transition-mode="out-in"></component>
+            <template id="email-view">
+            <div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
+                <input class="input-form form-control" id="email-field" type="email" name="email" data-name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Ingresa tu email">
               </div>
-              <!-- NEED TO CHANGE FOR A GMAIL-LIKE AUTH -->
-              <div>
-                <label class="label-form" for="email">CONTRASEÑA</label>
-                <div class="w-clearfix block-input-combined">
-                  <input class="w-input input-form left" id="password-field" type="password" name="password" data-name="password" required="required"><a class="right-input-link" href="recuperar.html" data-load="1">OLVID&Eacute; MI CONTRASEÑA</a>
-                </div>
-                <div class="separator-button-input"></div>
+              <button type="button" class="btn btn-default w100" id="login-button" @click.prevent="currentView=pass-view"><i class="fa fa-arrow-circle-right"></i> Siguiente</button>
+            </div>
+            </template>
+
+            <template id="pass-view">
+            <div>
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
+                <input class="input-form form-control" id="password-field" type="password" name="password" data-name="pass" required="required" placeholder="Ingresa tu contraseña">
               </div>
-              <input class="w-button action-button" type="submit" value="INGRESAR" data-wait="Por favor espere...">
-              <div class="separator-button"></div><a class="link-upper" href="registrate.html" data-load="1">¿NO TIENES CUENTA? <strong class="b-link">INSCRÍBETE</strong></a>
-            </form>
-            <div class="w-form-done">
-              <p>¡Gracias! Tu información ha sido recibida.</p>
+              <button type="submit" class="btn btn-default w100" id="login-button"><i class="fa fa-check-circle"></i> Ingresar</button>
             </div>
-            <div class="w-form-fail">
-              <p>¡Ups! Algo salió mal con el formulario.</p>
-            </div>
+            </template>
+
           </div>
-        </div>
+        </form>
       </div>
     </div>
-    <div class="page-content loading-mask" id="new-stack">
-      <div class="loading-icon">
-        <div class="navbar-button-icon icon ion-load-c"></div>
+  </div>
+
+  <footer> 
+    <div class="container text-center">
+      <div class="navbar navbar-fixed-bottom">
+        <p><strong>Apretaste</strong> &copy; 2016</p>
       </div>
     </div>
-    <div class="shadow-layer"></div>
-  </section>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/framework.js"></script>
-  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+  </footer>
+  <script src="https://npmcdn.com/vue@latest/dist/vue.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-strap/1.0.11/vue-strap.min.js"></script>
+  <script type="text/javascript" src="/assets/js/components.js"></script>
+  <script type="text/javascript" src="/assets/js/main.js"></script>
 </body>
 </html>
