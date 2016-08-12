@@ -34,26 +34,6 @@
         <form role="form">
           <div class="col-xs-12">
             <component :is="currentView" keep-alive transition="fade" transition-mode="out-in"></component>
-            <template id="email-view">
-            <div>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
-                <input class="input-form form-control" id="email-field" type="email" name="email" data-name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Ingresa tu email">
-              </div>
-              <button type="button" class="btn btn-default w100" id="login-button" @click.prevent="currentView=pass-view"><i class="fa fa-arrow-circle-right"></i> Siguiente</button>
-            </div>
-            </template>
-
-            <template id="pass-view">
-            <div>
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
-                <input class="input-form form-control" id="password-field" type="password" name="password" data-name="pass" required="required" placeholder="Ingresa tu contraseña">
-              </div>
-              <button type="submit" class="btn btn-default w100" id="login-button"><i class="fa fa-check-circle"></i> Ingresar</button>
-            </div>
-            </template>
-
           </div>
         </form>
       </div>

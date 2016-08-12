@@ -1,0 +1,108 @@
+/*
+ * Add the Montserrat font
+ */
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+/*
+ * Add Cookie Regular
+ */
+@import url(https://fonts.googleapis.com/css?family=Cookie);
+
+body {
+  padding-top: 70px;
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.main-header {
+  font-family: 'Cookie', cursive;
+  font-size: 60px;
+  font-weight: 900;
+  text-transform: capitalize;
+  color: rgb(94,187,71)!important;
+  text-shadow:-3px 4px 1px #d3d3d3;
+}
+
+.jumbotron {
+  display: grid;
+  vertical-align: middle;
+  background: transparent;
+  text-align: center;
+}
+
+.navbar-custom {
+  background: white;
+  border: 0px;
+  color: white;
+  -webkit-box-shadow: 1px 4px 10px #d3d3d3;
+  -moz-box-shadow:    1px 4px 10px #d3d3d3;
+  box-shadow:         1px 4px 10px #d3d3d3;
+  z-index:999;
+}
+
+.full {
+  /*
+  background: url(../../assets/img/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  */
+  background: #fafafa;
+}
+
+.mid {
+  margin-top: 2%;
+  font-size: 40px;
+}
+
+.btn,
+.form-control,
+.input-group,
+.input-group-addon {
+  border-radius: 0px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  border-color: rgba(94,187,71,0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(94,187,71,0.8);
+  outline: 0 none;
+}
+
+.w100 {
+  width:100%;
+}
+
+#login {
+  margin-top: 35%;
+}
+
+#login-button {
+  margin-top: 2%;
+}
+
+.fade-transition {
+  transition: opacity .3s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
+}
+

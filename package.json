@@ -1,0 +1,11 @@
+{
+  "name": "pizarra",
+  "version": "0.1.0",
+  "description": "Pizarra network with Vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Carlos El Halabi",
+  "license": "MIT"
+}
