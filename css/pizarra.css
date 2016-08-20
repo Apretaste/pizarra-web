@@ -119,6 +119,7 @@ a {
   font-size: 30px;
   padding:0;
   line-height: 40px;
+  color: black;
 }
 .navbar-button-icon.home-icon {
   display: inline-block;
@@ -680,13 +681,13 @@ a {
   background-repeat: no-repeat;
 }
 .group-image.bg1 {
-  background-image: url('../images/3wBPUcDrR9KaduD3PvkY_DSC_0915.jpg');
+  background-image: url('../images/prog.jpg');
 }
 .group-image.bg2 {
-  background-image: url('../images/photo-1413977886085-3bbbf9a7cf6e.jpg');
+  background-image: url('../images/lectu.jpg');
 }
 .group-image.bg3 {
-  background-image: url('../images/photo-1421757295538-9c80958e75b0.jpg');
+  background-image: url('../images/playa.jpg');
 }
 .group-image.bg4 {
   background-image: url('../images/photo-1429032021766-c6a53949594f (1).jpg');
@@ -750,7 +751,9 @@ a {
 .description-new {
   padding-right: 0px;
   padding-left: 0px;
-  font-size: 11px;
+  font-size: 18px;
+  width: 60%;
+  line-height: 1.6em;
 }
 .news-container {
   position: relative;
@@ -790,6 +793,9 @@ a {
 .options-new {
   padding: 18px 20px 16px;
   background-color: #fafafa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .small-button {
   width: auto;
@@ -819,6 +825,17 @@ a {
   background-color: #e8e8e8;
   color: #878787;
 }
+.big-button {
+  width: auto;
+  margin-right: 12px;
+  padding: 6px 15px;
+  border-radius: 0px;
+  background-color: #5EBB47;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
 .icon-button {
   display: inline-block;
   overflow-x: hidden;
@@ -846,6 +863,25 @@ a {
 }
 .grey-heading-title {
   font-size: 16px;
+}
+.profile-name,
+.interests-title {
+  font-size: 24px;
+}
+.profile-image {
+  margin: auto;
+  display: block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+	background: url(../images/avatar.jpg) no-repeat;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.profile-image img {
+  opacity: 0;
+	filter: alpha(opacity=0);
 }
 .square-map {
   height: 300px;
