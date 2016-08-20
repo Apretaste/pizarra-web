@@ -31,6 +31,9 @@
         <div class="w-container">
           <div class="wrapper-mask" data-ix="menu-mask"></div>
           <div class="navbar-title">PERFIL</div>
+          <a class="w-inline-block navbar-button right" href="yo.html" data-load="1">
+            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+          </a>
         </div>
       </div>
       <div class="body padding">
@@ -39,12 +42,12 @@
           <form id="email-form" name="email-form" data-name="Email Form" action="#">
             <div>
               <label class="label-form" for="full-name-field">NOMBRE COMPLETO</label>
-              <input class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" required="required">
+              <input class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" placeholder="Fulano De Tal" required="required">
               <div class="separator-fields"></div>
             </div>
             <div>
               <label class="label-form" for="email-field">EMAIL</label>
-              <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" required="required">
+              <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" placeholder="fulano@detal.com" required="required">
               <div class="separator-fields"></div>
             </div>
             <div>
@@ -54,12 +57,17 @@
             </div>
             <div>
               <label class="label-form" for="birthday-field">FECHA DE NACIMIENTO</label>
-              <input class="w-input input-form" id="birthday-field" type="text" name="birthday" data-name="birthday" required="required">
+              <input class="w-input input-form" id="birthday-field" type="text" name="birthday" data-name="birthday" placeholder="DD/MM/AA" required="required">
               <div class="separator-fields"></div>
             </div>
-            <div>
-              <label class="label-form" for="full-name-field">CIUDAD</label>
-              <input class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" required="required">
+            <div class="row-input-list">
+              <label class="label-form" for="birthday-field">CIUDAD</label>
+              <div class="block-input-combined">
+                <input class="w-input input-form left" id="location" type="text" name="location" data-name="location" placeholder="Santiago de Cuba" required="required">
+                <a class="w-inline-block right-input-icon color" href="#">
+                  <div class="icon ion-ios-location"></div>
+                </a>
+              </div>
               <div class="separator-fields"></div>
             </div>
             <div>
@@ -129,7 +137,7 @@
               </div>
               <div class="separator-fields"></div>
             </div>
-            <input class="w-button action-button" type="submit" value="SALVAR DATOS" data-wait="Por favor espere...">
+            <input class="w-button action-button" type="submit" value="SALVAR DATOS" href="posts.html" data-wait="Por favor espere...">
           </form>
           <div class="w-form-done">
             <p>¡Gracias! Hemos recibido su petición.</p>
