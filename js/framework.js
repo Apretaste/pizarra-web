@@ -95,4 +95,10 @@ $(function() {
             },400);
         }
     };
+
+  $("#pass-button").click(function(e) {
+    $("#login-div").hide();
+    e.preventDefault();
+    $("#password-div").fadeIn(500);
+  });
 });
