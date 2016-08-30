@@ -101,4 +101,11 @@ $(function() {
     e.preventDefault();
     $("#password-div").fadeIn(500);
   });
+
+  $('#email-field').keypress(function(e) {
+    if(e.which == 13) {
+        $('#login-div').hide();
+        $('#password-div').fadeIn(500).focus().click();
+        }
+    });
 });
