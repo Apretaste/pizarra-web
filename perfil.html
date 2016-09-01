@@ -47,7 +47,7 @@
             </div>
             <div>
               <label class="label-form" for="email-field">EMAIL</label>
-              <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" placeholder="fulano@detal.com" required="required">
+              <input class="w-input input-form" id="email-field" type="email" name="email" data-name="email" placeholder="fulano@detal.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required="required">
               <div class="separator-fields"></div>
             </div>
             <div>
@@ -57,7 +57,7 @@
             </div>
             <div>
               <label class="label-form" for="birthday-field">FECHA DE NACIMIENTO</label>
-              <input class="w-input input-form" id="birthday-field" type="text" name="birthday" data-name="birthday" placeholder="DD/MM/AA" required="required">
+              <input class="w-input input-form" id="birthday-field" type="text" name="birthday" data-name="birthday" placeholder="DD/MM/AA" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required="required">
               <div class="separator-fields"></div>
             </div>
             <div class="row-input-list">
