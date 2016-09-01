@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pizarra</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/framework.css">
+  <link rel="stylesheet" type="text/css" href="css/pizarra.css">
+  <script src="js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
+  <link rel="apple-touch-icon" href="images/iconApretaste.png">
+
+  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <section class="w-section mobile-wrapper">
+
+    <div class="page-content" id="main-stack">
+      <div class="w-nav navbar" data-no-scroll="1">
+        <div class="w-container">
+          <div class="wrapper-mask" data-ix="menu-mask"></div>
+          <div class="navbar-title">ÚLTIMOS POSTS</div>
+          <a class="w-inline-block navbar-button right" href="yo.html" data-load="1">
+            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+          </a>
+        </div>
+      </div>
+      <div class="body padding">
+        <div class="news-mask"></div>
+        <div class="news-container">
+          <ul class="w-clearfix list-news">
+            <li class="list-item-new">
+              <div class="text-new">
+                <h2 class="title-new">@jacfr</h2>
+                <p class="description-new full">Creo en el amor como el ciego cree en el sol, no porque lo ve, sino porque lo siente.</p><a class="category-link" style="background-color:lightgreen;" href="#">LIKE</a><a class="category-link" style="background-color:red;" href="#">QUITAR</a>
+              </div>
+            </li>
+            <li class="list-item-new">
+              <div class="text-new">
+                <h2 class="title-new">@osmai</h2>
+                <p class="description-new full">Algunos me quieren por lo que soy... otros me odian por la misma razon... pero yo vine a esta vida a ser feliz <a href="@ernesto">@ernesto</a></p><a class="category-link" href="#">LIKE</a><a class="category-link" href="#">QUITAR</a>
+              </div>
+            </li>
+            <li class="list-item-new">
+              <div class="text-new">
+                <h2 class="title-new">@verge</h2>
+                <p class="description-new full">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat....</p><a class="category-link" href="#">PRODUCTIVITY</a><a class="category-link" href="#">BUSINESS</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-c"></div>
+      </div>
+    </div>
+    <div class="shadow-layer"></div>
+  </section>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/framework.js"></script>
+  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+</body>
+</html>
