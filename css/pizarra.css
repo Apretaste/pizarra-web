@@ -715,7 +715,7 @@ a {
   list-style-type: none;
 }
 .list-item-new {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   box-shadow: #e3e3e3 0px 0px 6px 0px;
 }
 .image-new {
@@ -764,7 +764,7 @@ a {
 .news-container {
   position: relative;
   display: inline-block;
-  margin-top: 77px;
+  margin-top: 10px;
   padding-right: 15px;
   padding-left: 15px;
   background-color: white;
