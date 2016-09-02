@@ -748,6 +748,12 @@ a {
   font-size: 14px;
   line-height: 1.6em;
 }
+.note {
+  padding: 0;
+  font-size: 16px;
+  width: 100%;
+  line-height: 1.2em;
+}
 .description-new {
   padding-right: 0px;
   padding-left: 0px;
@@ -779,8 +785,16 @@ a {
   border-radius: 15px;
   background-color: #ededed;
   color: #878787;
-  font-size: 8px;
+  font-size: 10px;
   text-decoration: none;
+}
+.like {
+  color: white;
+  background-color: #5EBB47;
+}
+.remove-note {
+  color: white;
+  background-color: red;
 }
 .news-mask {
   position: fixed;
