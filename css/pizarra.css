@@ -116,10 +116,10 @@ a {
 .navbar-button-icon {
   width: 45px;
   height: 45px;
-  font-size: 30px;
+  font-size: 25px;
   padding:0;
   line-height: 40px;
-  color: black;
+  color: #333;
 }
 .navbar-button-icon.home-icon {
   display: inline-block;
@@ -747,6 +747,9 @@ a {
   font-size: 14px;
   line-height: 1.6em;
 }
+.user-title {
+  text-decoration: underline;
+}
 .note {
   padding: 0;
   font-size: 16px;
@@ -794,6 +797,13 @@ a {
 .remove-note {
   color: white;
   background-color: red;
+}
+.follow {
+  background-color: #FFEB3B;
+}
+.text-user {
+  color: white;
+  background-color: #673AB7;
 }
 .news-mask {
   position: fixed;
