@@ -715,8 +715,8 @@ a {
   list-style-type: none;
 }
 .list-item-new {
-  margin-bottom: 10px;
-  box-shadow: #e3e3e3 0px 0px 6px 0px;
+  margin-bottom: 5px;
+  /*box-shadow: #e3e3e3 0px 0px 3px 0px;*/
 }
 .image-new {
   position: relative;
@@ -734,7 +734,6 @@ a {
 }
 .text-new {
   padding: 20px;
-  border: 1px solid #e6e6e6;
   background-color: white;
 }
 .text-new.no-borders {
