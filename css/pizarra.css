@@ -86,6 +86,11 @@ a {
   background-repeat: repeat;
   box-shadow: none;
 }
+.body.notes {
+  width: 650px;
+  margin-right: auto;
+  margin-left: auto;
+}
 .navbar-button {
   position: relative;
   width: 45px;
@@ -791,19 +796,17 @@ a {
   text-decoration: none;
 }
 .like {
-  color: white;
-  background-color: #5EBB47;
+  color: red;
 }
 .remove-note {
   color: white;
   background-color: red;
 }
 .follow {
-  background-color: #FFEB3B;
+  color: yellow;
 }
 .text-user {
-  color: white;
-  background-color: #673AB7;
+  color: #673AB7;
 }
 .news-mask {
   position: fixed;
@@ -1089,6 +1092,14 @@ html.w-mod-js *[data-ix="list-item"] {
     width: 100%;
     height: auto;
   }
+  .body.notes {
+    width: 100%;
+    height: auto;
+  }
+  .padding {
+    padding-right: 0;
+    padding-left: 0;
+  }
   .bottom-section {
     position: absolute;
     left: 0px;
@@ -1103,6 +1114,14 @@ html.w-mod-js *[data-ix="list-item"] {
     width: 100%;
     height: auto;
   }
+  .body.notes {
+    width: 100%;
+    height: auto;
+  }
+  .padding {
+    padding-right: 0;
+    padding-left: 0;
+  }
   .bottom-section {
     position: absolute;
     left: 0px;
@@ -1115,6 +1134,14 @@ html.w-mod-js *[data-ix="list-item"] {
 @media (max-width: 479px) {
   .mobile-wrapper {
     width: 100%;
+  }
+  .body.notes {
+    width: 100%;
+    height: auto;
+  }
+  .padding {
+    padding-right: 0;
+    padding-left: 0;
   }
   .bottom-section {
     position: absolute;
