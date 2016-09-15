@@ -184,13 +184,9 @@ a {
   background-color: white;
   list-style-type: none;
 }
-.list.list-messages {
-  border-top: 1px solid #e7e7e9;
-}
 .list.list-chats {
   padding-top: 24px;
   padding-bottom: 65px;
-  border-top: 1px solid #e7e7e9;
 }
 .list-item {
   overflow-x: hidden;
