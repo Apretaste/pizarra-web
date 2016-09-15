@@ -50,13 +50,13 @@ p {
   margin-bottom: 5px;
   padding-right: 20px;
   padding-left: 20px;
-  color: #bababa;
+  color: #333;
   font-size: 12px;
   line-height: 1.9em;
 }
 a {
   width: 100%;
-  color: #333;
+  color: #bababa;
   text-decoration: none;
 }
 .button {
@@ -754,6 +754,8 @@ a {
 }
 .user-title {
   text-decoration: underline;
+  -webkit-text-decoration-color: #bababa;
+  text-decoration-color: #bababa; 
 }
 .note {
   padding: 0;
