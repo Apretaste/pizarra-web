@@ -164,6 +164,7 @@ label {
   vertical-align: middle;
   background-color: #ffffff;
   border: 1px solid #cccccc;
+  transition: box-shadow 0.3s, border 0.3s;
 }
 .w-input:-moz-placeholder,
 .w-select:-moz-placeholder {
@@ -194,7 +195,7 @@ label {
 fieldset[disabled] .w-input,
 fieldset[disabled] .w-select {
   cursor: not-allowed;
-  background-color: #eeeeee;
+  background-color: #e8e8e8;
 }
 textarea.w-input,
 textarea.w-select {
