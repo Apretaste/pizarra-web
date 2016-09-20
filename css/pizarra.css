@@ -130,16 +130,15 @@ a {
   color: #333;
 }
 .navbar-button-icon:hover {
-  color: #333;
-  margin-bottom: -3px;
-  margin-top: 3px;
-  box-shadow: 0 3px 0 0 #333;
+  opacity: 0.5;
 }
 .navbar-button-icon.chat:hover {
+  opacity: 1;
   color: #673AB7;
-  margin-bottom: -3px;
-  margin-top: 3px;
-  box-shadow: 0 3px 0 0 #673AB7;
+}
+.navbar-button-icon.profile:hover {
+  opacity: 1;
+  color: #FFA503;
 }
 .navbar-button-icon.home-icon {
   display: inline-block;
