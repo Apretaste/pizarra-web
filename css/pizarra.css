@@ -885,21 +885,11 @@ a {
   margin-right: 12px;
   padding: 6px 15px;
   border-radius: 2px;
-  background-color: #5EBB47;
-  color: white;
+  background-color: #ededed;
+  color: #333;
   font-size: 20px;
   text-decoration: none;
 }
-.big-button.follow-button {
-  background-color: #FFA503;
-}
-.big-button.text-user-button {
-  background-color: #673AB7;
-}
-.big-button.notes-button {
-  background-color: #5EEB47;
-}
-
 .icon-button {
   display: inline-block;
   overflow-x: hidden;
@@ -912,6 +902,15 @@ a {
 }
 .icon-button.bigger {
   font-size: 20px;
+}
+.icon-button.notes-button {
+  color: #5EEB47;
+}
+.icon-button.follow-button {
+  color: #FFA503;
+}
+.icon-button.text-user-button {
+  color: #673AB7;
 }
 .text-button {
   display: inline-block;
