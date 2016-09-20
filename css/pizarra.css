@@ -826,7 +826,8 @@ a {
   text-decoration: none;
   transition: all 0.2s linear;
 }
-.like {
+.like,
+.is-liked {
   color: red;
 }
 .remove-note {
@@ -837,6 +838,9 @@ a {
 }
 .text-user {
   color: #673AB7;
+}
+.like-number {
+  margin-left: 3px;
 }
 .news-mask {
   position: fixed;
