@@ -159,7 +159,8 @@ a {
   margin-left: auto;
   font-size: 15px;
   line-height: 40px;
-  text-align: center;
+  text-align: left;
+  padding-left: 25px;
 }
 .body {
   padding-top: 60px;
