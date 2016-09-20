@@ -748,6 +748,9 @@ a {
   margin-bottom: 5px;
   /*box-shadow: #e3e3e3 0px 0px 3px 0px;*/
 }
+.list-item-new.last-note {
+  margin-bottom: 70px;
+}
 .image-new {
   position: relative;
   height: 200px;
