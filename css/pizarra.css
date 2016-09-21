@@ -54,9 +54,12 @@ p {
   font-size: 12px;
   line-height: 1.9em;
 }
+p > a:hover {
+  text-decoration:underline;
+}
 a {
   width: 100%;
-  color: #bababa;
+  color: lightblue;
   text-decoration: none;
 }
 .button {
@@ -781,10 +784,33 @@ a {
   font-size: 14px;
   line-height: 1.6em;
 }
+.title-new.inline {
+  display: inline-block;
+}
 .user-title {
+  color: #777;
+}
+.user-title:hover {
   text-decoration: underline;
-  -webkit-text-decoration-color: #bababa;
-  text-decoration-color: #bababa; 
+  -webkit-text-decoration-color: #777;
+  text-decoration-color: #777; 
+}
+.user-country {
+  margin-right: 4px;
+}
+.user-genre {
+  margin: 0px 4px;
+}
+.user-genre.male {
+  color: lightblue;
+}
+.user-genre.female {
+  color: lightpink;
+}
+.notes-time {
+  font-weight: 300;
+  color: #cfcfcf;
+  font-size: 10px;
 }
 .note {
   padding: 0;

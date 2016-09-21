@@ -1663,3 +1663,6 @@ textarea.w-select {
   padding: 10px;
   background-color: #ffdede;
 }
+.flag-icon {
+  font-size: 0.8em;
+}
