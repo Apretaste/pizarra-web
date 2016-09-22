@@ -1229,7 +1229,11 @@ html.w-mod-js *[data-ix="list-item"] {
   .chat-button {
     font-size: 10px;
   }
-
+  .category-link {
+    padding-right: 6px;
+    padding-left: 6px;
+    font-size: 9px;
+  }
   .bottom-section {
     position: absolute;
     left: 0px;
