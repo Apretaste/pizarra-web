@@ -301,6 +301,11 @@ a {
   font-size: 11px;
   text-align: left;
 }
+.alert-text {
+  background-color: #eee;
+  color: #FF0003;
+  border-radius: 2px;
+}
 .wrapper-mask {
   position: fixed;
   display: none;
