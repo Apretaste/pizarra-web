@@ -924,11 +924,11 @@ a {
 .big-button {
   width: auto;
   margin-right: 12px;
-  padding: 6px 15px;
+  padding: 4px 10px;
   border-radius: 2px;
   background-color: #ededed;
   color: #333;
-  font-size: 20px;
+  font-size: 16px;
   text-decoration: none;
 }
 .icon-button {
@@ -939,7 +939,7 @@ a {
   height: 15px;
   padding-bottom: 20px;
   float: left;
-  font-size: 13px;
+  font-size: 12px;
 }
 .icon-button.bigger {
   font-size: 20px;
@@ -1266,6 +1266,14 @@ html.w-mod-js *[data-ix="list-item"] {
   .chat-button {
     width: 25%;
     font-size: 10px;
+  }
+  .big-button {
+    padding: 2px 8px;
+  }
+  .group-block.interest {
+    margin: 4px;
+    padding-right: 4px;
+    padding-left: 4px;
   }
 }
 
