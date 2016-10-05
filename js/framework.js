@@ -104,8 +104,15 @@ $(function() {
 
   $('#email-field').keypress(function(e) {
     if(e.which == 13) {
-        $('#login-div').hide();
-        $('#password-div').fadeIn(500).focus().click();
-        }
-    });
+      $('#login-div').hide();
+      $('#password-div').fadeIn(500).focus().click();
+      }
+  });
+
+  $(".password-block").keyup(function() {
+    if($(this).val().length >= 1) {
+      var input_flds = $(this).closest('form').find(':input');
+      input_flds.eq(input_flds.index(this) + 1).focus();
+    }
+  });
 });
