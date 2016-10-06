@@ -115,4 +115,11 @@ $(function() {
       input_flds.eq(input_flds.index(this) + 1).focus();
     }
   });
+
+  $('[type="submit"]').on('click', function () {
+    $(this)
+        .closest('form')
+        .find('[required]')
+        .addClass('required');
+  });
 });

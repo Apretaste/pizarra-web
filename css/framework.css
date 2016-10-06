@@ -132,6 +132,9 @@ input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
 }
+input.required:invalid {
+  border: 1px solid red;
+}
 .w-form {
   margin: 0 0 15px;
 }

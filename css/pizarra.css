@@ -498,6 +498,35 @@ a {
 .block-input-combined {
   position: relative;
 }
+.password-icon {
+  display: inline-block;
+  width: 16%;
+  height: 100%;
+  font-size: 30px;
+  text-align: center;
+  padding: 0px 10px;
+}
+.password-block {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 20%;
+  height: 20%;
+  text-align: center;
+  font-size: 30px;
+}
+.password-block.last-block {
+  margin-right: 0px;
+}
+.password-block:invalid {
+  box-shadow: none;
+}
+.password-block:-moz-submit-invalid {
+  box-shadow: none;
+}
+.password-block:-moz-ui-invalid {
+  box-shadow:none;
+}
 .sub-title-small {
   padding-top: 6px;
   color: #333;
@@ -1191,15 +1220,6 @@ html.w-mod-js *[data-ix="list-item"] {
   -ms-transform: translate(-26px, 0px);
   transform: translate(-26px, 0px);
 }
-.password-block {
-  display: inline-block;
-    padding: 10px;
-    border: 1px solid #ddd;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    font-size: 30px;
-}
 @media (max-width: 991px) {
   .mobile-wrapper {
     width: 100%;
@@ -1283,6 +1303,12 @@ html.w-mod-js *[data-ix="list-item"] {
     margin: 4px;
     padding-right: 4px;
     padding-left: 4px;
+  }
+  .password-icon {
+    font-size: 20px;
+  }
+  .password-block {
+    width: 19%;
   }
 }
 
