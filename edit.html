@@ -38,6 +38,27 @@
       </div>
       <div class="body padding">
         <div class="separator-button"></div>
+        <div id="edit-image" class="profile-image">
+          <img src="images/avatar.jpg" alt="@osmay en Pizarra"/>
+        </div>
+        <div class="separator-button"></div>
+        <div>
+          <div class="w-clearfix options-new">
+            <a class="w-clearfix action-button profile-button edit-profile" href="#" data-load="1">
+              <div class="icon-button bigger notes-button">
+                <div class="icon ion-image"></div>
+              </div>
+              Sube una foto 
+            </a>
+            <a class="w-clearfix action-button profile-button edit-profile" href="#" data-load="1">
+              <div class="icon-button bigger follow-button">
+                <div class="icon ion-ios-trash"></div>
+              </div>
+              Elimina tu foto
+            </a>
+          </div>
+        </div>
+        <div class="separator-button"></div>
         <div class="w-form">
           <form id="email-form" name="email-form" data-name="Email Form" action="#">
             <div>
@@ -58,30 +79,42 @@
               <input class="w-input input-form" id="birthday-field" type="date" name="birthday" data-name="birthday" placeholder="DD/MM/AA" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required="required">
               <div class="separator-fields"></div>
             </div>
-            <div class="row-input-list">
-              <label class="label-form" for="birthday-field">CIUDAD</label>
-              <div class="separator-fields"></div>
-              <div class="block-input-combined">
-                <input class="w-input input-form left" id="location" type="text" name="location" data-name="location" placeholder="Santiago de Cuba" required="required">
-                <a class="w-inline-block right-input-icon color" href="#">
-                  <div class="icon ion-ios-location"></div>
-                </a>
-              </div>
-              <div class="separator-fields"></div>
-            </div>
             <div>
               <div class="w-clearfix input-form one-line">
                 <label class="label-form middle" for="email">GÉNERO</label>
                 <div class="w-clearfix radios-container">
                   <div class="w-radio w-clearfix radio-button">
                     <div class="radio-bullet-replacement"></div>
-                    <input class="w-radio-input radio-bullet" id="node" type="radio" name="Radio1" value="1" data-name="Radio1">
-                    <label class="w-form-label" for="node">Femenino</label>
+                    <input class="w-radio-input radio-bullet" id="genre-node-1" type="radio" name="Radio1" value="1" data-name="Radio1">
+                    <label class="w-form-label" for="genre-node">Femenino</label>
                   </div>
                   <div class="w-radio w-clearfix radio-button">
                     <div class="radio-bullet-replacement checked"></div>
-                    <input class="w-radio-input radio-bullet" id="node-2" type="radio" name="Radio1" value="0" data-name="Radio1">
-                    <label class="w-form-label" for="node-2">Masculino</label>
+                    <input class="w-radio-input radio-bullet" id="genre-node-2" type="radio" name="Radio1" value="0" data-name="Radio1">
+                    <label class="w-form-label" for="genre-node-2">Masculino</label>
+                  </div>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="correo">ORIENTACIÓN SEXUAL</label>
+                <div class="w-clearfix radios-container">
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement"></div>
+                    <input class="w-radio-input radio-bullet" id="orientation-node-3" type="radio" name="Radio2" value="0" data-name="Radio2">
+                    <label class="w-form-label" for="orientation-node-3">Bi</label>
+                  </div>
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement"></div>
+                    <input class="w-radio-input radio-bullet" id="orientation-node-2" type="radio" name="Radio2" value="1" data-name="Radio2">
+                    <label class="w-form-label" for="orientation-node-2">Gay</label>
+                  </div>
+                  <div class="w-radio w-clearfix radio-button">
+                    <div class="radio-bullet-replacement checked"></div>
+                    <input class="w-radio-input radio-bullet" id="orientation-node-1" type="radio" name="Radio2" value="2" data-name="Radio2">
+                    <label class="w-form-label" for="orientation-node-1">Hetero</label>
                   </div>
                 </div>
               </div>
@@ -114,6 +147,174 @@
             -->
             <div>
               <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">PAÍS</label>
+                <div class="country"><i></i> <b>Estados Unidos</b></div>
+                <div class="w-clearfix block-input-combined" id="location" type="text" name="location" data-name="location">
+                  <select id="country" class="input-form w-select w-clearfix">
+                    <option value="us">Estados Unidos</option>
+                    <option value="at">Austria</option>
+                    <option value="es">España</option>
+                    <option value="br">Brasil</option>
+                    <option value="cu">Cuba</option>
+                    <option value="ca">Canada</option>
+                    <option value="uy">Uruguay</option>
+                    <option value="ar">Argentina</option>
+                    <option value="de">Alemania</option>
+                    <option value="gb">Reino Unido</option>
+                    <option value="fr">Francia</option>
+                    <option value="vi">Islas Vírgenes, US</option>
+                  </select>
+                  <a class="w-inline-block right-input-icon color" href="#">
+                    <div class="icon ion-ios-location"></div>
+                  </a>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div id="city-select" style="display:none;">
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">PROVINCIA</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="la-habana">La Habana</option>
+                    <option value="pinar">Pinar</option>
+                    <option value="artemisa">Artemisa</option>
+                    <option value="mayabeque">Mayabeque</option>
+                    <option value="matanzas">Matanzas</option>
+                    <option value="las-villas">Las Villas</option>
+                    <option value="cienfuegos">Cienfuegos</option>
+                    <option value="sancti">Sancti</option>
+                    <option value="spiritus">Spíritus</option>
+                    <option value="ciego">Ciego</option>
+                    <option value="camaguey">Camagüey</option>
+                    <option value="las-tunas">Las Tunas</option>
+                    <option value="holguin">Holguín</option>
+                    <option value="granma">Granma</option>
+                    <option value="santiago">Santiago</option>
+                    <option value="guantanamo">Guantánamo</option>
+                    <option value="isla">Isla</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">OJOS</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="negros">Negros</option>
+                    <option value="carmelitas">Carmelitas</option>
+                    <option value="verdes">Verdes</option>
+                    <option value="azules">Azules</option>
+                    <option value="avellana">Avellana</option>
+                    <option value="otro">Otro color</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">PELO</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="trigueno">Trigueño</option>
+                    <option value="castano">Castaño</option>
+                    <option value="rubio">Rubio</option>
+                    <option value="negro">Negro</option>
+                    <option value="rojo">Rojo</option>
+                    <option value="blanco">Blanco</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">PIEL</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="blanca">Blanca</option>
+                    <option value="negra">Negra</option>
+                    <option value="mestiza">Mestiza</option>
+                    <option value="otro">Otra</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">ESTADO CIVIL</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="soltero">Soltero</option>
+                    <option value="saliendo">Saliendo</option>
+                    <option value="comprometido">Comprometido</option>
+                    <option value="casado">Casado</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">NIVEL ESCOLAR</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="primaria">Primaria</option>
+                    <option value="secundaria">Secundaria</option>
+                    <option value="tecnico">Técnico</option>
+                    <option value="universitaria">Universitario</option>
+                    <option value="postgraduado">Postgraduado</option>
+                    <option value="doctorado">Doctorado</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-button"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form" for="birthday-field">PROFESIÓN</label>
+                <div class="separator-fields"></div>
+                <div class="block-input-combined">
+                  <input class="w-input input-form left" id="profesion" type="text" name="profesion" data-name="profesion" placeholder="Director Ejecutivo en Etecsa">
+                  <a class="w-inline-block right-input-icon color">
+                    <div class="icon ion-hammer"></div>
+                  </a>
+                </div>
+              </div>
+              <div class="separator-fields"></div>
+            </div>
+            <div>
+              <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="email">RELIGIÓN</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="ateismo">Ateísmo</option>
+                    <option value="secularismo">Secularismo</option>
+                    <option value="agnosticismo">Agnosticismo</option>
+                    <option value="catolicismo">Catolicismo</option>
+                    <option value="cristianismo">Cristianismo</option>
+                    <option value="islam">Islam</option>
+                    <option value="rastafarismo">Rastafarismo</option>
+                    <option value="judaismo">Judaismo</option>
+                    <option value="espiritismo">Espiritismo</option>
+                    <option value="sijismo">Sijismo</option>
+                    <option value="budismo">Budismo</option>
+                    <option value="otro">Otra</option>
+                  </select>
+                </div>
+              </div>
+              <div class="separator-button"></div>
+            </div>
+            <!--
+            <div>
+              <div class="w-clearfix input-form one-line">
                 <label class="label-form middle" for="email">NOTIFICACIONES</label>
                 <div class="w-clearfix radios-container">
                   <div class="w-checkbox w-clearfix checkbox-field">
@@ -138,6 +339,7 @@
               </div>
               <div class="separator-fields"></div>
             </div>
+            -->
             <input class="w-button action-button" type="submit" value="SALVAR DATOS" href="posts.html" data-wait="Por favor espere...">
           </form>
           <div class="w-form-done">

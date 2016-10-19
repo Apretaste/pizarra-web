@@ -122,4 +122,43 @@ $(function() {
         .find('[required]')
         .addClass('required');
   });
+
+  (function ($) {
+    // size = flag size + spacing
+    var default_size = {
+        w: 20,
+        h: 15
+    };
+
+    function calcPos(letter, size) {
+        return -(letter.toLowerCase().charCodeAt(0) - 97) * size;
+    }
+
+    $.fn.setFlagPosition = function (iso, size) {
+        size || (size = default_size);
+        
+        var x = calcPos(iso[1], size.w),
+            y = calcPos(iso[0], size.h);
+
+        return $(this).css('background-position', [x, 'px ', y, 'px'].join(''));
+    };
+  })(jQuery);
+
+  // USAGE:
+
+  (function ($) {
+    $(function () {
+        var $target = $('.country');
+        // on load:
+        $target.find('i').setFlagPosition('us');
+        $('#country').change(function () {
+            $target.find('i').setFlagPosition(this.value);
+            $target.find('b').text($(this).find(':selected').text());
+            var value = $(this).find(':selected').val();
+            if (value == "cu"){
+              $("#city-select").fadeIn(500);
+            }
+        });
+    });
+  })(jQuery);
 });
