@@ -1039,6 +1039,11 @@ a {
 }
 .image-message.chat {
   margin: 0;
+  width: 50px;
+  height: 50px;
+}
+.image-message.chat-avatar {
+  margin-top: 5px;
 }
 .image-message.note-message {
   width: 60px;
@@ -1322,7 +1327,6 @@ html.w-mod-js *[data-ix="list-item"] {
   .profile-button {
     width: 30%;
     margin: 0 2px;
-    line-height: 15px;
   }
   .profile-button.edit-profile {
     width: 50%;
@@ -1370,9 +1374,6 @@ html.w-mod-js *[data-ix="list-item"] {
   .news-container {
     padding: 0;
   }
-  .column-right {
-    padding-right: 0;
-  }
   .input-notes {
     width: 50%;
     font-size: 10px;
@@ -1383,6 +1384,10 @@ html.w-mod-js *[data-ix="list-item"] {
   }
   .big-button {
     padding: 2px 8px;
+  }
+  .action-button.notes-button {
+    line-height: 15px;
+    padding: 12px 5px;
   }
   .group-block.interest {
     margin: 4px;
@@ -1411,7 +1416,6 @@ html.w-mod-js *[data-ix="list-item"] {
     padding-top: 30px;
   }
 }
-
 .navbar{
     width:inherit;
 }
