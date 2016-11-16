@@ -334,11 +334,14 @@ a {
   color: white;
 }
 .logo-login {
-  height: 50vh;
+  height: 250px;
   background-image: url('../images/logoApretaste.png');
   background-position: 50% 50%;
-  background-size: 50vh;
+  background-size: 250px;
   background-repeat: no-repeat;
+}
+.logo-login.logo-about {
+  margin-top: 40px;
 }
 .logo-login.smaller {
   height: 97px;
@@ -702,9 +705,13 @@ a {
   text-align: center;
 }
 .version-text {
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   color: #a1a1a1;
   font-size: 11px;
+}
+.about-text {
+  width: 100%;
+  text-align: justify;
 }
 .separator-bottom {
   height: 15px;
