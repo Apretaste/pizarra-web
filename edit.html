@@ -42,23 +42,6 @@
           <img src="images/avatar.jpg" alt="@osmay en Pizarra"/>
         </div>
         <div class="separator-button"></div>
-        <div>
-          <div class="w-clearfix options-new">
-            <a class="w-clearfix action-button profile-button edit-profile" href="#" data-load="1">
-              <div class="icon-button bigger notes-button">
-                <div class="icon ion-image"></div>
-              </div>
-              Sube una foto 
-            </a>
-            <a class="w-clearfix action-button profile-button edit-profile erase" href="#" data-load="1">
-              <div class="icon-button bigger follow-button">
-                <div class="icon ion-ios-trash"></div>
-              </div>
-              Elimina tu foto
-            </a>
-          </div>
-        </div>
-        <div class="separator-button"></div>
         <div class="w-form">
           <form id="email-form" name="email-form" data-name="Email Form" action="#">
             <div>
@@ -71,45 +54,28 @@
               <label class="label-form" for="birthday-field">FECHA DE NACIMIENTO</label>
               <div class="separator-fields"></div>
               <input class="w-input input-form" id="birthday-field" type="date" name="birthday" data-name="birthday" placeholder="DD/MM/AA" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required="required">
-              <div class="separator-fields"></div>
             </div>
             <div>
               <div class="w-clearfix input-form one-line">
                 <label class="label-form middle" for="email">GÉNERO</label>
-                <div class="w-clearfix radios-container">
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement"></div>
-                    <input class="w-radio-input radio-bullet" id="genre-node-1" type="radio" name="Radio1" value="1" data-name="Radio1">
-                    <label class="w-form-label" for="genre-node">Femenino</label>
-                  </div>
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement checked"></div>
-                    <input class="w-radio-input radio-bullet" id="genre-node-2" type="radio" name="Radio1" value="0" data-name="Radio1">
-                    <label class="w-form-label" for="genre-node-2">Masculino</label>
-                  </div>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="femenino">Femenino</option>
+                    <option value="masculino">Masculino</option>
+                  </select>
                 </div>
               </div>
               <div class="separator-fields"></div>
             </div>
             <div>
               <div class="w-clearfix input-form one-line">
-                <label class="label-form middle" for="correo">ORIENTACIÓN SEXUAL</label>
-                <div class="w-clearfix radios-container">
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement"></div>
-                    <input class="w-radio-input radio-bullet" id="orientation-node-3" type="radio" name="Radio2" value="0" data-name="Radio2">
-                    <label class="w-form-label" for="orientation-node-3">Bi</label>
-                  </div>
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement"></div>
-                    <input class="w-radio-input radio-bullet" id="orientation-node-2" type="radio" name="Radio2" value="1" data-name="Radio2">
-                    <label class="w-form-label" for="orientation-node-2">Gay</label>
-                  </div>
-                  <div class="w-radio w-clearfix radio-button">
-                    <div class="radio-bullet-replacement checked"></div>
-                    <input class="w-radio-input radio-bullet" id="orientation-node-1" type="radio" name="Radio2" value="2" data-name="Radio2">
-                    <label class="w-form-label" for="orientation-node-1">Hetero</label>
-                  </div>
+                <label class="label-form middle" for="email">ORIENTACIÓN SEXUAL</label>
+                <div class="w-clearfix">
+                  <select class="input-form w-select w-clearfix">
+                    <option value="hetero">Hetero</option>
+                    <option value="gay">Gay</option>
+                    <option value="bi">Bi</option>
+                  </select>
                 </div>
               </div>
               <div class="separator-fields"></div>
