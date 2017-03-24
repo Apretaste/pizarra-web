@@ -18,10 +18,12 @@
     });
   </script>
   <script type="text/javascript" src="js/modernizr.js"></script>
+  <script type="text/javascript" src="js/apretaste-sdk.js"></script>
   <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
   <link rel="apple-touch-icon" href="images/iconApretaste.png">
 
   <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
   <section class="w-section mobile-wrapper">
@@ -78,5 +80,11 @@
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <script type="text/javascript" src="js/framework.js"></script>
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
+
+  <script>
+      $(function(){
+          var sdk = new apretaste("http://corex.wifi/api");
+      });
+  </script>
 </body>
 </html>

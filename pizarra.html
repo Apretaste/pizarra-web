@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pizarra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
+    <link rel="apple-touch-icon" href="images/iconApretaste.png">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/framework.css">
+    <link rel="stylesheet" type="text/css" href="css/pizarra.css">
+
+    <script src="js/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                families: ["Montserrat:400,700"]
+            }
+        });
+    </script>
+
+    <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
+    <link rel="apple-touch-icon" href="images/iconApretaste.png">
+    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<section class="w-section mobile-wrapper">
+
+    <div class="page-content" id="main-stack" data-scroll="0">
+        <div class="w-nav"></div>
+        <div class="body padding">
+
+        </div>
+        <div class="footer"></div>
+    </div>
+</section>
+
+<!-- load scripts -->
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-cookie/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="js/modernizr.js"></script>
+<script type="text/javascript" src="js/apretaste-sdk.js"></script>
+<!--[if lte IE 9]>
+<script src="js/placeholders.min.js"></script><![endif]-->
+<script type="text/javascript" src="js/pizarra.js"></script>
+<script type="text/javascript">
+
+    var sdk = new apretaste("http://corex.wifi/");
+    var client = new pizarra(sdk);
+
+    $(function () {
+
+        var session = $.cookie('apretaste-pizarra');
+        if (session == null)
+        {
+            client.pages.login.show();
+        } else {
+            client.pages.notes.show();
+        }
+    });
+</script>
+
+</body>
+</html>

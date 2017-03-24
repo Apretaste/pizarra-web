@@ -97,9 +97,9 @@ $(function() {
     };
 
   $("#pass-button").click(function(e) {
-    $("#login-div").hide();
-    e.preventDefault();
-    $("#password-div").fadeIn(500);
+          $("#login-div").hide();
+          e.preventDefault();
+          $("#password-div").fadeIn(500);
   });
 
   $('#email-field').keypress(function(e) {

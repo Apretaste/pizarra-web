@@ -1,0 +1,38 @@
+<div class="logo-login"></div>
+<div class="bottom-section padding">
+    <div class="w-form">
+        <form id="submit-form" name="email-form" data-name="Email Form" data-redirect="notes.html" action="#">
+            <div id="login-div">
+                <label class="label-form" for="email-field">EMAIL</label>
+                <div class="separator-fields"></div>
+                <input class="w-input input-form left" id="email-field" type="email" name="email" data-name="email"
+                       required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                       placeholder="Ingresa tu correo">
+                <input id="pass-button" class="w-button action-button" type="button" value="Siguiente"
+                       data-wait="Por favor espere...">
+                <div class="separator-fields"></div>
+            </div>
+            <div id="password-div" style="display:none;">
+                <p class="alert-text">Te hemos enviado un email. Por favor revisa e ingresa los 4 dígitos que te hemos
+                    enviado en el campo debajo.</p>
+                <div class="separator-fields"></div>
+                <div class="w-clearfix block-input-combined">
+                    <div class="separator-fields"></div>
+                    <input class="w-input input-form password-block" data-name="password" type="password"
+                           pattern="^\d{1,4}$" required="required" maxlength="1"/>
+                    <input class="w-input input-form password-block" data-name="password" type="password"
+                           pattern="^\d{1,4}$" required="required" maxlength="1"/>
+                    <input class="w-input input-form password-block" data-name="password" type="password"
+                           pattern="^\d{1,4}$" required="required" maxlength="1"/>
+                    <input class="w-input input-form password-block last-block" data-name="password" type="password"
+                           pattern="^\d{1,4}$" required="required" maxlength="1"/>
+                    <!-- <a class="right-input-link" href="recover.html" data-load="1">OLVID&Eacute; MI CONTRASEÑA</a> -->
+                </div>
+                <input class="w-button action-button" type="submit" value="INGRESAR" data-wait="Por favor espere...">
+            </div>
+            <!--
+            <div class="separator-button"></div><a class="link-upper" href="registrate.html" data-load="1">¿NO TIENES CUENTA? <strong class="b-link">INSCRÍBETE</strong></a>
+            -->
+        </form>
+    </div>
+</div>
