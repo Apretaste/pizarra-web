@@ -1,3 +1,7 @@
+$(function(){
+    $("#navbar").hide();
+})
+
 $("#pass-button").click(function(e) {
     $("#login-div").hide();
     e.preventDefault();
@@ -44,7 +48,7 @@ $("#submit-form").submit(function(event) {
         $("#password-div").hide();
         $("#login-div").fadeIn(500);
     } else {
-        $.cookie('apretaste-pizarra', result.token);
+        client.setToken(result.token);
         client.pages.notes.show();
     }
 

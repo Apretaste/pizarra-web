@@ -1,3 +1,11 @@
+/**
+ * Apretaste Software Developer Kit
+ *
+ * @author @kumahacker
+ * @version 1.0
+ *
+ * @param string pbaseUrl - Host of Apretaste REST service
+ */
 var apretaste = function (pbaseUrl)
 {
     if (typeof(pbaseUrl) == "undefined")
@@ -5,13 +13,21 @@ var apretaste = function (pbaseUrl)
 
     this.baseUrl = pbaseUrl;
 
-    this.getData = function(pUrl, pData)
+    /**
+     * Get data via AJAX
+     *
+     * @author @kumahacker
+     * @param string pUrl
+     * @param object pParams
+     * @returns object
+     */
+    this.getData = function(pUrl, pParams)
     {
         var receptor = {result: null};
         $.ajax({
             url: this.baseUrl + pUrl,
             method: 'GET',
-            data: pData,
+            data: pParams,
             async: false,
             complete: function(res, status) {
                 if (status == "success" || status == "notmodified") {
@@ -22,6 +38,13 @@ var apretaste = function (pbaseUrl)
         return receptor.result;
     };
 
+    /**
+     * Get HTML via AJAX
+     *
+     * @author @kumahacker
+     * @param string pUrl
+     * @returns string
+     */
     this.getHTML = function(pUrl){
         var receptor = {result: null};
         $.ajax({
@@ -37,15 +60,37 @@ var apretaste = function (pbaseUrl)
         return receptor.result;
     };
 
+    /**
+     * Log on server
+     *
+     * @param string email
+     * @param string pin
+     * @returns {Object}
+     */
     this.login = function(email, pin)
     {
         return this.getData('api/auth', {email: email, pin: pin});
     };
 
+    /**
+     * Logout from server
+     *
+     * @author @kumahacker
+     * @param token
+     * @returns {Object}
+     */
     this.logout = function(token) {
         return this.getData('api/logout', {token: token});
     }
 
+    /**
+     * Run service
+     *
+     * @param string subject
+     * @param string body
+     * @param string token
+     * @returns {Object}
+     */
     this.run = function(subject, body, token)
     {
         return this.getData('run/api', {token: token, subject: subject, body:body});

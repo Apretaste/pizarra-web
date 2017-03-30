@@ -1,69 +1,75 @@
 <!DOCTYPE html>
+<html class="w-mod-js w-mod-no-touch w-mod-video w-mod-no-ios wf-montserrat-n4-inactive wf-montserrat-n7-inactive wf-inactive">
+    <head>
+        <meta charset="utf-8">
+        <title>Pizarra</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
+        <link rel="apple-touch-icon" href="images/iconApretaste.png">
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/framework.css">
+        <link rel="stylesheet" type="text/css" href="css/pizarra.css">
 
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Pizarra</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
-    <link rel="apple-touch-icon" href="images/iconApretaste.png">
-    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/framework.css">
-    <link rel="stylesheet" type="text/css" href="css/pizarra.css">
+        <script src="js/webfont.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ["Montserrat:400,700"]
+                }
+            });
+        </script>
 
-    <script src="js/webfont.js"></script>
-    <script>
-        WebFont.load({
-            google: {
-                families: ["Montserrat:400,700"]
-            }
-        });
-    </script>
+        <script type="text/javascript" src="js/modernizr.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="images/logoApretaste.png">
+        <link rel="apple-touch-icon" href="images/logoApretaste.png">
 
-    <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
-    <link rel="apple-touch-icon" href="images/iconApretaste.png">
-    <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-</head>
-<body>
+    </head>
+    <body>
+        <section class="w-section mobile-wrapper">
+            <div class="page-content" id="main-stack">
+                <div class="w-nav navbar" data-no-scroll="1" id="navbar">
+                    <div class="w-container">
+                        <div class="wrapper-mask" data-ix="menu-mask"></div>
+                        <div class="navbar-title" id="navbar-title"></div>
+                        <a class="w-inline-block navbar-button right" href="#" data-load="1" id="btnClosePage">
+                            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="body padding">
+                    <!-- dynamic zone -->
+                </div>
 
-<section class="w-section mobile-wrapper">
+            </div>
+        </section>
 
-    <div class="page-content" id="main-stack" data-scroll="0">
-        <div class="w-nav"></div>
-        <div class="body padding">
+        <!-- load scripts -->
 
-        </div>
-        <div class="footer"></div>
-    </div>
-</section>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-cookie/jquery.cookie.min.js"></script>
+        <script type="text/javascript" src="js/apretaste-sdk.js"></script>
+        <!--[if lte IE 9]>
+        <script src="js/placeholders.min.js"></script><![endif]-->
+        <script type="text/javascript" src="js/pizarraPage.js"></script>
+        <script type="text/javascript" src="js/pizarra.js"></script>
+        <script type="text/javascript">
 
-<!-- load scripts -->
+            var sdk = new apretaste("http://corex.wifi/");
+            var client = new pizarra(sdk);
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-cookie/jquery.cookie.min.js"></script>
-<script type="text/javascript" src="js/modernizr.js"></script>
-<script type="text/javascript" src="js/apretaste-sdk.js"></script>
-<!--[if lte IE 9]>
-<script src="js/placeholders.min.js"></script><![endif]-->
-<script type="text/javascript" src="js/pizarra.js"></script>
-<script type="text/javascript">
+            $(function () {
 
-    var sdk = new apretaste("http://corex.wifi/");
-    var client = new pizarra(sdk);
-
-    $(function () {
-
-        var session = $.cookie('apretaste-pizarra');
-        if (session == null)
-        {
-            client.pages.login.show();
-        } else {
-            client.pages.notes.show();
-        }
-    });
-</script>
-
-</body>
+                var session = $.cookie('apretaste-pizarra');
+                if (session == null)
+                {
+                    client.pages.login.show();
+                } else {
+                    client.pages.notes.show();
+                }
+            });
+        </script>
+    </body>
 </html>

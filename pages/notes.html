@@ -3,10 +3,10 @@
 <a class="w-inline-block navbar-button right" href="#" data-ix="">
     <div class="navbar-button-icon icon ion-ios-search-strong"></div>
 </a>
-<a class="w-inline-block navbar-button right" href="edit.html" data-load="1">
+<a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="client.pages.edit.show(client.getCurrentProfile());">
     <div class="navbar-button-icon icon ion-ios-person"></div>
 </a>
-<a class="w-inline-block navbar-button right" href="chats.html" data-load="1">
+<a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="client.pages.chats.show();">
     <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
 </a>
 <ul style="display:none;" id="news-template">
@@ -41,3 +41,22 @@
 
 
 </ul>
+
+<div class="input-chat-block shadowed-block">
+    <div class="w-form">
+        <div class="column-left">
+            <div class="image-message notes-avatar"><a href="edit.html" data-load="1"><img src="images/128 (3).jpg"></a>
+            </div>
+        </div>
+
+            <input id="edtNote" class="w-input input-chat input-notes" id="chat-message" type="text" placeholder="Escribe una nueva nota..." name="nota" data-name="Nota">
+            <input id="btnSendNote" class="w-button chat-button action-button" type="button" value="Enviar" data-wait="Por favor espere...">
+
+        <div class="w-form-done">
+            <p>¡Gracias! Su petición ha sido recibida</p>
+        </div>
+        <div class="w-form-fail">
+            <p>¡Ups! Algo salió mal con su formulario</p>
+        </div>
+    </div>
+</div>

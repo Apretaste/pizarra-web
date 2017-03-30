@@ -1,0 +1,265 @@
+<div class="separator-button"></div>
+<div id="edit-image" class="profile-image">
+    <img id= "picture" src="{{ picture }}" alt="@{{ username }} en Pizarra" src-default="images/user.png"/>
+</div>
+<div class="separator-button"></div>
+<div class="w-form">
+    <form id="email-form" name="email-form" data-name="Email Form" action="#">
+        <!-- FULL NAME -->
+        <div>
+            <label class="label-form" for="fullname">NOMBRE COMPLETO</label>
+            <div class="separator-fields"></div>
+            <input id="fullname" class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" placeholder="Fulano De Tal" required="required">
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <label class="label-form" for="birthday">FECHA DE NACIMIENTO</label>
+            <div class="separator-fields"></div>
+            <input id="birthday" class="w-input input-form" id="birthday-field" type="date" name="birthday" data-name="birthday" placeholder="DD/MM/AA" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required="required">
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="gender">GÉNERO</label>
+                <div class="w-clearfix">
+                    <select id="gender" class="input-form w-select w-clearfix">
+                        <option value="F">Femenino</option>
+                        <option value="M">Masculino</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="orientation">ORIENTACIÓN SEXUAL</label>
+                <div class="w-clearfix">
+                    <select id="orientation" class="input-form w-select w-clearfix">
+                        <option value="HETERO">Hetero</option>
+                        <option value="HOMO">Gay</option>
+                        <option value="BI">Bi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <!--
+        <div>
+          <div class="w-clearfix input-form one-line">
+            <label class="label-form middle" for="email">ACTIVIDAD</label>
+            <div class="w-clearfix radios-container">
+              <div class="w-radio w-clearfix radio-button">
+                <div class="radio-bullet-replacement"></div>
+                <input class="w-radio-input radio-bullet" id="node-9" type="radio" name="Radio3" value="2" data-name="Radio3">
+                <label class="w-form-label" for="node-9">Alta</label>
+              </div>
+              <div class="w-radio w-clearfix radio-button">
+                <div class="radio-bullet-replacement checked"></div>
+                <input class="w-radio-input radio-bullet" id="node-6" type="radio" name="Radio3" value="1" data-name="Radio3">
+                <label class="w-form-label" for="node-6">Media</label>
+              </div>
+              <div class="w-radio w-clearfix radio-button">
+                <div class="radio-bullet-replacement"></div>
+                <input class="w-radio-input radio-bullet" id="node-5" type="radio" name="Radio3" value="0" data-name="Radio3">
+                <label class="w-form-label" for="node-5">Baja</label>
+              </div>
+            </div>
+          </div>
+          <div class="separator-fields"></div>
+        </div>
+        -->
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="country">PAÍS</label>
+                <div class="country"><i></i> <b>Estados Unidos</b></div>
+                <div class="w-clearfix block-input-combined" id="location" type="text" name="location" data-name="location">
+                    <select id="country" class="input-form w-select w-clearfix">
+                        <option value="us">Estados Unidos</option>
+                        <option value="at">Austria</option>
+                        <option value="es">España</option>
+                        <option value="br">Brasil</option>
+                        <option value="cu">Cuba</option>
+                        <option value="ca">Canada</option>
+                        <option value="uy">Uruguay</option>
+                        <option value="ar">Argentina</option>
+                        <option value="de">Alemania</option>
+                        <option value="gb">Reino Unido</option>
+                        <option value="fr">Francia</option>
+                        <option value="vi">Islas Vírgenes, US</option>
+                    </select>
+                    <a class="w-inline-block right-input-icon color" href="#">
+                        <div class="icon ion-ios-location"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div id="city-select" style="display:none;">
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="province">PROVINCIA</label>
+                <div class="w-clearfix">
+                    <select id="province" class="input-form w-select w-clearfix">
+                        <option value="LA_HABANA">La Habana</option>
+                        <option value="PINAR_DEL_RIO">Pinar del R&iacute;o</option>
+                        <option value="ARTEMISA">Artemisa</option>
+                        <option value="MAYABEQUE">Mayabeque</option>
+                        <option value="MATANZAS">Matanzas</option>
+                        <option value="VILLA_CLARA">Villas Clara</option>
+                        <option value="CIENFUEGOS">Cienfuegos</option>
+                        <option value="SANCTI_SPIRITUS">Sancti Sp&iacute;ritus</option>
+                        <option value="CIEGO_DE_AVILA">Ciego de &Aacute;vila</option>
+                        <option value="CAMAGUEY">Camagüey</option>
+                        <option value="LAS_TUNAS">Las Tunas</option>
+                        <option value="HOLGUIN">Holguín</option>
+                        <option value="GRANMA">Granma</option>
+                        <option value="SANTIAGO_DE_CUBA">Santiago de Cuba</option>
+                        <option value="GUANTANAMO">Guantánamo</option>
+                        <option value="ISLA_DE_LA_JUVENTUD">Isla de la Juventud</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="eyes">OJOS</label>
+                <div class="w-clearfix">
+                    <select id="eyes" class="input-form w-select w-clearfix">
+                        <option value="NEGRO">Negros</option>
+                        <option value="CARMELITA">Carmelitas</option>
+                        <option value="VERDE">Verdes</option>
+                        <option value="AZUL">Azules</option>
+                        <option value="AVELLANA">Avellana</option>
+                        <option value="OTRO">Otro color</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="hair">PELO</label>
+                <div class="w-clearfix">
+                    <select id="hair" class="input-form w-select w-clearfix">
+                        <option value="TRIGUENO">Trigue&ntilde;o</option>
+                        <option value="CASTANO">Casta&ntilde;o</option>
+                        <option value="RUBIO">Rubio</option>
+                        <option value="NEGRO">Negro</option>
+                        <option value="ROJO">Rojo</option>
+                        <option value="BLANCO">Blanco</option>
+                        <option value="OTRO">Otro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="skin">PIEL</label>
+                <div class="w-clearfix">
+                    <select id="skin" class="input-form w-select w-clearfix">
+                        <option value="BLANCO">Blanca</option>
+                        <option value="NEGRO">Negra</option>
+                        <option value="MESTIZO">Mestiza</option>
+                        <option value="OTRO">Otra</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="status">ESTADO CIVIL</label>
+                <div class="w-clearfix">
+                    <select id="status" class="input-form w-select w-clearfix">
+                        <option value="soltero">Soltero</option>
+                        <option value="saliendo">Saliendo</option>
+                        <option value="comprometido">Comprometido</option>
+                        <option value="casado">Casado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="level">NIVEL ESCOLAR</label>
+                <div class="w-clearfix">
+                    <select id="level" class="input-form w-select w-clearfix">
+                        <option value="primaria">Primaria</option>
+                        <option value="secundaria">Secundaria</option>
+                        <option value="tecnico">Técnico</option>
+                        <option value="universitaria">Universitario</option>
+                        <option value="postgraduado">Postgraduado</option>
+                        <option value="doctorado">Doctorado</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-button"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form" for="occupation">PROFESI&Oacute;N</label>
+                <div class="separator-fields"></div>
+                <div class="block-input-combined">
+                    <input id="occupation" class="w-input input-form left" id="profesion" type="text" name="profesion" data-name="profesion" placeholder="Director Ejecutivo en Etecsa">
+                    <a class="w-inline-block right-input-icon color">
+                        <div class="icon ion-hammer"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="separator-fields"></div>
+        </div>
+        <div>
+            <div class="w-clearfix input-form one-line">
+                <label class="label-form middle" for="religion">RELIGIÓN</label>
+                <div class="w-clearfix">
+                    <select id="religion" class="input-form w-select w-clearfix">
+                        <option value="ateismo">Ateísmo</option>
+                        <option value="secularismo">Secularismo</option>
+                        <option value="agnosticismo">Agnosticismo</option>
+                        <option value="catolicismo">Catolicismo</option>
+                        <option value="cristianismo">Cristianismo</option>
+                        <option value="islam">Islam</option>
+                        <option value="rastafarismo">Rastafarismo</option>
+                        <option value="judaismo">Judaismo</option>
+                        <option value="espiritismo">Espiritismo</option>
+                        <option value="sijismo">Sijismo</option>
+                        <option value="budismo">Budismo</option>
+                        <option value="otro">Otra</option>
+                    </select>
+                </div>
+            </div>
+            <div class="separator-button"></div>
+        </div>
+        <!--
+        <div>
+          <div class="w-clearfix input-form one-line">
+            <label class="label-form middle" for="email">NOTIFICACIONES</label>
+            <div class="w-clearfix radios-container">
+              <div class="w-checkbox w-clearfix checkbox-field">
+                <div class="checkbox-handle"></div>
+                <input class="w-checkbox-input checkbox-input" id="checkbox" type="checkbox" name="checkbox" data-name="Checkbox">
+                <label class="w-form-label checkbox-label" for="checkbox"></label>
+              </div>
+            </div>
+          </div>
+          <div class="separator-fields"></div>
+        </div>
+        <div>
+          <div class="w-clearfix input-form one-line last">
+            <label class="label-form middle" for="email">CHATS</label>
+            <div class="w-clearfix radios-container">
+              <div class="w-checkbox w-clearfix checkbox-field">
+                <div class="checkbox-handle checked"></div>
+                <input class="w-checkbox-input checkbox-input" id="checkbox-2" type="checkbox" name="checkbox-2" data-name="Checkbox 2" checked="checked">
+                <label class="w-form-label checkbox-label checked" for="checkbox-2"></label>
+              </div>
+            </div>
+          </div>
+          <div class="separator-fields"></div>
+        </div>
+        -->
+        <input class="w-button action-button" type="submit" value="SALVAR DATOS" href="#" data-wait="Por favor espere..." id="btnSaveData">
+    </form>
+</div>

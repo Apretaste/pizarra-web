@@ -1,8 +1,30 @@
 $(function(){
-    var token = $.cookie('apretaste-pizarra');
+
+    $("#btnClosePage").click(function(){
+        client.logout();
+    });
+
+    refreshNotes();
+});
+
+$("#btnSendNote").click(function(){
+
+    var token = client.getToken();
+
     if(token !== null)
     {
-        var notes = sdk.run('PIZARRA','',token);
+        if (client.run('PIZARRA ' + $("#edtNote").val(), '', token) != false)
+            refreshNotes();
+    }
+});
+
+function refreshNotes()
+{
+    $("#list-news").html("");
+    var token = client.getToken();
+    if(token != null)
+    {
+        var notes = client.run('PIZARRA','',token);
         var tpl = $("#news-template").html();
 
         for(var item in notes.notes)
@@ -16,4 +38,4 @@ $(function(){
             $("#list-news").append(html);
         }
     }
-});
+}

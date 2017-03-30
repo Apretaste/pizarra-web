@@ -1015,16 +1015,8 @@ a {
   display: block;
   width: 100%;
   height: 200px;
-  /*border-radius: 50%;*/
-	background: url(../images/avatar1.jpg) no-repeat;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
 }
-.profile-image img {
-  opacity: 0;
-	filter: alpha(opacity=0);
-}
+
 .square-map {
   height: 300px;
 }
