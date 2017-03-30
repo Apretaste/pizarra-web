@@ -28,10 +28,6 @@ $(function(){
         }
     });
 
-    $("#btnClosePage").click(function(){
-        client.pages.notes.show();
-    });
-
     refreshProfile();
 });
 

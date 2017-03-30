@@ -14,25 +14,48 @@ var pizarra = function(pSdk) {
      * @type {{login: pizarraPage, notes: pizarraPage, chats: pizarraPage, edit: pizarraPage}}
      */
     this.pages = {
+        current: {},
         login: new pizarraPage({
             name: "login",
             title: "Ingresar",
-            sdk: pSdk
+            sdk: pSdk,
+            showHeader: false,
+            showFooter: false,
+            onClose: function(){
+
+            }
         }),
         notes: new pizarraPage({
             name: "notes",
-            title: "Notas",
-            sdk: pSdk
+            title: "&Uacute;ltimas notas",
+            sdk: pSdk,
+            onClose: function(){
+                client.logout();
+            }
         }),
         chats: new pizarraPage({
             name: 'chats',
             title: "Chats",
-            sdk: pSdk
+            sdk: pSdk,
+            onClose: function(){
+                client.pages.notes.show();
+            }
         }),
         edit: new pizarraPage({
             name: 'edit',
             title: 'Editando perfil',
-            sdk: pSdk
+            sdk: pSdk,
+            onClose: function(){
+                client.pages.notes.show();
+            }
+        }),
+        search: new pizarraPage({
+            name: 'search',
+            title: 'Resultados de b&uacute;squeda',
+            sdk: pSdk,
+            onClose: function(){
+                client.pages.notes.show();
+            }
         })
     };
 
@@ -59,16 +82,19 @@ var pizarra = function(pSdk) {
      * @param string token
      * @returns {*}
      */
-    this.run = function (subject, body, token) {
+    this.run = function (subject, body, token)
+    {
 
         if (typeof(token) == 'undefined' || token == null || token == '')
             token = this.getToken();
 
         var result = this.sdk.run(subject, body, token);
 
-        if (result.code == 'error') {
-            if (result.message == 'bad authentication') {
-                alert('your session was expired '+token);
+        if (result.code == 'error')
+        {
+            if (result.message == 'bad authentication')
+            {
+                alert('your session was expired ' + token);
                 this.logout();
                 return false;
             }

@@ -1153,6 +1153,7 @@ a {
 }
 .input-chat-block {
   position: fixed;
+  width: inherit;
   left: 0px;
   right: 0px;
   bottom: 0px;
@@ -1473,7 +1474,7 @@ input[type=text]:focus, textarea:focus {
 .loading-mask{
     display:block !important;
 }
-.navbar, .page-content, .news-mask, .search-fixed, .input-chat-block, .loading-mask, .shadow-layer{
+.navbar, .page-content, .news-mask, .search-fixed, .loading-mask, .shadow-layer{
     width:inherit;
 }
 .nav-menu{

@@ -1,11 +1,17 @@
 $(function(){
     $("#navbar").hide();
+    $("#email-field").focus();
 })
 
 $("#pass-button").click(function(e) {
-    $("#login-div").hide();
-    e.preventDefault();
-    $("#password-div").fadeIn(500);
+    var email = $("#email-field").val();
+    if (is_email(email))
+    {
+        $("#login-div").hide();
+        e.preventDefault();
+        $("#password-div").fadeIn(500);
+        $(".password-block-first").focus();
+    } else alert('Wrong email address');
 });
 
 $('#email-field').keypress(function(e) {

@@ -28,28 +28,30 @@
 
     </head>
     <body>
+
+        <!-- header template -->
+        <div id="header-tpl" style="display: none;" >
+            <div class="w-nav navbar" data-no-scroll="1" id="navbar">
+                <div class="w-container">
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title" id="navbar-title"></div>
+                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="client.pages.current.onClose();">
+                        <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <section class="w-section mobile-wrapper">
             <div class="page-content" id="main-stack">
-                <div class="w-nav navbar" data-no-scroll="1" id="navbar">
-                    <div class="w-container">
-                        <div class="wrapper-mask" data-ix="menu-mask"></div>
-                        <div class="navbar-title" id="navbar-title"></div>
-                        <a class="w-inline-block navbar-button right" href="#" data-load="1" id="btnClosePage">
-                            <div class="navbar-button-icon icon ion-ios-close-empty"></div>
-                        </a>
-                    </div>
-                </div>
-                <div class="body padding">
-                    <!-- dynamic zone -->
-                </div>
-
+                <!-- dynamic zone -->
             </div>
         </section>
 
         <!-- load scripts -->
-
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery-cookie/jquery.cookie.min.js"></script>
+        <script type="text/javascript" src="js/php.js"></script>
         <script type="text/javascript" src="js/apretaste-sdk.js"></script>
         <!--[if lte IE 9]>
         <script src="js/placeholders.min.js"></script><![endif]-->
@@ -57,7 +59,7 @@
         <script type="text/javascript" src="js/pizarra.js"></script>
         <script type="text/javascript">
 
-            var sdk = new apretaste("http://apretaste.com/");
+            var sdk = new apretaste("http://corex.wifi/");
             var client = new pizarra(sdk);
 
             $(function () {
@@ -66,7 +68,8 @@
                 if (session == null)
                 {
                     client.pages.login.show();
-                } else {
+                } else
+                {
                     client.pages.notes.show();
                 }
             });

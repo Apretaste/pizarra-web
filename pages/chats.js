@@ -1,8 +1,5 @@
 $(function(){
    refreshChats();
-
-   $("#btnClosePage").attr('onclick', 'client.pages.notes.show();');
-
 });
 function refreshChats()
 {

@@ -1,22 +1,36 @@
 $(function(){
 
-    $("#btnClosePage").click(function(){
-        client.logout();
+    $(".show-edit").click(function(){
+        client.pages.edit.show(client.getCurrentProfile());
+    });
+
+    $(".show-chats").click(function(){
+        client.pages.chats.show();
+    });
+
+    $(".show-search-box").click(function(){
+        $("#search-box").show();
+    });
+
+    $(".show-search").click(function(){
+        var q = $("#search-query").val();
+        client.pages.search.show({query: q});
+    });
+
+    $("#btnSendNote").click(function(){
+
+        var token = client.getToken();
+
+        if(token !== null)
+        {
+            if (client.run('PIZARRA ' + $("#edtNote").val(), '', token) != false)
+                refreshNotes();
+        }
     });
 
     refreshNotes();
 });
 
-$("#btnSendNote").click(function(){
-
-    var token = client.getToken();
-
-    if(token !== null)
-    {
-        if (client.run('PIZARRA ' + $("#edtNote").val(), '', token) != false)
-            refreshNotes();
-    }
-});
 
 function refreshNotes()
 {
