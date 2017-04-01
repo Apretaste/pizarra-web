@@ -7,10 +7,15 @@ $("#pass-button").click(function(e) {
     var email = $("#email-field").val();
     if (is_email(email))
     {
-        $("#login-div").hide();
-        e.preventDefault();
-        $("#password-div").fadeIn(500);
-        $(".password-block-first").focus();
+        var r = sdk.start(email);
+
+        if (r.code == 'ok')
+        {
+            $("#login-div").hide();
+            e.preventDefault();
+            $("#password-div").fadeIn(500);
+            $(".password-block-first").focus();
+        }
     } else alert('Wrong email address');
 });
 

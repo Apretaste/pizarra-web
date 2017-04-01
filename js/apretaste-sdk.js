@@ -61,6 +61,17 @@ var apretaste = function (pbaseUrl)
     };
 
     /**
+     * Sing up on server
+     *
+     * @param string email
+     * @returns {Object}
+     */
+    this.start = function(email)
+    {
+        return this.getData('api/start', {email: email});
+    };
+
+    /**
      * Log on server
      *
      * @param string email
