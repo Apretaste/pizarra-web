@@ -1,59 +1,44 @@
 <div class="body padding">
     <div class="profile-image">
-        <img src="{{ picture }}" alt="@{{ username }} en Pizarra"/>
+        <img src="{{ picture_public }}" alt="@{{ username }} en Pizarra"/>
     </div>
     <div class="grey-header">
         <h2 class="grey-heading-title profile-name text-centered">@{{ username }}</h2>
     </div>
     <div>
         <div class="separator-button"></div>
-        <p class="description-new text-centered">Hola y bienvenido a mi perfil. Yo soy Osmay Islandio soy ateo, tengo 30 años, soy hombre, soy blanco, de ojos claros (color verde), soy de pelo trigueño y soy flaco. Vivo en La Habana, El Vedado, tengo un doctorado, trabajo como profesor y soy casado.
+        <p class="description-new text-centered">{{ about_me }}
         <div class="separator-button"></div>
     </div>
     <div>
         <div class="grey-header">
             <h2 class="grey-heading-title interests-title text-centered">Cosas que me interesan</h2>
         </div>
-        <div class="block-wrapper">
+
+        <!-- interest template -->
+        <div id="interest-template" style="display: none;">
             <div class="group-block interest">
                 <div class="w-inline-block">
                     <div class="group-title">
-                        <div class="title-text">Amistad</div>
-                    </div>
-                </div>
-            </div>
-            <div class="group-block interest">
-                <div class="w-inline-block">
-                    <div class="group-title">
-                        <div class="title-text">Programacion</div>
-                    </div>
-                </div>
-            </div>
-            <div class="group-block interest">
-                <div class="w-inline-block">
-                    <div class="group-title">
-                        <div class="title-text">Lectura</div>
-                    </div>
-                </div>
-            </div>
-            <div class="group-block interest">
-                <div class="w-inline-block">
-                    <div class="group-title">
-                        <div class="title-text">Playa</div>
+                        <div class="title-text">{{ interests.value }}</div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div id = "interests" class="block-wrapper">
+            <!-- dynamic zone -->
+        </div>
     </div>
     <div>
         <div class="w-clearfix options-new">
-            <a class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+            <a onclick= "client.actionFollow('{{ username }}');" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
                 <div class="icon-button bigger">
                     <div class="icon ion-person-add"></div>
                 </div>
                 Seguir
             </a>
-            <a class="w-clearfix w-inline-block action-button profile-button" href="chat.html" data-load="1">
+            <a onclick="client.pages.chat.show({username: '{{ username }}'});" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
                 <div class="icon-button bigger">
                     <div class="icon ion-ios-chatbubble"></div>
                 </div>

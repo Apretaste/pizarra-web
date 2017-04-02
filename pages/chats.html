@@ -1,19 +1,20 @@
-<div class="separator-fields"></div>
-<!-- chat template -->
-<li id="template" class="list-message" data-ix="list-item" style="display:none;">
-    <a class="w-clearfix w-inline-block" href="chat.html" data-load="1">
-        <div class="w-clearfix column-left">
-            <div class="image-message chat"><img src="images/{{ picture }}">
+<div class="body padding">
+    <div class="separator-fields"></div>
+    <!-- chat template -->
+    <li id="template" class="list-message" data-ix="list-item" style="display:none;">
+        <a class="w-clearfix w-inline-block" href="chat.html" data-load="1">
+            <div class="w-clearfix column-left">
+                <div class="image-message chat"><img src="{{ profile.picture_public }}">
+                </div>
             </div>
-        </div>
-        <div class="column-right">
-            <span class="flag-icon flag-icon-cu user-country"></span><div class="message-title user-title">@{{ username }}</div>
-            <div class="message-text">{{ last_note.note }}</div>
-        </div>
-    </a>
-</li>
-<!-- -->
-<ul id="list" class="list">
+            <div class="column-right">
+                <span class="flag-icon flag-icon-cu user-country"></span><div class="message-title user-title">@{{ username }}</div>
+                <div class="message-text">{{ last_note.note }}</div>
+            </div>
+        </a>
+    </li>
+    <!-- -->
+    <ul id="list" class="list">
 
-</ul>
-
+    </ul>
+</div>

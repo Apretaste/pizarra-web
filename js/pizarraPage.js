@@ -7,6 +7,7 @@
 var pizarraPage = function(pProperties)
 {
     var p = pProperties;
+    this.data = {};
     this.name = p.name;
     this.title = p.title;
     this.sdk = p.sdk;
@@ -31,8 +32,11 @@ var pizarraPage = function(pProperties)
             html = (this.showHeader ? $("#header-tpl").html() : "") + html + '<script src="pages/' + this.name + '.js"></script>';
 
             data = preprossesor(data);
+
+            this.data = data;
+
             for (var prop in data) {
-                html = html.replace('{{ ' + prop + ' }}', data[prop]);
+                html = str_replace('{{ ' + prop + ' }}', data[prop], html);
             }
 
             $("#main-stack").html(html);

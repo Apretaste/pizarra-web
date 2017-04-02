@@ -19,13 +19,13 @@
         <li class="list-item-new">
             <div class="w-inline-block w-row">
                 <div class="w-col w-col-tiny-2 w-col-2 note-avatar">
-                    <div class="image-message"><img src="images/{{ picture }}"/></div>
+                    <div class="image-message"><img class = "action-profile" src="{{ profile.picture_public }}" onclick="client.pages.profile.show(client.getProfile('{{ name }}'));" style="cursor: hand;"/></div>
                 </div>
                 <div class="w-col w-col-tiny-10 w-col-10 text-new">
                     <div>
                         <span class="flag-icon flag-icon-ca user-country"></span>
                         <h2 class="title-new inline">
-                            <a class="user-title" href="profile.html" data-load="1">@{{ name }}</a>
+                            <a class="action-profile user-title" href="#" onclick="client.pages.profile.show(client.getProfile('{{ name }}'));" data-load="1">@{{ name }}</a>
                         </h2>
                         <span class="ion-female user-genre female"></span>
                         <span class="notes-time">| {{ inserted }}</span>
@@ -35,10 +35,10 @@
                     </p>
                 </div>
                 <div class="buttons-section">
-                    <a class="category-link" href="#"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
-                    <a class="category-link" href="#" username = "{{ name }}"><i class="ion-person-add button-symbol"></i></a>
-                    <a class="category-link" href="#" username = "{{ name }}"><i class="icon ion-ios-chatbubble"></i></a>
-                    <a class="category-link" href="#" noteid = "{{ id }}" ><i class="ion-close button-symbol"></i></a>
+                    <a class="category-link" href="#" onclick="client.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
+                    <a class="category-link" href="#" onclick="client.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol"></i></a>
+                    <a class="category-link" href="#" onclick="client.pages.chat.show({username: '{{ name }}'});"><i class="icon ion-ios-chatbubble"></i></a>
+                    <a class="category-link" href="#" onclick="client.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
                 </div>
             </div>
         </li>

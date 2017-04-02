@@ -31,14 +31,13 @@ $(function(){
     refreshNotes();
 });
 
-
 function refreshNotes()
 {
     $("#list-news").html("");
     var token = client.getToken();
     if(token != null)
     {
-        var notes = client.run('PIZARRA','',token);
+        var notes = client.run('PIZARRA', '', token);
         var tpl = $("#news-template").html();
 
         for(var item in notes.notes)
@@ -46,7 +45,13 @@ function refreshNotes()
             var html = tpl;
             for(var prop in notes.notes[item])
             {
-                html = html.replace('{{ ' + prop + ' }}', notes.notes[item][prop]);
+                html = str_replace('{{ ' + prop + ' }}', notes.notes[item][prop], html);
+            }
+
+
+            for(var prop in notes.notes[item].profile)
+            {
+                html = str_replace('{{ profile.' + prop + ' }}', notes.notes[item].profile[prop], html);
             }
 
             $("#list-news").append(html);

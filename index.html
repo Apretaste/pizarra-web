@@ -48,6 +48,11 @@
             </div>
         </section>
 
+        <!-- loading animation -->
+        <div id="shadow-layer" style="position:fixed; top: 0px; left: 0px; height:100%;width:100%;background: gray; opacity: 0.8;z-index:9998; display: none; text-align: center; vertical-align: center;">
+            <img style="top: 50%; position: relative;" src="images/ajax-loader.gif">
+        </div>
+
         <!-- load scripts -->
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery-cookie/jquery.cookie.min.js"></script>
@@ -59,7 +64,7 @@
         <script type="text/javascript" src="js/pizarra.js"></script>
         <script type="text/javascript">
 
-            var sdk = new apretaste("http://xeros.co/");
+            var sdk = new apretaste("http://corex.wifi/");
             var client = new pizarra(sdk);
 
             $(function () {

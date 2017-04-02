@@ -16,12 +16,17 @@ function refreshChats()
 
             for(var prop in items.contacts[i].last_note)
             {
-                html = html.replace('{{ last_note.' + prop + ' }}', items.contacts[i].last_note[prop]);
+                html = str_replace('{{ last_note.' + prop + ' }}', items.contacts[i].last_note[prop], html);
+            }
+
+            for(var prop in items.contacts[i].profile)
+            {
+                html = str_replace('{{ profile.' + prop + ' }}', items.contacts[i].profile[prop], html);
             }
 
             for(var prop in items.contacts[i])
             {
-                html = html.replace('{{ ' + prop + ' }}', items.contacts[i][prop]);
+                html = str_replace('{{ ' + prop + ' }}', items.contacts[i][prop], html);
             }
 
             $("#list").append(html);
