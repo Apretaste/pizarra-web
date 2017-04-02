@@ -1,90 +1,78 @@
 <!DOCTYPE html>
+<html class="w-mod-js w-mod-no-touch w-mod-video w-mod-no-ios wf-montserrat-n4-inactive wf-montserrat-n7-inactive wf-inactive">
+    <head>
+        <meta charset="utf-8">
+        <title>Pizarra</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
+        <link rel="apple-touch-icon" href="images/iconApretaste.png">
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" type="text/css" href="css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/framework.css">
+        <link rel="stylesheet" type="text/css" href="css/pizarra.css">
 
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Ingresar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
-  <link rel="stylesheet" type="text/css" href="css/framework.css">
-  <link rel="stylesheet" type="text/css" href="css/pizarra.css">
-  <script src="js/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ["Montserrat:400,700"]
-      }
-    });
-  </script>
-  <script type="text/javascript" src="js/modernizr.js"></script>
-  <script type="text/javascript" src="js/apretaste-sdk.js"></script>
-  <link rel="shortcut icon" type="image/x-icon" href="images/iconApretaste.png">
-  <link rel="apple-touch-icon" href="images/iconApretaste.png">
+        <script src="js/webfont.js"></script>
+        <script>
+            WebFont.load({
+                google: {
+                    families: ["Montserrat:400,700"]
+                }
+            });
+        </script>
 
-  <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="js/modernizr.js"></script>
+        <link rel="shortcut icon" type="image/x-icon" href="images/logoApretaste.png">
+        <link rel="apple-touch-icon" href="images/logoApretaste.png">
 
-</head>
-<body>
-  <section class="w-section mobile-wrapper">
+        <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
 
-    <div class="page-content" id="main-stack" data-scroll="0">
-      <div class="w-nav"></div>
-      <div class="body padding">
-        <div class="logo-login"></div>
-        <div class="bottom-section padding">
-          <div class="w-form">
-            <form id="submit-form" name="email-form" data-name="Email Form" data-redirect="notes.html" action="#">
-              <div id="login-div">
-                <label class="label-form" for="email-field">EMAIL</label>
-                <div class="separator-fields"></div>
-                <input class="w-input input-form left" id="email-field" type="email" name="email" data-name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Ingresa tu correo">
-                <input id="pass-button" class="w-button action-button" type="button" value="Siguiente" data-wait="Por favor espere...">
-                <div class="separator-fields"></div>
-              </div>
-              <div id="password-div" style="display:none;">
-                <p class="alert-text">Te hemos enviado un email. Por favor revisa e ingresa los 4 dígitos que te hemos enviado en el campo debajo.</p>
-                <div class="separator-fields"></div>
-                <div class="w-clearfix block-input-combined">
-                  <div class="separator-fields"></div>
-                  <input class="w-input input-form password-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
-                  <input class="w-input input-form password-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
-                  <input class="w-input input-form password-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
-                  <input class="w-input input-form password-block last-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
-                  <!-- <a class="right-input-link" href="recover.html" data-load="1">OLVID&Eacute; MI CONTRASEÑA</a> -->
+    </head>
+    <body>
+
+        <!-- header template -->
+        <div id="header-tpl" style="display: none;" >
+            <div class="w-nav navbar" data-no-scroll="1" id="navbar">
+                <div class="w-container">
+                    <div class="wrapper-mask" data-ix="menu-mask"></div>
+                    <div class="navbar-title" id="navbar-title"></div>
+                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="client.pages.current.onClose();">
+                        <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+                    </a>
                 </div>
-                <input class="w-button action-button" type="submit" value="INGRESAR" data-wait="Por favor espere...">
-              </div>
-              <!--
-              <div class="separator-button"></div><a class="link-upper" href="registrate.html" data-load="1">¿NO TIENES CUENTA? <strong class="b-link">INSCRÍBETE</strong></a>
-              -->
-            </form>
-            <div class="w-form-done">
-              <p>¡Gracias! Tu información ha sido recibida.</p>
             </div>
-            <div class="w-form-fail">
-              <p>¡Ups! Algo salió mal con el formulario.</p>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="footer"></div>
-    </div>
-    <div class="page-content loading-mask" id="new-stack">
-      <div class="loading-icon">
-        <div class="navbar-button-icon icon ion-load-c"></div>
-      </div>
-    </div>
-    <div class="shadow-layer"></div>
-  </section>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
-  <script type="text/javascript" src="js/framework.js"></script>
-  <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
 
-  <script>
-      $(function(){
-          var sdk = new apretaste("http://corex.wifi/api");
-      });
-  </script>
-</body>
+        <section class="w-section mobile-wrapper">
+            <div class="page-content" id="main-stack">
+                <!-- dynamic zone -->
+            </div>
+        </section>
+
+        <!-- load scripts -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-cookie/jquery.cookie.min.js"></script>
+        <script type="text/javascript" src="js/php.js"></script>
+        <script type="text/javascript" src="js/apretaste-sdk.js"></script>
+        <!--[if lte IE 9]>
+        <script src="js/placeholders.min.js"></script><![endif]-->
+        <script type="text/javascript" src="js/pizarraPage.js"></script>
+        <script type="text/javascript" src="js/pizarra.js"></script>
+        <script type="text/javascript">
+
+            var sdk = new apretaste("http://xeros.co/");
+            var client = new pizarra(sdk);
+
+            $(function () {
+
+                var session = $.cookie('apretaste-pizarra');
+                if (session == null)
+                {
+                    client.pages.login.show();
+                } else
+                {
+                    client.pages.notes.show();
+                }
+            });
+        </script>
+    </body>
 </html>

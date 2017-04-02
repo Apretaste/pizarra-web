@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ingresar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="../css/framework.css">
+  <link rel="stylesheet" type="text/css" href="../css/pizarra.css">
+  <script src="../js/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ["Montserrat:400,700"]
+      }
+    });
+  </script>
+  <script type="text/javascript" src="../js/modernizr.js"></script>
+  <script type="text/javascript" src="../js/apretaste-sdk.js"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="../images/iconApretaste.png">
+  <link rel="apple-touch-icon" href="../images/iconApretaste.png">
+
+  <link href="../css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+  <section class="w-section mobile-wrapper">
+
+    <div class="page-content" id="main-stack" data-scroll="0">
+      <div class="w-nav"></div>
+      <div class="body padding">
+        <div class="logo-login"></div>
+        <div class="bottom-section padding">
+          <div class="w-form">
+            <form id="submit-form" name="email-form" data-name="Email Form" data-redirect="notes.html" action="#">
+              <div id="login-div">
+                <label class="label-form" for="email-field">EMAIL</label>
+                <div class="separator-fields"></div>
+                <input class="w-input input-form left" id="email-field" type="email" name="email" data-name="email" required="required" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Ingresa tu correo">
+                <input id="pass-button" class="w-button action-button" type="button" value="Siguiente" data-wait="Por favor espere...">
+                <div class="separator-fields"></div>
+              </div>
+              <div id="password-div" style="display:none;">
+                <p class="alert-text">Te hemos enviado un email. Por favor revisa e ingresa los 4 dígitos que te hemos enviado en el campo debajo.</p>
+                <div class="separator-fields"></div>
+                <div class="w-clearfix block-input-combined">
+                  <div class="separator-fields"></div>
+                  <input class="w-input input-form password-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
+                  <input class="w-input input-form password-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
+                  <input class="w-input input-form password-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
+                  <input class="w-input input-form password-block last-block" data-name="password" type="password" pattern="^\d{1,4}$" required="required" maxlength="1" />
+                  <!-- <a class="right-input-link" href="recover.html" data-load="1">OLVID&Eacute; MI CONTRASEÑA</a> -->
+                </div>
+                <input class="w-button action-button" type="submit" value="INGRESAR" data-wait="Por favor espere...">
+              </div>
+              <!--
+              <div class="separator-button"></div><a class="link-upper" href="registrate.html" data-load="1">¿NO TIENES CUENTA? <strong class="b-link">INSCRÍBETE</strong></a>
+              -->
+            </form>
+            <div class="w-form-done">
+              <p>¡Gracias! Tu información ha sido recibida.</p>
+            </div>
+            <div class="w-form-fail">
+              <p>¡Ups! Algo salió mal con el formulario.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"></div>
+    </div>
+    <div class="page-content loading-mask" id="new-stack">
+      <div class="loading-icon">
+        <div class="navbar-button-icon icon ion-load-c"></div>
+      </div>
+    </div>
+    <div class="shadow-layer"></div>
+  </section>
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/framework.js"></script>
+  <!--[if lte IE 9]>
+  <script src="../js/placeholders.min.js"></script><![endif]-->
+
+  <script>
+      $(function(){
+          var sdk = new apretaste("http://corex.wifi/api");
+      });
+  </script>
+</body>
+</html>

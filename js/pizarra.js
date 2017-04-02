@@ -56,6 +56,30 @@ var pizarra = function(pSdk) {
             onClose: function(){
                 client.pages.notes.show();
             }
+        }),
+        about:  new pizarraPage({
+            name: 'about',
+            title: 'Acerca de',
+            sdk: pSdk,
+            onClose: function(){
+                client.pages.notes.show();
+            }
+        }),
+        chat: new pizarraPage({
+            name: 'chat',
+            title: 'Chat',
+            sdk: pSdk,
+            onClose: function(){
+                client.pages.notes.show();
+            }
+        }),
+        terms: new pizarraPage({
+            name: 'terms',
+            title: 'T&eacute;rminos de uso',
+            sdk: pSdk,
+            onClose: function(){
+                client.pages.notes.show();
+            }
         })
     };
 
