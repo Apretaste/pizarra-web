@@ -8,25 +8,25 @@ function refreshChats()
 
     if(token !== null)
     {
-        var items = client.run('NOTA', '', token);
+        var items = pizarra.run('NOTA');
         var tpl = $("#template").html();
-        for (var i in items.contacts)
+        for (var i in items.notes)
         {
             var html = tpl;
 
-            for(var prop in items.contacts[i].last_note)
+            for(var prop in items.notes[i].last_note)
             {
-                html = str_replace('{{ last_note.' + prop + ' }}', items.contacts[i].last_note[prop], html);
+                html = str_replace('{{ last_note.' + prop + ' }}', items.notes[i].last_note[prop], html);
             }
 
-            for(var prop in items.contacts[i].profile)
+            for(var prop in items.notes[i].profile)
             {
-                html = str_replace('{{ profile.' + prop + ' }}', items.contacts[i].profile[prop], html);
+                html = str_replace('{{ chat.profile.' + prop + ' }}', items.notes[i].profile[prop], html);
             }
 
-            for(var prop in items.contacts[i])
+            for(var prop in items.notes[i])
             {
-                html = str_replace('{{ ' + prop + ' }}', items.contacts[i][prop], html);
+                html = str_replace('{{ ' + prop + ' }}', items.notes[i][prop], html);
             }
 
             $("#list").append(html);

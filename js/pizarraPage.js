@@ -4,7 +4,7 @@
  * @author @kumahacker
  * @param pProperties
  */
-var pizarraPage = function(pProperties)
+var pizarraPage = function(pProperties, parent)
 {
     var p = pProperties;
     this.data = {};
@@ -14,6 +14,7 @@ var pizarraPage = function(pProperties)
     this.onClose = p.onClose;
     this.showHeader = isset(p.showHeader) ? p.showHeader : true;
     this.showFooter = isset(p.showFooter) ? p.showFooter : true;
+    this.parent = parent;
 
     if (typeof(p.show) == 'function')
         this.show = p.show;
@@ -31,6 +32,8 @@ var pizarraPage = function(pProperties)
 
             html = (this.showHeader ? $("#header-tpl").html() : "") + html + '<script src="pages/' + this.name + '.js"></script>';
 
+            html = pizarra.hookPreparseHtml(html);
+
             data = preprossesor(data);
 
             this.data = data;
@@ -44,7 +47,7 @@ var pizarraPage = function(pProperties)
             $("#main-stack #navbar-title").html(this.title);
             $('.mobile-wrapper').height($(window).height());
 
-            client.pages.current = this;
+            pizarra.pages.current = this;
 
         };
 };

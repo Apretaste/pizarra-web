@@ -352,7 +352,7 @@ a {
 #edit-image {
   border-radius: 50%;
   width: 200px;
-  height: 200px;
+  max-height: 300px;
 }
 .country {
   margin: 5px;

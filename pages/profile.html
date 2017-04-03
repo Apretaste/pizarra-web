@@ -1,6 +1,6 @@
 <div class="body padding">
-    <div class="profile-image">
-        <img src="{{ picture_public }}" alt="@{{ username }} en Pizarra"/>
+    <div id="edit-image" class="profile-image">
+        <img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" src-default="images/user.png"/>
     </div>
     <div class="grey-header">
         <h2 class="grey-heading-title profile-name text-centered">@{{ username }}</h2>
@@ -32,13 +32,13 @@
     </div>
     <div>
         <div class="w-clearfix options-new">
-            <a onclick= "client.actionFollow('{{ username }}');" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+            <a onclick= "pizarra.actionFollow('{{ username }}');" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
                 <div class="icon-button bigger">
                     <div class="icon ion-person-add"></div>
                 </div>
                 Seguir
             </a>
-            <a onclick="client.pages.chat.show({username: '{{ username }}'});" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+            <a onclick="pizarra.pages.chat.show({username: '{{ username }}'});" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
                 <div class="icon-button bigger">
                     <div class="icon ion-ios-chatbubble"></div>
                 </div>

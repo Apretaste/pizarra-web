@@ -8,7 +8,7 @@ $("#pass-button").click(function(e) {
     if (is_email(email))
     {
         var r = sdk.start(email);
-        //var r = {code: 'ok'};
+
         if (r.code == 'ok')
         {
             $("#login-div").hide();
@@ -59,8 +59,8 @@ $("#submit-form").submit(function(event) {
         $("#password-div").hide();
         $("#login-div").fadeIn(500);
     } else {
-        client.setToken(result.token);
-        client.pages.notes.show();
+        pizarra.setToken(result.token);
+        pizarra.pages.notes.show();
     }
 
     return false;

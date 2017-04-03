@@ -2,7 +2,7 @@ $(function(){
 
     var tpl = $("#interest-template").html();
 
-    var data = client.pages.profile.data;
+    var data = pizarra.pages.profile.data;
 
     for (var i in data.interests)
     {

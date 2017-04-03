@@ -1,31 +1,38 @@
 <div class="body padding">
-    <a class="w-inline-block navbar-button right show-search-box" href="#" data-ix="">
+    <a class="w-inline-block navbar-button right show-search-box top-buttons" href="#" data-ix="">
         <div class="navbar-button-icon icon ion-ios-search-strong"></div>
     </a>
-    <a class="w-inline-block navbar-button right show-edit" href="#" data-load="1">
+    <a class="w-inline-block navbar-button right show-edit top-buttons" href="#" data-load="1">
         <div class="navbar-button-icon icon ion-ios-person"></div>
     </a>
-    <a class="w-inline-block navbar-button right show-chats" href="#" data-load="1">
+    <a class="w-inline-block navbar-button right show-chats top-buttons" href="#" data-load="1">
         <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
     </a>
-    <div style="display:none;" id ="search-box" class="w-inline-block right">
-        <input class="w-input right" id="search-query">
-        <a class="w-inline-block navbar-button right show-search" href="#" data-ix="">
-            <div class="navbar-button-icon icon ion-ios-search-strong"></div>
-        </a>
+    <div style="display:none;float:right;" id = "search-box">
+        <div style="display:table-row;" class ="w-clearfix shadowed-block">
+            <div style="display: table-cell;">
+                <a href="#" id="btnCloseSearchBox" class="navbar-button-icon icon ion-ios-close-empty"></a>
+                <input class="w-input input-chat chat-notes" id="search-query">
+            </div>
+            <div style="display: table-cell;">
+                <a class="w-inline-block navbar-button right show-search" href="#" data-ix="">
+                    <div style="margin-top:30px;" class="navbar-button-icon icon ion-ios-search-strong"></div>
+                </a>
+            </div>
+        </div>
     </div>
 
     <ul style="display:none;" id="news-template">
         <li class="list-item-new">
             <div class="w-inline-block w-row">
                 <div class="w-col w-col-tiny-2 w-col-2 note-avatar">
-                    <div class="image-message"><img class = "action-profile" src="{{ profile.picture_public }}" onclick="client.pages.profile.show(client.getProfile('{{ name }}'));" style="cursor: hand;"/></div>
+                    <div class="image-message"><img class = "action-profile" src="{{ note.profile.picture_public }}" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" style="cursor: hand;"/></div>
                 </div>
                 <div class="w-col w-col-tiny-10 w-col-10 text-new">
                     <div>
                         <span class="flag-icon flag-icon-ca user-country"></span>
                         <h2 class="title-new inline">
-                            <a class="action-profile user-title" href="#" onclick="client.pages.profile.show(client.getProfile('{{ name }}'));" data-load="1">@{{ name }}</a>
+                            <a class="action-profile user-title" href="#" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" data-load="1">@{{ name }}</a>
                         </h2>
                         <span class="ion-female user-genre female"></span>
                         <span class="notes-time">| {{ inserted }}</span>
@@ -35,10 +42,10 @@
                     </p>
                 </div>
                 <div class="buttons-section">
-                    <a class="category-link" href="#" onclick="client.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
-                    <a class="category-link" href="#" onclick="client.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol"></i></a>
-                    <a class="category-link" href="#" onclick="client.pages.chat.show({username: '{{ name }}'});"><i class="icon ion-ios-chatbubble"></i></a>
-                    <a class="category-link" href="#" onclick="client.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
+                    <a class="category-link" href="#" onclick="pizarra.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.pages.chat.show({username: '{{ name }}'});"><i class="icon ion-ios-chatbubble"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
                 </div>
             </div>
         </li>
@@ -51,12 +58,12 @@
 <div class="w-clearfix input-chat-block shadowed-block">
     <div class="w-form">
         <div class="column-left">
-            <div class="image-message notes-avatar"><a class = "show-edit" href="#" data-load="1"><img src="{{ picture }}"></a>
+            <div class="image-message notes-avatar"><a class = "show-edit" href="#" data-load="1"><img src="{{ profile.picture_public }}"></a>
             </div>
         </div>
 
-            <input id="edtNote" class="w-input input-chat input-notes" id="chat-message" type="text" placeholder="Escribe una nueva nota..." name="nota" data-name="Nota">
-            <input id="btnSendNote" class="w-button chat-button action-button" type="button" value="Enviar" data-wait="Por favor espere...">
+        <input id="edtNote" class="w-input input-chat input-notes" id="chat-message" type="text" placeholder="Escribe una nueva nota..." name="nota" data-name="Nota">
+        <input id="btnSendNote" class="w-button chat-button action-button" type="button" value="Enviar" data-wait="Por favor espere...">
 
         <div class="w-form-done">
             <p>¡Gracias! Su petición ha sido recibida</p>
@@ -66,3 +73,24 @@
         </div>
     </div>
 </div>
+
+<style>
+    #search-query{
+        margin-left: 10px;
+    }
+
+    #btnCloseSearchBox {
+        position: relative;
+        top: -30px;
+        right: -30px;
+        font-size: 12px;
+        color: gray;
+        padding: 2px;
+        z-index: 8888;
+    }
+
+    #btnCloseSearchBox:hover
+    {
+        font-weight: bold;
+    }
+</style>

@@ -102,9 +102,14 @@ var apretaste = function (pbaseUrl)
      * @param string token
      * @returns {Object}
      */
-    this.run = function(subject, body, token)
+    this.run = function(subject, body, attachment, token)
     {
-        return this.getData('run/api', {token: token, subject: subject, body:body});
+        var params = {};
+        if (isset(subject)    && subject != null    && subject != '')    params.subject = subject;
+        if (isset(body)       && body != null       && body != '')       params.body = body;
+        if (isset(attachment) && attachment != null && attachment != '') params.attachment = attachment;
+        if (isset(token)      && token != null      && token != '')      params.token = token;
+        return this.getData('run/api', params);
     }
 }
 

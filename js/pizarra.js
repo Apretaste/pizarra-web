@@ -2,23 +2,32 @@
  * Apretaste Pizarra Web Controller
  *
  * @author @kumahacker
- * @param apretaste pSdk
  */
-var pizarra = function(pSdk) {
 
-    this.sdk = pSdk;
+var sdk = new apretaste("http://xeros.co/");
 
+var pizarra = {
+
+    /**
+     * Data of current user
+     *
+     * @type object
+     */
+    currentProfile: null,
+
+    lastSearchResults: null,
     /**
      * Pages collection
      *
-     * @type {{login: pizarraPage, notes: pizarraPage, chats: pizarraPage, edit: pizarraPage}}
      */
-    this.pages = {
-        current: {},
+    pages: {
+        current: {
+
+        },
         login: new pizarraPage({
             name: "login",
             title: "Ingresar",
-            sdk: pSdk,
+            sdk: sdk,
             showHeader: false,
             showFooter: false,
             onClose: function () {
@@ -28,82 +37,92 @@ var pizarra = function(pSdk) {
         notes: new pizarraPage({
             name: "notes",
             title: "&Uacute;ltimas notas",
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.logout();
+                pizarra.logout();
             }
         }),
         chats: new pizarraPage({
             name: 'chats',
             title: "Chats",
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         }),
         edit: new pizarraPage({
             name: 'edit',
             title: 'Editando perfil',
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         }),
         search: new pizarraPage({
             name: 'search',
             title: 'Resultados de b&uacute;squeda',
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         }),
         about: new pizarraPage({
             name: 'about',
             title: 'Acerca de',
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         }),
         chat: new pizarraPage({
             name: 'chat',
             title: 'Chat',
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         }),
         terms: new pizarraPage({
             name: 'terms',
             title: 'T&eacute;rminos de uso',
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         }),
         profile: new pizarraPage({
             name: 'profile',
             title: 'Perfil',
-            sdk: pSdk,
+            sdk: sdk,
             onClose: function () {
-                client.pages.notes.show();
+                pizarra.pages.notes.show();
             }
         })
-    };
+    },
+
+    hookPreparseHtml: function(html) {
+        var profile = this.getCurrentProfile(false);
+
+        for(var prop in profile)
+        {
+            html = str_replace('{{ profile.' + prop + ' }}', profile[prop], html);
+        }
+        return html;
+    },
 
     /**
      * Logout
      *
      * @author @kumahacker
      */
-    this.logout = function () {
+    logout: function () {
         var session = $.cookie('apretaste-pizarra');
         if (session !== false) {
-            this.sdk.logout(session);
+            sdk.logout(session);
             $.cookie('apretaste-pizarra', null);
             this.pages.login.show();
         }
-    };
+    },
 
     /**
      * Run a service
@@ -114,10 +133,9 @@ var pizarra = function(pSdk) {
      * @param string token
      * @returns {*}
      */
-    this.run = function (subject, body, token, showLoading) {
+    run: function (subject, body, attachment, showLoading) {
 
-        if (typeof(token) == 'undefined' || token == null || token == '')
-            token = this.getToken();
+        var token = this.getToken();
 
         if (!isset(subject))
             subject = 'PIZARRA';
@@ -125,13 +143,16 @@ var pizarra = function(pSdk) {
         if (!isset(body))
             body = '';
 
+        if (!isset(attachment))
+            attachment = null;
+
         if (!isset(showLoading))
             showLoading = true;
 
         if (showLoading)
             $("#shadow-layer").show();
 
-        var result = this.sdk.run(subject, body, token);
+        var result = sdk.run(subject, body, attachment, token);
 
         if (showLoading)
             setTimeout('$("#shadow-layer").hide();', 1000);
@@ -145,7 +166,7 @@ var pizarra = function(pSdk) {
         }
 
         return result;
-    }
+    },
 
     /**
      * Save token in cookies
@@ -153,9 +174,9 @@ var pizarra = function(pSdk) {
      * @author @kumahacker
      * @param token
      */
-    this.setToken = function (token) {
+    setToken: function (token) {
         $.cookie('apretaste-pizarra', token, {expires: 30});
-    }
+    },
 
     /**
      * Get token from cookies
@@ -163,16 +184,10 @@ var pizarra = function(pSdk) {
      * @author @kumahacker
      * @returns {String|*}
      */
-    this.getToken = function () {
+    getToken: function () {
         return $.cookie('apretaste-pizarra');
-    }
+    },
 
-    /**
-     * Data of current user
-     *
-     * @type object
-     */
-    this.currentProfile = null;
 
     /**
      * Load data of current profile
@@ -181,7 +196,7 @@ var pizarra = function(pSdk) {
      * @param boolean force Forcing request to server
      * @returns {Object}
      */
-    this.getCurrentProfile = function (force) {
+    getCurrentProfile: function (force) {
         if (typeof (force) == 'undefined')
             force = false;
 
@@ -191,15 +206,15 @@ var pizarra = function(pSdk) {
         }
 
         return this.currentProfile;
-    }
+    },
 
-    this.getProfile = function(username)
-    {
+    getProfile: function(username) {
         if (!isset(username))
             username = '';
 
         var token = this.getToken();
         var profile = null;
+
         if (token != null)
         {
             profile = this.run('PERFIL ' + username, '', token);
@@ -216,28 +231,35 @@ var pizarra = function(pSdk) {
 
         return profile;
 
-    }
+    },
 
-    this.actionLike = function(noteId)
-    {
+    actionLike: function(noteId) {
         this.run('PIZARRA LIKE ' + noteId,'','',false);
         if (isset(refreshNotes))
             refreshNotes();
-    };
+    },
 
-    this.actionFollow = function(username)
-    {
+    actionFollow: function(username) {
         this.run('PIZARRA SEGUIR ' + username,'','',false);
         if (isset(refreshNotes))
             refreshNotes();
-    };
+    },
 
-    this.actionBlock = function (username)
-    {
+    actionBlock: function (username) {
         this.run('PIZARRA BLOQUEAR ' + username,'','',false);
         if (isset(refreshNotes))
             refreshNotes();
     }
 };
 
+$(function () {
 
+    var session = $.cookie('apretaste-pizarra');
+    if (session == null)
+    {
+        pizarra.pages.login.show();
+    } else
+    {
+        pizarra.pages.notes.show();
+    }
+});

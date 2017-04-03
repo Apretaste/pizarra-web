@@ -2,9 +2,9 @@
     <div class="separator-fields"></div>
     <!-- chat template -->
     <li id="template" class="list-message" data-ix="list-item" style="display:none;">
-        <a class="w-clearfix w-inline-block" href="chat.html" data-load="1">
+        <a class="w-clearfix w-inline-block" href="#" data-load="1" onclick="pizarra.pages.chat.show({username: '{{ username }}'});">
             <div class="w-clearfix column-left">
-                <div class="image-message chat"><img src="{{ profile.picture_public }}">
+                <div class="image-message chat"><img src="{{ chat.profile.picture_public }}">
                 </div>
             </div>
             <div class="column-right">

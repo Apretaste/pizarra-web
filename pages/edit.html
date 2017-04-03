@@ -1,11 +1,12 @@
 <div class="body padding">
     <div class="separator-button"></div>
     <div id="edit-image" class="profile-image">
-    <img id= "picture" src="{{ picture }}" alt="@{{ username }} en Pizarra" src-default="images/user.png"/>
+        <a href="#" style="text-decoration: none;"><img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" src-default="images/user.png"/></a>
     </div>
+    <input id="picture-file" type="file" multiple=true data-max-file-count="1" style="display:none;">
     <div class="separator-button"></div>
     <div class="w-form">
-    <form id="email-form" name="email-form" data-name="Email Form" action="#">
+
         <!-- FULL NAME -->
         <div>
             <label class="label-form" for="fullname">NOMBRE COMPLETO</label>
@@ -261,7 +262,19 @@
           <div class="separator-fields"></div>
         </div>
         -->
-        <input class="w-button action-button" type="submit" value="SALVAR DATOS" href="#" data-wait="Por favor espere..." id="btnSaveData">
-    </form>
+        <a class="w-button action-button" href="#" data-wait="Por favor espere..." id="btnSaveData">SALVAR DATOS</a>
+
     </div>
 </div>
+
+
+<style>
+#picture{
+    position: relative;
+    display: inline-block;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    margin: 10px 0px 10px 40px;
+    border-radius: 50%;
+}
+</style>

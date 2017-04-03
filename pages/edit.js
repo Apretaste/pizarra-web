@@ -1,6 +1,6 @@
 $(function(){
     $("#btnSaveData").click(function(){
-        var token = client.getToken();
+        var token = pizarra.getToken();
         if(token !== null)
         {
             var datamap = {
@@ -19,13 +19,35 @@ $(function(){
                 religion: 'RELIGION'
             };
 
+            $("#shadow-layer").show();
             for (var prop in datamap)
-                client.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), '', token);
+                pizarra.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), null,null,false);
 
-            var p = client.getCurrentProfile(true);
+            if ($("#picture-file").val() !='')
+            {
+                var picture = $("#picture").attr('src');
+                picture = str_replace('data:;base64,', '', picture);
+                pizarra.run("PERFIL FOTO",'',picture);
+            }
 
-            alert("profile saved");
+            $("#shadow-layer").hide();
         }
+    });
+
+    $("#edit-image").click(function(e){
+        e.preventDefault();
+        $("#picture-file").trigger('click');
+        $('#picture-file').bind('change', function(e){
+            var files = e.target.files;
+            var f = files[0];
+            var reader = new FileReader();
+            reader.onload = (function(f) {
+                return function(e) {
+                    $('#picture').attr('src', e.target.result);
+                };
+            })(f);
+            reader.readAsDataURL(f);
+        });
     });
 
     refreshProfile();
@@ -33,7 +55,7 @@ $(function(){
 
 function refreshProfile()
 {
-    var profile = client.getCurrentProfile();
+    var profile = pizarra.getCurrentProfile();
     if(profile !== null)
     {
         var d = profile.date_of_birth;
