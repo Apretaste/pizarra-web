@@ -8,7 +8,7 @@ $(function(){
 
         if(token !== null)
         {
-            if (pizarra.run('NOTA @' + pizarra.pages.chat.data.friend + $("#edtNote").val()) != false)
+            if (pizarra.run('NOTA @' + pizarra.pages.chat.data.friend + " " + $("#edtNote").val()) != false)
 
                 refreshChat(false);
         }
