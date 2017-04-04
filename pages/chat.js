@@ -2,13 +2,28 @@ $(function(){
 
     refreshChat();
 
+    $("#btnSendNote").click(function(){
+
+        var token = pizarra.getToken();
+
+        if(token !== null)
+        {
+            if (pizarra.run('NOTA @' + pizarra.pages.chat.data.friend + $("#edtNote").val()) != false)
+
+                refreshChat(false);
+        }
+    });
+
 });
 
-function refreshChat()
+function refreshChat(showLoading)
 {
+    if (!isset(showLoading))
+        showLoading = true;
+
     var tplLeft = $("#chat-left-template").html();
     var tplRight = $("#chat-right-template").html();
-    var notes = pizarra.run('NOTA @' + pizarra.pages.chat.data.friend);
+    var notes = pizarra.run('NOTA @' + pizarra.pages.chat.data.friend, null,null,showLoading);
     var friendProfile =  pizarra.getProfile(pizarra.pages.chat.data.friend);
 
     friendProfile.picture_public = pizarra.checkImage(friendProfile.picture_public);

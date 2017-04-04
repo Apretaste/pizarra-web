@@ -223,7 +223,7 @@ var pizarra = {
 
         if (token != null)
         {
-            profile = this.run('PERFIL ' + username, null, null, token);
+            profile = this.run('PERFIL ' + username, null, null, false);
             profile = profile.profile;
             profile.picture_public = pizarra.checkImage(profile.picture_public);
         }
@@ -233,7 +233,7 @@ var pizarra = {
     },
 
     actionLike: function(noteId) {
-        this.run('PIZARRA LIKE ' + noteId,'','',false);
+        this.run('PIZARRA LIKE ' + noteId,null,null,false);
         if (isset(refreshNotes))
             refreshNotes();
     },
