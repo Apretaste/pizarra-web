@@ -27,7 +27,7 @@ $(function(){
             if ($("#picture-file").val() !='')
             {
                 var picture = $("#picture").attr('src');
-                pizarra.run("PERFIL FOTO",'',picture);
+                pizarra.run("PERFIL FOTO", null, picture);
             }
 
             $("#shadow-layer").hide();

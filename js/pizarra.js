@@ -223,7 +223,7 @@ var pizarra = {
 
         if (token != null)
         {
-            profile = this.run('PERFIL ' + username, '', token);
+            profile = this.run('PERFIL ' + username, null, null, token);
             profile = profile.profile;
             profile.picture_public = pizarra.checkImage(profile.picture_public);
         }
