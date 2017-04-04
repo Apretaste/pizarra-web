@@ -4,7 +4,7 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://xeros.co/");
+var sdk = new apretaste("http://corex.wifi/");
 
 var pizarra = {
 
@@ -15,22 +15,27 @@ var pizarra = {
      */
     currentProfile: null,
 
+    /**
+     * List of last results
+     *
+     * @type array
+     */
     lastSearchResults: null,
+
     /**
      * Pages collection
      *
      */
     pages: {
-        current: {
-
-        },
+        current: {},
+        previous: {},
         login: new pizarraPage({
             name: "login",
             title: "Ingresar",
             sdk: sdk,
             showHeader: false,
             showFooter: false,
-            onClose: function () {
+            close: function () {
 
             }
         }),
@@ -38,7 +43,7 @@ var pizarra = {
             name: "notes",
             title: "&Uacute;ltimas notas",
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.logout();
             }
         }),
@@ -46,7 +51,7 @@ var pizarra = {
             name: 'chats',
             title: "Chats",
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         }),
@@ -54,7 +59,7 @@ var pizarra = {
             name: 'edit',
             title: 'Editando perfil',
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         }),
@@ -62,7 +67,7 @@ var pizarra = {
             name: 'search',
             title: 'Resultados de b&uacute;squeda',
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         }),
@@ -70,7 +75,7 @@ var pizarra = {
             name: 'about',
             title: 'Acerca de',
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         }),
@@ -78,7 +83,7 @@ var pizarra = {
             name: 'chat',
             title: 'Chat',
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         }),
@@ -86,7 +91,7 @@ var pizarra = {
             name: 'terms',
             title: 'T&eacute;rminos de uso',
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         }),
@@ -94,7 +99,7 @@ var pizarra = {
             name: 'profile',
             title: 'Perfil',
             sdk: sdk,
-            onClose: function () {
+            close: function () {
                 pizarra.pages.notes.show();
             }
         })
@@ -219,15 +224,8 @@ var pizarra = {
         {
             profile = this.run('PERFIL ' + username, '', token);
             profile = profile.profile;
+            profile.picture_public = pizarra.checkImage(profile.picture_public);
         }
-
-        // proccess picture
-
-        var pic = profile.picture;
-        profile.picture_original = pic;
-
-        if (pic == "" || pic == null || pic == '0' || pic == 0)
-            pic = "/images/user.png";
 
         return profile;
 
@@ -249,7 +247,41 @@ var pizarra = {
         this.run('PIZARRA BLOQUEAR ' + username,'','',false);
         if (isset(refreshNotes))
             refreshNotes();
+    },
+
+    checkImage: function (imgUrl)
+    {
+        var d = 'images/user.png';
+        if (trim(imgUrl) == "")
+            return d;
+
+        if (sdk.checkUrl(imgUrl) == false)
+            imgUrl = d;
+
+        return imgUrl;
+    },
+
+    replaceTags: function(tpl, data, prefix, suffix){
+
+        if (!isset(prefix))
+            prefix = '';
+
+        if (!isset(suffix))
+            suffix = '';
+
+        var html = tpl;
+
+        for(var tag in data)
+            html = str_replace('{{ ' + prefix + tag + suffix +' }}', data[tag], html);
+
+        return html;
+    },
+
+    showPreviousPage: function(){
+        if (isset(this.pages.previous.name))
+            this.pages.previous.refresh();
     }
+
 };
 
 $(function () {

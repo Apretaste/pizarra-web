@@ -36,8 +36,14 @@
                 <div class="w-container">
                     <div class="wrapper-mask" data-ix="menu-mask"></div>
                     <div class="navbar-title" id="navbar-title"></div>
-                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.onClose();">
+                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.close();">
                         <div class="navbar-button-icon icon ion-ios-close-empty"></div>
+                    </a>
+                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.refresh();">
+                        <div class="navbar-button-icon icon ion-ios-refresh-empty"></div>
+                    </a>
+                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.showPreviousPage();">
+                        <div class="navbar-button-icon icon ion-ios-arrow-back"></div>
                     </a>
                 </div>
             </div>

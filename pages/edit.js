@@ -10,6 +10,7 @@ $(function(){
                 orientation: 'ORIENTACION',
                 country: 'PAIS',
                 province: 'PROVINCIA',
+                usstate: 'USSTAE',
                 eyes: 'OJOS',
                 hair: 'PELO',
                 skin: 'PIEL',
@@ -26,11 +27,23 @@ $(function(){
             if ($("#picture-file").val() !='')
             {
                 var picture = $("#picture").attr('src');
-                picture = str_replace('data:;base64,', '', picture);
                 pizarra.run("PERFIL FOTO",'',picture);
             }
 
             $("#shadow-layer").hide();
+
+            $("#country").change(function(){
+               $("#province").hide();
+               $("#usstate").hide();
+
+               if ($(this).val()=='us')
+                   $("#usstate").show();
+
+               if ($(this).val()=='cu')
+                   $("#province").show();
+
+            });
+            refreshProfile();
         }
     });
 
@@ -55,7 +68,7 @@ $(function(){
 
 function refreshProfile()
 {
-    var profile = pizarra.getCurrentProfile();
+    var profile = pizarra.getCurrentProfile(true);
     if(profile !== null)
     {
         var d = profile.date_of_birth;

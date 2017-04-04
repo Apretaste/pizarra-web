@@ -11,7 +11,7 @@ var pizarraPage = function(pProperties, parent)
     this.name = p.name;
     this.title = p.title;
     this.sdk = p.sdk;
-    this.onClose = p.onClose;
+    this.close = p.close;
     this.showHeader = isset(p.showHeader) ? p.showHeader : true;
     this.showFooter = isset(p.showFooter) ? p.showFooter : true;
     this.parent = parent;
@@ -47,7 +47,14 @@ var pizarraPage = function(pProperties, parent)
             $("#main-stack #navbar-title").html(this.title);
             $('.mobile-wrapper').height($(window).height());
 
+            pizarra.pages.previous = pizarra.pages.current;
             pizarra.pages.current = this;
 
+            window.scrollTo(0, 0);
         };
+
+    this.refresh = function()
+    {
+        this.show(this.data);
+    }
 };

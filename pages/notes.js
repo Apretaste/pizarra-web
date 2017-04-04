@@ -77,20 +77,21 @@ function refreshNotes()
     if(token != null)
     {
         var notes = pizarra.run('PIZARRA');
+        notes = notes.notes;
         var tpl = $("#news-template").html();
 
-        for(var item in notes.notes)
+        for(var item in notes)
         {
             var html = tpl;
+            var profile = notes[item].profile;
+            profile.picture_public = pizarra.checkImage(profile.picture_public);
 
-            for(var prop in notes.notes[item].profile)
-            {
-                html = str_replace('{{ note.profile.' + prop + ' }}', notes.notes[item].profile[prop], html);
-            }
+            for(var prop in profile)
+                html = str_replace('{{ note.profile.' + prop + ' }}', profile[prop], html);
 
-            for(var prop in notes.notes[item])
+            for(var prop in notes[item])
             {
-                html = str_replace('{{ ' + prop + ' }}', notes.notes[item][prop], html);
+                html = str_replace('{{ ' + prop + ' }}', notes[item][prop], html);
             }
 
             $("#list-news").append(html);

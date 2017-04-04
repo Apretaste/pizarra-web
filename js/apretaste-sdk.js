@@ -61,6 +61,19 @@ var apretaste = function (pbaseUrl)
     };
 
     /**
+     * Check online URL
+     *
+     * @param url
+     * @returns {boolean}
+     */
+    this.checkUrl = function(url){
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status != 404;
+    }
+
+    /**
      * Sing up on server
      *
      * @param string email
