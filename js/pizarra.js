@@ -4,7 +4,8 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://corex.wifi/");
+var sdk = new apretaste("https://xeros.co/");
+//var sdk = new apretaste("http://corex.wifi/");
 
 var pizarra = {
 
