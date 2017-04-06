@@ -42,13 +42,19 @@ var pizarraPage = function(pProperties, parent)
                 html = str_replace('{{ ' + prop + ' }}', data[prop], html);
             }
 
+            // imporatant! this section before load html and js
+            // -- section
+            if (pizarra.pages.previous.name != pizarra.pages.current.name)
+                pizarra.pages.previous = pizarra.pages.current;
+            pizarra.pages.current = this;
+            // -- end section
+
             $("#main-stack").html(html);
             if (this.showHeader) $("#main-stack #navbar").show();
             $("#main-stack #navbar-title").html(this.title);
             $('.mobile-wrapper').height($(window).height());
 
-            pizarra.pages.previous = pizarra.pages.current;
-            pizarra.pages.current = this;
+
 
             window.scrollTo(0, 0);
         };

@@ -32,19 +32,20 @@ $(function(){
 
             $("#shadow-layer").hide();
 
-            $("#country").change(function(){
-               $("#province").hide();
-               $("#usstate").hide();
-
-               if ($(this).val()=='us')
-                   $("#usstate").show();
-
-               if ($(this).val()=='cu')
-                   $("#province").show();
-
-            });
             refreshProfile();
         }
+    });
+
+    $("#country").change(function(){
+        $("#city-select").hide();
+        $("#state-select").hide();
+
+        if (strtolower($(this).val()) == 'us')
+            $("#state-select").show();
+
+        if (strtolower($(this).val()) == 'cu')
+            $("#city-select").show();
+
     });
 
     $("#edit-image").click(function(e){
@@ -89,12 +90,13 @@ function refreshProfile()
             gender: 'gender',
             orientation: 'sexual_orientation',
             country: 'country',
+            usstate: 'usstate',
             province: 'province',
             eyes: 'eyes',
             hair: 'hair',
             skin: 'skin',
             status: 'marital_status',
-            level: 'highschool_level',
+            level: 'highest_school_level',
             occupation: 'occupation',
             religion: 'religion'
         };

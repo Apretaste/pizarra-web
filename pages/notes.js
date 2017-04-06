@@ -86,13 +86,8 @@ function refreshNotes()
             var profile = notes[item].profile;
             profile.picture_public = pizarra.checkImage(profile.picture_public);
 
-            for(var prop in profile)
-                html = str_replace('{{ note.profile.' + prop + ' }}', profile[prop], html);
-
-            for(var prop in notes[item])
-            {
-                html = str_replace('{{ ' + prop + ' }}', notes[item][prop], html);
-            }
+            html = pizarra.replaceTags(html, profile, 'note.profile.');
+            html = pizarra.replaceTags(html, notes[item], '');
 
             $("#list-news").append(html);
         }

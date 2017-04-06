@@ -44,7 +44,7 @@
                 <div class="buttons-section">
                     <a class="category-link" href="#" onclick="pizarra.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
                     <a class="category-link" href="#" onclick="pizarra.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol"></i></a>
-                    <a class="category-link" href="#" onclick="pizarra.pages.chat.show({username: '{{ name }}'});"><i class="icon ion-ios-chatbubble"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.pages.chat.show({friend: '{{ name }}', profile: pizarra.getCurrentProfile(false)});"><i class="icon ion-ios-chatbubble"></i></a>
                     <a class="category-link" href="#" onclick="pizarra.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
                 </div>
             </div>

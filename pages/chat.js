@@ -1,27 +1,38 @@
 $(function(){
 
-    refreshChat();
+    refreshChat(false, true);
 
-    $("#btnSendNote").click(function(){
+    $("#btnSendNote").click(function(){ sendNote(); });
 
-        var token = pizarra.getToken();
-
-        if(token !== null)
-        {
-            if (pizarra.run('NOTA @' + pizarra.pages.chat.data.friend + " " + $("#edtNote").val()) != false)
-
-                refreshChat(false);
-        }
+    $("#edtNote").on('keydown', function(e)
+    {
+       if (e.keyCode == 13)
+           sendNote();
     });
-
 });
 
-function refreshChat(showLoading)
+function refreshChat(showLoading, force)
 {
-	$("#chat-list").html('');
-	
-    if (!isset(showLoading))
+    var timeout = 10000;
+
+    if (pizarra.pages.current.name != 'chat')
+        return;
+
+	if (!isset(showLoading))
         showLoading = true;
+
+    if (!isset(force))
+        force = true;
+
+    if ( ! force)
+    {
+        var items = pizarra.run("NOTA UNREAD", null, null, false);
+
+        if (items.total < 1) {
+            setTimeout("refreshChat(false, false);", timeout);
+            return;
+        }
+    }
 
     var tplLeft = $("#chat-left-template").html();
     var tplRight = $("#chat-right-template").html();
@@ -30,6 +41,7 @@ function refreshChat(showLoading)
 
     friendProfile.picture_public = pizarra.checkImage(friendProfile.picture_public);
 
+    var allhtml = '';
     for (var i in notes.chats) {
         var tpl = tplLeft;
         var chat = notes.chats[i];
@@ -41,8 +53,19 @@ function refreshChat(showLoading)
         html = pizarra.replaceTags(html, friendProfile, 'note.profile.');
         html = pizarra.replaceTags(html, chat, 'note.');
 
-        $("#chat-list").append(html);
+        allhtml = html + allhtml; // inverse order of notes
+
     }
-	
-	setTimeout("refreshChat();", 10000);
+
+    $("#chat-list").html(allhtml);
+    setTimeout('window.scrollTo(0, window.scrollMaxY)', 500);
+    setTimeout("refreshChat(false, false);", timeout);
+}
+
+function sendNote(){
+    if (pizarra.run('NOTA @' + pizarra.pages.chat.data.friend + " " + $("#edtNote").val(), null, null, false) != false)
+    {
+        $("#edtNote").val('');
+        refreshChat(false, true);
+    }
 }

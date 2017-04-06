@@ -4,8 +4,8 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://xeros.co/");
-//var sdk = new apretaste("http://corex.wifi/");
+//var sdk = new apretaste("http://xeros.co/");
+var sdk = new apretaste("http://corex.wifi/");
 
 var pizarra = {
 
@@ -28,8 +28,8 @@ var pizarra = {
      *
      */
     pages: {
-        current: {},
-        previous: {},
+        current: {name: 'empty'},
+        previous: {name: 'none'},
         login: new pizarraPage({
             name: "login",
             title: "Ingresar",
@@ -165,7 +165,7 @@ var pizarra = {
 
         if (result.code == 'error') {
             if (result.message == 'bad authentication') {
-                alert('your session was expired ' + token);
+                alert('Your session was expired ');
                 this.logout();
                 return false;
             }

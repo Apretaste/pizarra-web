@@ -1,5 +1,23 @@
 <div class="body padding">
+
     <div class="separator-fields"></div>
+    <!-- new chat template -->
+    <li id="new-template" class="list-message" data-ix="list-item" style="display:none;">
+        <a class="w-clearfix w-inline-block" href="#" data-load="1" onclick="pizarra.pages.chat.show({friend: '{{ username }}', profile: pizarra.getCurrentProfile(false)});">
+            <div class="w-clearfix column-left">
+                <div class="image-message chat"><img src="{{ chat.profile.picture_public }}">
+                </div>
+            </div>
+            <div class="column-right">
+                <span class="flag-icon flag-icon-cu user-country"></span><div class="message-title user-title"><b>@{{ username }}</b></div>
+            </div>
+        </a>
+    </li>
+    <ul id ="new-chat" class="list">
+        <!-- dynamic zone -->
+    </ul>
+    <div class="separator-fields"></div>
+
     <!-- chat template -->
     <li id="template" class="list-message" data-ix="list-item" style="display:none;">
         <a class="w-clearfix w-inline-block" href="#" data-load="1" onclick="pizarra.pages.chat.show({friend: '{{ username }}', profile: pizarra.getCurrentProfile(false)});">
@@ -13,8 +31,9 @@
             </div>
         </a>
     </li>
-    <!-- -->
-    <ul id="list" class="list">
 
+    <ul id="list" class="list">
+        <!-- dynamic zone -->
     </ul>
+
 </div>
