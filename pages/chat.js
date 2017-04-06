@@ -18,6 +18,8 @@ $(function(){
 
 function refreshChat(showLoading)
 {
+	$("#chat-list").html('');
+	
     if (!isset(showLoading))
         showLoading = true;
 
@@ -41,4 +43,6 @@ function refreshChat(showLoading)
 
         $("#chat-list").append(html);
     }
+	
+	setTimeout("refreshChat();", 10000);
 }
