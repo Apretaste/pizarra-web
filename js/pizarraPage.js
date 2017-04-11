@@ -54,7 +54,12 @@ var pizarraPage = function(pProperties, parent)
             $("#main-stack #navbar-title").html(this.title);
             $('.mobile-wrapper').height($(window).height());
 
-
+            $(".body").slimscroll({
+                alwaysVisible: false,
+                allowPageScroll: true,
+                height: 'auto',
+                railVisible: true
+            });
 
             window.scrollTo(0, 0);
         };

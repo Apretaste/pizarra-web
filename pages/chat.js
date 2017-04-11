@@ -58,7 +58,9 @@ function refreshChat(showLoading, force)
     }
 
     $("#chat-list").html(allhtml);
-    setTimeout('window.scrollTo(0, window.scrollMaxY)', 500);
+    //setTimeout('window.scrollTo(0, window.scrollMaxY)', 500);
+    setTimeout('$(".body").slimscroll({scrollTo: "999px"})', 500);
+
     setTimeout("refreshChat(false, false);", timeout);
 }
 
