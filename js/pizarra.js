@@ -4,7 +4,7 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://corex.wifi/");
+var sdk = new apretaste("http://xeros.co/");
 
 var pizarra = {
 
@@ -294,6 +294,4 @@ $(function () {
     {
         pizarra.pages.notes.show();
     }
-
-
 });
