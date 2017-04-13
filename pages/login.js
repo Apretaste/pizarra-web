@@ -8,6 +8,7 @@ $("#pass-button").click(function(e) {
     if (is_email(email))
     {
         var r = sdk.start(email);
+
         if (r.code == 'ok')
         {
             $("#login-div").hide();

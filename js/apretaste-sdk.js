@@ -67,10 +67,16 @@ var apretaste = function (pbaseUrl)
      * @returns {boolean}
      */
     this.checkUrl = function(url){
-        var http = new XMLHttpRequest();
-        http.open('HEAD', url, false);
-        http.send();
-        return http.status != 404;
+        try {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            return http.status != 404;
+        }
+        catch(err)
+        {
+            return false;
+        }
     }
 
     /**
