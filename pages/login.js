@@ -1,6 +1,20 @@
 $(function(){
     $("#navbar").hide();
     $("#email-field").focus();
+    $.notify.addStyle('happyblue', {
+        html: "<div><span data-notify-text/></div>",
+        classes: {
+            base: {
+                "white-space": "nowrap",
+                "background-color": "lightblue",
+                "padding": "5px"
+            },
+            superblue: {
+                "color": "white",
+                "background-color": "blue"
+            }
+        }
+    });
 })
 
 $("#pass-button").click(function(e) {
@@ -8,7 +22,7 @@ $("#pass-button").click(function(e) {
     if (is_email(email))
     {
         var r = sdk.start(email);
-
+        
         if (r.code == 'ok')
         {
             $("#login-div").hide();
@@ -16,7 +30,9 @@ $("#pass-button").click(function(e) {
             $("#password-div").fadeIn(500);
             $(".password-block-first").focus();
         }
-    } else alert('Wrong email address');
+    } else {
+        $("#email-field").notify(wordwrap(html_entity_decode('Direcci&oacute;n email incorrecta'),20,'\n',false));
+    }
 });
 
 $('#email-field').keypress(function(e) {
