@@ -1,4 +1,4 @@
-<div class="body padding">
+<div class="body padding notes">
     <a class="w-inline-block navbar-button right show-search-box top-buttons" href="#" data-ix="">
         <div class="navbar-button-icon icon ion-ios-search-strong"></div>
     </a>
@@ -26,7 +26,9 @@
         <li class="list-item-new">
             <div class="w-inline-block w-row">
                 <div class="w-col w-col-tiny-2 w-col-2 note-avatar">
-                    <div class="image-message"><img class = "action-profile" src="{{ note.profile.picture_public }}" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" style="cursor: hand;"/></div>
+                    <div class="image-message">
+                        <img src="{{ note.profile.picture_public }}" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));"/>
+                    </div>
                 </div>
                 <div class="w-col w-col-tiny-10 w-col-10 text-new">
                     <div>
@@ -50,9 +52,12 @@
             </div>
         </li>
     </ul>
-    <ul id = "list-news" class="w-clearfix list-news">
-        <!-- dynamic zone -->
-    </ul>
+    <div class="news-mask"></div>
+        <div class="news-container">
+        <ul id = "list-news" class="w-clearfix list-news">
+            <!-- dynamic zone -->
+        </ul>
+    </div>
 </div>
 
 <div class="w-clearfix input-chat-block shadowed-block">
