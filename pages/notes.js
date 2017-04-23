@@ -84,7 +84,11 @@ function refreshNotes()
         {
             var html = tpl;
             var profile = notes[item].profile;
-            profile.picture_public = pizarra.checkImage(profile.picture_public);
+
+            if (profile.picture != '1')
+                profile.picture_public = "images/user.png";
+
+            //profile.picture_public = pizarra.checkImage(profile.picture_public);
 
             html = pizarra.replaceTags(html, profile, 'note.profile.');
             html = pizarra.replaceTags(html, notes[item], '');

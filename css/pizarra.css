@@ -99,7 +99,7 @@ a {
 }
 .navbar-button {
   position: relative;
-  width: 45px;
+  width: 25px;
   height: 45px;
   padding: 0px;
   color: #ccc;
@@ -125,9 +125,9 @@ a {
   font-size: 21px;
 }
 .navbar-button-icon {
-  width: 45px;
+  width: 22px;
   height: 45px;
-  font-size: 25px;
+  font-size: 22px;
   padding:0;
   line-height: 40px;
   color: #333;
@@ -891,6 +891,7 @@ a {
   padding-left: 15px;
   background-color: white;
 }
+
 .news-container.item-new {
   margin-top: 0px;
   padding-right: 0px;

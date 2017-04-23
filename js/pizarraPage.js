@@ -49,6 +49,7 @@ var pizarraPage = function(pProperties, parent)
             pizarra.pages.current = this;
             // -- end section
 
+
             $("#main-stack").html(html);
             if (this.showHeader) $("#main-stack #navbar").show();
             $("#main-stack #navbar-title").html(this.title);
@@ -60,6 +61,12 @@ var pizarraPage = function(pProperties, parent)
                 height: 'auto',
                 railVisible: true
             });
+
+            $(".page-top-buttons").hide();
+
+            try {
+                $(".page-" + this.name + "-buttons").show();
+            } catch (e){}
 
             window.scrollTo(0, 0);
         };

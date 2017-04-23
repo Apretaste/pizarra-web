@@ -1,4 +1,19 @@
 $(function(){
+    $.notify.addStyle('happyblue', {
+        html: "<div><span data-notify-text/></div>",
+        classes: {
+            base: {
+                "white-space": "nowrap",
+                "background-color": "lightblue",
+                "padding": "5px"
+            },
+            superblue: {
+                "color": "white",
+                "background-color": "blue"
+            }
+        }
+    });
+
     $("#btnSaveData").click(function(){
         var token = pizarra.getToken();
         if(token !== null)
@@ -31,6 +46,8 @@ $(function(){
             }
 
             $("#shadow-layer").hide();
+
+            $("#btnSaveData").notify(wordwrap(html_entity_decode('Su perfil ha sido guardado satisfactoriamente'),20,'\n',false), 'base');
 
             refreshProfile();
         }

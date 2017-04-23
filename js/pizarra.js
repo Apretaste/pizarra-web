@@ -224,7 +224,9 @@ var pizarra = {
         {
             profile = this.run('PERFIL ' + username, null, null, false);
             profile = profile.profile;
-            profile.picture_public = pizarra.checkImage(profile.picture_public);
+            if (profile.picture != '1')
+                profile.picture_public = "images/user.png";
+            //profile.picture_public = pizarra.checkImage(profile.picture_public);
         }
 
         return profile;
