@@ -52,7 +52,7 @@ var pizarraPage = function(pProperties, parent)
 
             $("#main-stack").html(html);
             if (this.showHeader) $("#main-stack #navbar").show();
-            $("#main-stack #navbar-title").html(this.title);
+            //$("#main-stack #navbar-title").html(this.title);
             $('.mobile-wrapper').height($(window).height());
 
             $(".body").slimscroll({

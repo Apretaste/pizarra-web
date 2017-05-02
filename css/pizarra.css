@@ -125,9 +125,9 @@ a {
   font-size: 21px;
 }
 .navbar-button-icon {
-  width: 22px;
+  width: 40px;
   height: 45px;
-  font-size: 22px;
+  font-size: 26px;
   padding:0;
   line-height: 40px;
   color: #333;
@@ -295,6 +295,11 @@ a {
   padding-bottom: 8px;
   font-size: 30px;
   text-align: left;
+}
+
+#logo {
+  margin: 5px;
+
 }
 .slogan {
   color: #c2c2c2;

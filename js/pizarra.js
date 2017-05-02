@@ -4,7 +4,7 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://xeros.co/");
+var sdk = new apretaste("http://10.24.22.226/");
 
 var pizarra = {
 
@@ -224,9 +224,12 @@ var pizarra = {
         {
             profile = this.run('PERFIL ' + username, null, null, false);
             profile = profile.profile;
-            if (profile.picture != '1')
-                profile.picture_public = "images/user.png";
-            //profile.picture_public = pizarra.checkImage(profile.picture_public);
+
+            if (isset(profile))
+                if (profile.picture != '1')
+                    profile.picture_public = "images/user.png";
+                    //profile.picture_public = pizarra.checkImage(profile.picture_public);
+
         }
 
         return profile;
