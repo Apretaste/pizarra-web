@@ -6,8 +6,8 @@ $(function(){
 
     $("#edtNote").on('keydown', function(e)
     {
-       if (e.keyCode == 13)
-           sendNote();
+        if (e.keyCode == 13)
+        sendNote();
     });
 });
 

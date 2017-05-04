@@ -4,7 +4,7 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://10.24.22.226/");
+var sdk = new apretaste("http://apretaste.com/");
 
 var pizarra = {
 
@@ -162,13 +162,15 @@ var pizarra = {
         if (showLoading)
             setTimeout('$("#shadow-layer").hide();', 1000);
 
-        if (result.code == 'error') {
-            if (result.message == 'bad authentication') {
-                alert('Your session was expired ');
-                this.logout();
-                return false;
+        if (isset(result)) {
+            if (result.code == 'error') {
+                if (result.message == 'bad authentication') {
+                    //alert('Your session was expired ');
+                    this.logout();
+                    return false;
+                }
             }
-        }
+        } else return false;
 
         return result;
     },
@@ -286,12 +288,12 @@ var pizarra = {
         if (isset(this.pages.previous.name))
             this.pages.previous.refresh();
     }
-
 };
 
 $(function () {
 
     var session = $.cookie('apretaste-pizarra');
+
     if (session == null)
     {
         pizarra.pages.login.show();

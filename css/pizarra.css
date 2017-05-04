@@ -540,6 +540,16 @@ a {
   text-align: center;
   font-size: 30px;
 }
+
+#password {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ddd;
+  height: 20%;
+  text-align: center;
+  font-size: 30px;
+}
+
 .password-block.last-block {
   margin-right: 0px;
 }
@@ -1038,6 +1048,8 @@ a {
   height: 60px;
   margin: 10px 0px 10px 40px;
   border-radius: 50%;
+  cursor: pointer;
+  cursor: hand;
 }
 .image-message.chat {
   margin: 0;

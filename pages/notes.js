@@ -93,7 +93,20 @@ function refreshNotes()
             html = pizarra.replaceTags(html, profile, 'note.profile.');
             html = pizarra.replaceTags(html, notes[item], '');
 
+            html = html.linkify();
             $("#list-news").append(html);
         }
+
+        $("a").each(function(){
+            var href = $(this).attr('href');
+
+            if (strpos(href,'mailto:') !== false)
+            {
+                $(this).attr('href',"#");
+                var username = substr($(this).html(),1);
+                $(this).attr('onclick',"pizarra.pages.profile.show(pizarra.getProfile('" + username + "'));");
+            }
+
+        });
     }
 }
