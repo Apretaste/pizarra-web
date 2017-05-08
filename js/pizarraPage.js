@@ -6,6 +6,7 @@
  */
 var pizarraPage = function(pProperties, parent)
 {
+
     var p = pProperties;
     this.data = {};
     this.name = p.name;
@@ -14,12 +15,22 @@ var pizarraPage = function(pProperties, parent)
     this.close = p.close;
     this.showHeader = isset(p.showHeader) ? p.showHeader : true;
     this.showFooter = isset(p.showFooter) ? p.showFooter : true;
+    this.showBtnClose = isset(p.showBtnClose) ? p.showBtnClose : true;
+    this.showBtnPrevious = isset(p.showBtnPrevious) ? p.showBtnPrevious : true;
+    this.showBtnRefresh = isset(p.showBtnRefresh) ? p.showBtnRefresh : true;
     this.parent = parent;
 
     if (typeof(p.show) == 'function')
         this.show = p.show;
     else
         this.show = function(data, preprossesor) {
+            $("#btnClose").hide();
+            $("#btnPrevious").hide();
+            $("#btnRefresh").hide();
+            if (this.showBtnClose) $("#btnClose").show();
+            if (this.showBtnPrevious) $("#btnPrevious").show();
+            if (this.showBtnRefresh) $("#btnRefresh").show();
+
             if (typeof(data) == 'undefined' || data == null)
                 data = {};
 
@@ -48,6 +59,7 @@ var pizarraPage = function(pProperties, parent)
                 pizarra.pages.previous = pizarra.pages.current;
             pizarra.pages.current = this;
             // -- end section
+
 
 
             $("#main-stack").html(html);

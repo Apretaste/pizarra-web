@@ -43,6 +43,8 @@ var pizarra = {
             name: "notes",
             title: "&Uacute;ltimas notas",
             sdk: sdk,
+            showBtnClose: false,
+            showBtnPrevious: false,
             close: function () {
                 pizarra.logout();
             }
@@ -51,6 +53,7 @@ var pizarra = {
             name: 'chats',
             title: "Chats",
             sdk: sdk,
+            showBtnPrevious: false,
             close: function () {
                 pizarra.pages.notes.show();
             }
@@ -59,6 +62,8 @@ var pizarra = {
             name: 'edit',
             title: 'Editando perfil',
             sdk: sdk,
+            showBtnPrevious: false,
+            showBtnRefresh: false,
             close: function () {
                 pizarra.pages.notes.show();
             }
@@ -67,6 +72,8 @@ var pizarra = {
             name: 'search',
             title: 'Resultados de b&uacute;squeda',
             sdk: sdk,
+            showBtnRefresh: false,
+            showBtnPrevious: false,
             close: function () {
                 pizarra.pages.notes.show();
             }
@@ -83,6 +90,7 @@ var pizarra = {
             name: 'chat',
             title: 'Chat',
             sdk: sdk,
+            showBtnPrevious: false,
             close: function () {
                 pizarra.pages.notes.show();
             }
@@ -98,6 +106,8 @@ var pizarra = {
         profile: new pizarraPage({
             name: 'profile',
             title: 'Perfil',
+            showBtnPrevious: false,
+            showBtnRefresh: false,
             sdk: sdk,
             close: function () {
                 pizarra.pages.notes.show();
@@ -106,6 +116,7 @@ var pizarra = {
     },
 
     hookPreparseHtml: function(html) {
+
         var profile = this.getCurrentProfile(false);
 
         for(var prop in profile)
@@ -251,9 +262,29 @@ var pizarra = {
     },
 
     actionBlock: function (username) {
-        this.run('PIZARRA BLOQUEAR ' + username,'','',false);
-        if (isset(refreshNotes))
-            refreshNotes();
+        $("#dialog").html('De verdad quieres bloquear a <b>@' + username + '</b>? No ver&aacute;s m&aacute;s notas suyas.');
+
+        $("#dialog").dialog({
+            title: "Bloquear usuario",
+            modal: true,
+            buttons: [
+                {
+                    text: "Si",
+                    click: function() {
+                        pizarra.run('PIZARRA BLOQUEAR ' + username,'','',false);
+                        if (isset(refreshNotes))
+                            refreshNotes();
+                        $( this ).dialog( "close" );
+                    }
+                },
+                {
+                    text: "No",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
     },
 
     checkImage: function (imgUrl)

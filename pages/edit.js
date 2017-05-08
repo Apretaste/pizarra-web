@@ -36,12 +36,20 @@ $(function(){
             };
 
             $("#shadow-layer").show();
+
+            var jsondata = '{';
             for (var prop in datamap)
-                pizarra.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), null,null,false);
+                jsondata += '"' + datamap[prop] + '": "' + $("#" + prop).val() + '",';
+            jsondata += '"nothing":""}';
+
+            pizarra.run("PERFIL BULK " + jsondata, null, null, false);
+                // pizarra.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), null,null,false);
 
             if ($("#picture-file").val() !='')
             {
                 var picture = $("#picture").attr('src');
+                var p = strpos(picture,'base64,');
+                picture = substr(picture, p+7);
                 pizarra.run("PERFIL FOTO", null, picture);
             }
 
@@ -86,7 +94,7 @@ $(function(){
 
 function refreshProfile()
 {
-    var profile = pizarra.getCurrentProfile(true);
+    var profile = pizarra.getCurrentProfile();
     if(profile !== null)
     {
         var d = profile.date_of_birth;

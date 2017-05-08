@@ -11,7 +11,6 @@
         <link rel="stylesheet" type="text/css" href="css/framework.css">
         <link rel="stylesheet" type="text/css" href="css/pizarra.css">
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
-
         <script src="js/webfont.js"></script>
         <script>
             WebFont.load({
@@ -33,17 +32,17 @@
         <!-- header template -->
         <div id="header-tpl" style="display: none;" >
             <div class="w-nav navbar" data-no-scroll="1" id="navbar">
-                <div class="w-container">
+                <div class="w-container" style="margin-right:10px;">
                     <div class="wrapper-mask" data-ix="menu-mask"></div>
                     <div class="hidden" id="navbar-title"></div>
                     <img id = "logo" src="images/icon.png">
-                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.close();" style="margin-right:10px;">
+                    <a id="btnClose" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.close();" >
                         <div class="navbar-button-icon icon ion-ios-close"></div>
                     </a>
-                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.refresh();">
+                    <a id="btnRefresh" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.refresh();">
                         <div class="navbar-button-icon icon ion-ios-refresh"></div>
                     </a>
-                    <a class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.showPreviousPage();">
+                    <a id="btnPrevious" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.showPreviousPage();">
                         <div class="navbar-button-icon icon ion-ios-arrow-back"></div>
                     </a>
 
@@ -72,6 +71,7 @@
             <img style="top: 50%; position: relative;" src="images/ajax-loader.gif">
         </div>
 
+        <div class="hidden" id="dialog"></div>
         <!-- load scripts -->
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min.js"></script>

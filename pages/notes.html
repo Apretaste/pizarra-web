@@ -1,16 +1,8 @@
 <div class="body padding notes">
-    <div style="display:none;float:right;" id = "search-box">
-        <div style="display:table-row;" class ="w-clearfix shadowed-block">
-            <div style="display: table-cell;">
-                <a href="#" id="btnCloseSearchBox" class="navbar-button-icon icon ion-ios-close-empty"></a>
-                <input class="w-input input-chat chat-notes" id="search-query">
-            </div>
-            <div style="display: table-cell;">
-                <a class="w-inline-block navbar-button right show-search" href="#" data-ix="">
-                    <div style="margin-top:30px;" class="navbar-button-icon icon ion-ios-search-strong"></div>
-                </a>
-            </div>
-        </div>
+    <div style="display:none;padding:0px;" id = "search-box">
+         <br/>
+        <p>Por favor escriba un @username, un #hashtag o un texto a buscar</p>
+          <input type="text" class="w-input input-form" id="search-query" style="width:95%;">
     </div>
 
     <ul style="display:none;" id="news-template">
@@ -36,7 +28,7 @@
                 </div>
                 <div class="buttons-section">
                     <a class="category-link" href="#" onclick="pizarra.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
-                    <a class="category-link" href="#" onclick="pizarra.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
                     <a class="category-link" href="#" onclick="pizarra.pages.chat.show({friend: '{{ name }}', profile: pizarra.getCurrentProfile(false)});"><i class="icon ion-ios-chatbubble"></i></a>
                     <a class="category-link" href="#" onclick="pizarra.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
                 </div>

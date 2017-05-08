@@ -1,5 +1,4 @@
 $(function(){
-
     $(".show-edit").click(function(){
         pizarra.pages.edit.show(pizarra.getCurrentProfile(false));
     });
@@ -9,8 +8,44 @@ $(function(){
     });
 
     $(".show-search-box").click(function(){
-        $("#search-box").fadeIn();
-        $(".top-buttons").hide();
+        $("#search-box").dialog({
+            title: "Buscar en Pizarra",
+            modal: true,
+            buttons: [
+                {
+                    text: "Buscar",
+                    click: function() {
+                        var query = $("#search-query").val();
+                        query = trim(query);
+                        if (query != '')
+                        {
+                            var token = pizarra.getToken();
+                            if(token != null) {
+                                var notes = pizarra.run('PIZARRA BUSCAR ' + query, null,null, false);
+                                if (strtoupper(notes.code) == 'OK')
+                                    if (!isset(notes.notes)) {
+                                        $("#search-box").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
+                                    } else {
+                                        pizarra.lastSearchResults = notes;
+                                        var q = $("#search-query").val();
+                                        $( this ).dialog( "close" );
+                                        pizarra.pages.search.show({query: q});
+                                    }
+                            }
+                        }
+                    }
+                },
+                {
+                    text: "Cerrar",
+                    click: function(){
+                        $(this).dialog('close');
+                    }
+                }
+
+            ]
+        });
+        //$("#search-box").fadeIn();
+        //$(".top-buttons").hide();
     });
 
     $(".show-search").click(function(){
@@ -28,15 +63,14 @@ $(function(){
         }
     });
 
+    $("#edtNote").on('keydown', function(e)
+    {
+        if (e.keyCode == 13)
+            sendNote();
+    });
+
     $("#btnSendNote").click(function(){
-
-        var token = pizarra.getToken();
-
-        if(token !== null)
-        {
-            if (pizarra.run('PIZARRA ' + $("#edtNote").val()) != false)
-                refreshNotes();
-        }
+        sendNote();
     });
 
     $('body').keypress(function(a){
@@ -54,6 +88,7 @@ $(function(){
 
     $.notify.addStyle('happyblue', {
         html: "<div><span data-notify-text/></div>",
+        position: "top",
         classes: {
             base: {
                 "white-space": "nowrap",
@@ -70,13 +105,21 @@ $(function(){
     refreshNotes();
 });
 
-function refreshNotes()
+function refreshNotes(showLoading)
 {
-    $("#list-news").html("");
+    if (!isset(showLoading))
+        showLoading = true;
+
+    var timeout = 10000;
+
+    if (pizarra.pages.current.name != 'notes')
+        return;
+
     var token = pizarra.getToken();
+    var htmlNotes = '';
     if(token != null)
     {
-        var notes = pizarra.run('PIZARRA');
+        var notes = pizarra.run('PIZARRA',null,null,showLoading);
         notes = notes.notes;
         var tpl = $("#news-template").html();
 
@@ -90,12 +133,17 @@ function refreshNotes()
 
             //profile.picture_public = pizarra.checkImage(profile.picture_public);
 
+            notes[item].followcolor = 'black';
+            if (notes[item].friend == true)
+                notes[item].followcolor = 'red';
+
             html = pizarra.replaceTags(html, profile, 'note.profile.');
             html = pizarra.replaceTags(html, notes[item], '');
-
-            html = html.linkify();
-            $("#list-news").append(html);
+            notes[item].text = notes[item].text.linkify();
+            htmlNotes += html;
         }
+
+        $("#list-news").html(htmlNotes);
 
         $("a").each(function(){
             var href = $(this).attr('href');
@@ -108,5 +156,21 @@ function refreshNotes()
             }
 
         });
+    }
+
+    //setTimeout('$(".body").slimscroll({scrollTo: "999px"})', 500);
+
+    setTimeout("refreshNotes(false);", timeout);
+}
+
+function sendNote(){
+    var token = pizarra.getToken();
+
+    if(token !== null)
+    {
+        if (pizarra.run('PIZARRA ' + $("#edtNote").val()) != false)
+            refreshNotes();
+
+        $("#edtNote").val('');
     }
 }

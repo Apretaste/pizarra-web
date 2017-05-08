@@ -26,7 +26,7 @@ var apretaste = function (pbaseUrl)
         var receptor = {result: null};
         $.ajax({
             url: this.baseUrl + pUrl,
-            method: 'GET',
+            method: 'POST',
             data: pParams,
             async: false,
             complete: function(res, status) {
@@ -161,7 +161,9 @@ function is_email(emailAddress) {
 }
 
 if(!String.linkify) {
-    String.prototype.linkify = function() {
+    String.prototype.linkify = function(target) {
+        if (!isset(target))
+            target = "_blank";
 
         // http://, https://, ftp://
         var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
@@ -173,8 +175,8 @@ if(!String.linkify) {
         var emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
 
         return this
-            .replace(urlPattern, '<a href="$&">$&</a>')
-            .replace(pseudoUrlPattern, '$1<a href="http://$2">$2</a>');
+            .replace(urlPattern, '<a target="'+target+'" href="$&">$&</a>')
+            .replace(pseudoUrlPattern, '$1<a target="'+target+'" href="http://$2">$2</a>');
             /*.replace(emailAddressPattern, '<a href="mailto:$&">$&</a>');*/
     };
 }

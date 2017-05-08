@@ -1,7 +1,9 @@
 <div class="body padding">
     <div class="separator-button"></div>
     <div id="edit-image" class="profile-image">
-        <a href="#" style="text-decoration: none;"><img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" src-default="images/user.png"/></a>
+        <a href="#" style="text-decoration: none;">
+            <img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" src-default="images/user.png" style="max-height:200px;"/>
+        </a>
     </div>
     <input id="picture-file" type="file" multiple=true data-max-file-count="1" style="display:none;">
     <div class="separator-button"></div>
@@ -87,9 +89,6 @@
                         <option value="FR">Francia</option>
                         <option value="VI">Islas Vírgenes, US</option>
                     </select>
-                    <a class="w-inline-block right-input-icon color" href="#">
-                        <div class="icon ion-ios-location"></div>
-                    </a>
                 </div>
             </div>
             <div class="separator-fields"></div>
@@ -273,9 +272,6 @@
                 <div class="separator-fields"></div>
                 <div class="block-input-combined">
                     <input id="occupation" class="w-input input-form left" id="profesion" type="text" name="profesion" data-name="profesion" placeholder="Director Ejecutivo en Etecsa">
-                    <a class="w-inline-block right-input-icon color">
-                        <div class="icon ion-hammer"></div>
-                    </a>
                 </div>
             </div>
             <div class="separator-fields"></div>
