@@ -1288,8 +1288,8 @@ html.w-mod-js *[data-ix="list-item"] {
     padding-left: 0;
   }
   .image-message {
-    padding-left: -20px;
-    margin: 15px 0px 10px 20px;
+    /*padding-left: -20px;*/
+    margin: 5px 5px 5px 5px;
   }
   .input-notes {
     width: 65%;
