@@ -110,7 +110,7 @@ function refreshNotes(showLoading)
     if (!isset(showLoading))
         showLoading = true;
 
-    var timeout = 10000;
+    var timeout = 120000;
 
     if (pizarra.pages.current.name != 'notes')
         return;
