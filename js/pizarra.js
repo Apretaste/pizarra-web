@@ -4,7 +4,7 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("http://apretaste.com/");
+var sdk = new apretaste("https://apretaste.com/");
 
 var pizarra = {
 
