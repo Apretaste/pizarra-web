@@ -42,8 +42,11 @@ $(function(){
             for (var prop in datamap)
             {
                 var v = $("#" + prop).val();
-                if (profile[prop] != v)
+                if (strtolower(profile[prop]) != strtolower(v))
+				{
                     jsondata += '"' + datamap[prop] + '": "' + v + '",';
+					pizarra.currentProfile[prop] = v;
+				}
             }
             jsondata += '"nothing":""}';
 
@@ -58,6 +61,8 @@ $(function(){
                 pizarra.run("PERFIL FOTO", null, picture);
             }
 
+			
+			
             $("#shadow-layer").hide();
 
             $("#btnSaveData").notify(wordwrap(html_entity_decode('Su perfil ha sido guardado satisfactoriamente'),20,'\n',false), 'base');
