@@ -15,6 +15,7 @@ $(function(){
     });
 
     $("#btnSaveData").click(function(){
+        var profile = pizarra.getCurrentProfile();
         var token = pizarra.getToken();
         if(token !== null)
         {
@@ -39,11 +40,15 @@ $(function(){
 
             var jsondata = '{';
             for (var prop in datamap)
-                jsondata += '"' + datamap[prop] + '": "' + $("#" + prop).val() + '",';
+            {
+                var v = $("#" + prop).val();
+                if (profile[prop] != v)
+                    jsondata += '"' + datamap[prop] + '": "' + v + '",';
+            }
             jsondata += '"nothing":""}';
 
             pizarra.run("PERFIL BULK " + jsondata, null, null, false);
-                // pizarra.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), null,null,false);
+            // pizarra.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), null,null,false);
 
             if ($("#picture-file").val() !='')
             {
@@ -140,6 +145,7 @@ function refreshProfile()
                 v = profile[f];
 
             $("#" + prop).val(v);
+
         }
     }
 }
