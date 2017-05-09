@@ -64,6 +64,7 @@ $(function(){
 				{
                     jsondata += '"' + datamap[prop] + '": "' + v + '",';
 					
+					// update local data and not call to the api
 					var f = fieldmap[prop];
 					
 					if (typeof(f) == typeof([]))
@@ -91,6 +92,9 @@ $(function(){
                 var p = strpos(picture,'base64,');
                 picture = substr(picture, p+7);
                 pizarra.run("PERFIL FOTO", null, picture);
+				
+				// TODO: the new url of public picture are unknown, recall to the api
+				profile = pizarra.getCurrentProfile(true);
             }
 			
             $("#shadow-layer").hide();
