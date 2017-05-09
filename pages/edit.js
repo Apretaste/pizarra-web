@@ -36,22 +36,54 @@ $(function(){
                 religion: 'RELIGION'
             };
 
+			var fieldmap = {
+				fullname: ['first_name', 'middle_name', 'last_name', 'mother_name'],
+				birthday: 'date_of_birth',
+				gender: 'gender',
+				orientation: 'sexual_orientation',
+				country: 'country',
+				usstate: 'usstate',
+				province: 'province',
+				eyes: 'eyes',
+				hair: 'hair',
+				skin: 'skin',
+				status: 'marital_status',
+				level: 'highest_school_level',
+				occupation: 'occupation',
+				religion: 'religion'
+			};
+			
             $("#shadow-layer").show();
 
             var jsondata = '{';
             for (var prop in datamap)
             {
                 var v = $("#" + prop).val();
-                if (strtolower(profile[prop]) != strtolower(v))
+				
+                if (strtolower(profile[fieldmap[prop]]) != strtolower(v))
 				{
                     jsondata += '"' + datamap[prop] + '": "' + v + '",';
-					pizarra.currentProfile[prop] = v;
+					
+					var f = fieldmap[prop];
+					
+					if (typeof(f) == typeof([]))
+					{
+						var s = split(' ', v);
+					
+						if 	(count(s) < 4) // ignore middle name
+							f = ['first_name', 'last_name', 'mother_name'];
+							
+						for (var i in f) profile[f[i]] = '';
+						for (var i in f) if (isset(s[i])) if (trim(s[i])!='') profile[f[i]] = s[i];
+						
+					} 
+					else 
+						pizarra.currentProfile[fieldmap[prop]] = v;
 				}
             }
             jsondata += '"nothing":""}';
 
             pizarra.run("PERFIL BULK " + jsondata, null, null, false);
-            // pizarra.run("PERFIL " + datamap[prop] + " " + $("#" + prop).val(), null,null,false);
 
             if ($("#picture-file").val() !='')
             {
@@ -60,8 +92,6 @@ $(function(){
                 picture = substr(picture, p+7);
                 pizarra.run("PERFIL FOTO", null, picture);
             }
-
-			
 			
             $("#shadow-layer").hide();
 
@@ -120,7 +150,7 @@ function refreshProfile()
         profile.date_of_birth = d + '/' + m  + '/' + y;
 
         var datamap = {
-            fullname: ['first_name', 'middle_name', 'last_name'],
+            fullname: ['first_name', 'middle_name', 'last_name', 'mother_name'],
             birthday: 'date_of_birth',
             gender: 'gender',
             orientation: 'sexual_orientation',
@@ -144,7 +174,8 @@ function refreshProfile()
             if (typeof(f) == typeof([]))
             {
                 for (var i in f)
-                    v += profile[f[i]] + ' ';
+					if (trim(profile[f[i]])!='')
+						v += profile[f[i]] + ' ';
             }
             else
                 v = profile[f];

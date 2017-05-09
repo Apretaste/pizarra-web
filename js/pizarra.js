@@ -215,7 +215,7 @@ var pizarra = {
      * @returns {Object}
      */
     getCurrentProfile: function (force) {
-        if (typeof (force) == 'undefined')
+        if (!isset(force))
             force = false;
 
         if (this.currentProfile == null || force == true) // singleton
@@ -241,8 +241,6 @@ var pizarra = {
             if (isset(profile))
                 if (profile.picture != '1')
                     profile.picture_public = "images/user.png";
-                    //profile.picture_public = pizarra.checkImage(profile.picture_public);
-
         }
 
         return profile;
