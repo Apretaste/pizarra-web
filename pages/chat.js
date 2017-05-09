@@ -39,7 +39,10 @@ function refreshChat(showLoading, force)
     var notes = pizarra.run('NOTA @' + pizarra.pages.chat.data.friend, null,null,showLoading);
     var friendProfile =  pizarra.getProfile(pizarra.pages.chat.data.friend);
 
-    friendProfile.picture_public = pizarra.checkImage(friendProfile.picture_public);
+    if (friendProfile.picture != '1')
+        friendProfile.picture_public = "images/user.png";
+
+    //friendProfile.picture_public = pizarra.checkImage(friendProfile.picture_public);
 
     var allhtml = '';
     for (var i in notes.chats) {
