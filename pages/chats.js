@@ -35,7 +35,10 @@ function refreshChats() {
                 var html = tpl;
                 var profile = notes[i].profile;
 
-                profile.picture_public = pizarra.checkImage(profile.picture_public);
+                if (profile.picture != '1')
+                    profile.picture_public = "images/user.png";
+
+                //profile.picture_public = pizarra.checkImage(profile.picture_public);
 
                 html = pizarra.replaceTags(html, notes[i].last_note, 'last_note.');
                 html = pizarra.replaceTags(html, profile, 'chat.profile.');
