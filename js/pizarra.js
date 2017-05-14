@@ -175,7 +175,6 @@ var pizarra = {
 
 		if (is_null(result))
 		{
-			this.logout();
             return false;
 		}
 		
