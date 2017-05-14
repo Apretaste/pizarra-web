@@ -60,11 +60,8 @@ var pizarraPage = function(pProperties, parent)
             pizarra.pages.current = this;
             // -- end section
 
-
-
             $("#main-stack").html(html);
             if (this.showHeader) $("#main-stack #navbar").show();
-            //$("#main-stack #navbar-title").html(this.title);
             $('.mobile-wrapper').height($(window).height());
 
             $(".body").slimscroll({

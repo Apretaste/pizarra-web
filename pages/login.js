@@ -53,8 +53,14 @@ $(".password-block").keyup(function() {
     }
 });
 
-$('#submit').click(function() {
+$('#login-submit').click(function() {
     login();
+});
+
+$('#login-back').click(function() {
+    $("#password-div").hide();
+    $("#login-div").show();
+    $("#email-field").focus();
 });
 
 function pass(){

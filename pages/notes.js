@@ -129,15 +129,15 @@ function refreshNotes(showLoading)
             if (profile.picture != '1')
                 profile.picture_public = "images/user.png";
 
-            //profile.picture_public = pizarra.checkImage(profile.picture_public);
-
             notes[item].followcolor = 'black';
             if (notes[item].friend == true)
                 notes[item].followcolor = 'red';
 
+            notes[item].text = notes[item].text.linkify();
+
             html = pizarra.replaceTags(html, profile, 'note.profile.');
             html = pizarra.replaceTags(html, notes[item], '');
-            notes[item].text = notes[item].text.linkify();
+
             htmlNotes += html;
         }
 
@@ -150,13 +150,11 @@ function refreshNotes(showLoading)
             {
                 $(this).attr('href',"#");
                 var username = substr($(this).html(),1);
-                $(this).attr('onclick',"pizarra.pages.profile.show(pizarra.getProfile('" + username + "'));");
+                $(this).attr('onclick', "pizarra.pages.profile.show(pizarra.getProfile('" + username + "'));");
             }
 
         });
     }
-
-    //setTimeout('$(".body").slimscroll({scrollTo: "999px"})', 500);
 
     setTimeout("refreshNotes(false);", timeout);
 }
