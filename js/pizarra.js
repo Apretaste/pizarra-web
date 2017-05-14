@@ -173,7 +173,13 @@ var pizarra = {
         if (showLoading)
             setTimeout('$("#shadow-layer").hide();', 1000);
 
-        if (isset(result) || is_null(result)) {
+		if (is_null(result))
+		{
+			this.logout();
+            return false;
+		}
+		
+        if (isset(result)) {
             if (result.code == 'error') {
                 if (result.message == 'bad authentication') {
                     //alert('Your session was expired ');
