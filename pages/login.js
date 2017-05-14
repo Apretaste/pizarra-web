@@ -22,6 +22,10 @@ $(function(){
             e.keyCode = 0;
             return false;
         }
+
+        if (e.keyCode == 13){
+            login();
+        }
     });
 })
 
@@ -49,12 +53,7 @@ $(".password-block").keyup(function() {
     }
 });
 
-$('[type="submit"]').on('click', function () {
-    $(this)
-        .closest('form')
-        .find('[required]')
-        .addClass('required');
-
+$('#submit').click(function() {
     login();
 });
 

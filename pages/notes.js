@@ -44,8 +44,6 @@ $(function(){
 
             ]
         });
-        //$("#search-box").fadeIn();
-        //$(".top-buttons").hide();
     });
 
     $(".show-search").click(function(){
