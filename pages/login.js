@@ -26,27 +26,19 @@ $(function(){
 })
 
 $("#pass-button").click(function(e) {
-    var email = $("#email-field").val();
-    if (is_email(email))
-    {
-        var r = sdk.start(email);
-        
-        if (r.code == 'ok')
-        {
-            $("#login-div").hide();
-            e.preventDefault();
-            $("#password-div").fadeIn(500);
-            $(".password-block-first").focus();
-        }
-    } else {
-        $("#email-field").notify(wordwrap(html_entity_decode('Direcci&oacute;n email incorrecta'),20,'\n',false));
-    }
+    pass();
 });
 
 $('#email-field').keypress(function(e) {
-    if(e.which == 13) {
-        $('#login-div').hide();
-        $('#password-div').fadeIn(500).focus().click();
+    if(e.which == 13)
+    {
+        var r = pass();
+        if (r == true)
+        {
+            $("#password-div").show();
+            $("#login-div").hide();
+            $("#password").focus();
+        }
     }
 });
 
@@ -62,12 +54,30 @@ $('[type="submit"]').on('click', function () {
         .closest('form')
         .find('[required]')
         .addClass('required');
+
+    login();
 });
 
-$("#submit-form").submit(function(event) {
+function pass(){
+    var email = $("#email-field").val();
+    if (is_email(email))
+    {
+        var r = sdk.start(email);
 
-    event.preventDefault();
+        if (r.code == 'ok')
+        {
+            $("#login-div").hide();
+            $("#password-div").fadeIn(500);
+            $(".password-block-first").focus();
+            return true;
+        }
+    } else {
+        $("#email-field").notify(wordwrap(html_entity_decode('Direcci&oacute;n email incorrecta'),20,'\n',false));
+    }
+    return false;
+}
 
+function login() {
     var email = $("#email-field").val();
     var pin = $("#password").val();
 
@@ -82,6 +92,4 @@ $("#submit-form").submit(function(event) {
         pizarra.setToken(result.token);
         pizarra.pages.notes.show();
     }
-
-    return false;
-});
+}
