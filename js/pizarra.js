@@ -349,7 +349,7 @@ var pizarra = {
 $(function () {
 
     var session = $.cookie('apretaste-pizarra');
-    var path = windows.location.pathname;
+    var path = window.location.pathname;
 
     if (session == null)
     {
