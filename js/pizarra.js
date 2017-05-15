@@ -37,7 +37,8 @@ var pizarra = {
             showFooter: false,
             close: function () {
 
-            }
+            },
+			entry: "/login"
         }),
         notes: new pizarraPage({
             name: "notes",
@@ -47,7 +48,8 @@ var pizarra = {
             showBtnPrevious: false,
             close: function () {
                 pizarra.logout();
-            }
+            },
+            entry: "/feed"
         }),
         chats: new pizarraPage({
             name: 'chats',
@@ -56,7 +58,8 @@ var pizarra = {
             showBtnPrevious: false,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/chats"
         }),
         edit: new pizarraPage({
             name: 'edit',
@@ -66,7 +69,8 @@ var pizarra = {
             showBtnRefresh: false,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/profile"
         }),
         search: new pizarraPage({
             name: 'search',
@@ -76,7 +80,8 @@ var pizarra = {
             showBtnPrevious: false,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/search"
         }),
         about: new pizarraPage({
             name: 'about',
@@ -84,7 +89,8 @@ var pizarra = {
             sdk: sdk,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/about"
         }),
         chat: new pizarraPage({
             name: 'chat',
@@ -93,7 +99,8 @@ var pizarra = {
             showBtnPrevious: false,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/chat"
         }),
         terms: new pizarraPage({
             name: 'terms',
@@ -101,7 +108,8 @@ var pizarra = {
             sdk: sdk,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/terms"
         }),
         profile: new pizarraPage({
             name: 'profile',
@@ -111,7 +119,8 @@ var pizarra = {
             sdk: sdk,
             close: function () {
                 pizarra.pages.notes.show();
-            }
+            },
+			entry: "/profile/{username}"
         })
     },
 
@@ -321,18 +330,38 @@ var pizarra = {
     showPreviousPage: function(){
         if (isset(this.pages.previous.name))
             this.pages.previous.refresh();
-    }
+    },
+	
+	go: function (path)
+	{		
+		for (var p in this.pages)
+		{
+			if (isset(p.entry))
+			{
+				if (p.entry == path)
+					p.show();
+				break;
+			}
+		}
+	}
 };
 
 $(function () {
 
     var session = $.cookie('apretaste-pizarra');
+    var path = windows.location.pathname;
 
     if (session == null)
     {
         pizarra.pages.login.show();
     } else
     {
-        pizarra.pages.notes.show();
+        var path = windows.location.pathname;
+        if (windows.location.pathname == "/")
+            pizarra.pages.notes.show();
+        else
+        {
+            pizarra.go(path);
+        }
     }
 });
