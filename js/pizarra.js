@@ -356,7 +356,7 @@ $(function () {
         pizarra.pages.login.show();
     } else
     {
-        if (windows.location.pathname == "/")
+        if (path == "/")
             pizarra.pages.notes.show();
         else
         {
