@@ -32,7 +32,7 @@ class Api {
             $di->getShared("session")->set("token", $result->token);
             $di->getShared("session")->set("email", $email);
         }
-		return result;
+		return $result;
     }
 
     static function logout($token)
