@@ -18,7 +18,7 @@ class ActionController extends Controller
     public function loginAction($email, $pin)
     {
         $result = Api::login($email, $pin);
-var_dump($result);
+
         if ($result->code == "ok")
         {
             $token = $result->token;
