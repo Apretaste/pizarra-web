@@ -1,0 +1,80 @@
+<div class="body padding notes">
+    <div style="display:none;padding:0px;" id = "search-box">
+         <br/>
+        <p>Por favor escriba un @username, un #hashtag o un texto a buscar</p>
+          <input type="text" class="w-input input-form" id="search-query" style="width:95%;">
+    </div>
+
+    <table style="display:none;" id="news-template">
+        <tr class="list-item-new">
+            <td width="20%" align="right" style="padding:5px;">
+                <div class="image-message">
+                    <img src="{{ note.profile.picture_public }}" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" width="100%" height="100%"/>
+                </div>
+            </td>
+            <td width="80%">
+
+                    <div>
+                        <span class="flag-icon flag-icon-ca user-country"></span>
+                        <h2 class="title-new inline">
+                            <a class="action-profile user-title" href="#" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" data-load="1">@{{ name }}</a>
+                        </h2>
+                        <span class="ion-female user-genre female"></span>
+                        <span class="notes-time">| {{ inserted }}</span>
+                    </div>
+                    <p class="note">
+                        {{ text }}
+                    </p>
+
+                <div class="buttons-section">
+                    <a class="category-link" href="#" onclick="pizarra.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
+                    <a class="category-link" href="#" onclick="pizarra.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.pages.chat.show({friend: '{{ name }}', profile: pizarra.getCurrentProfile(false)});"><i class="icon ion-ios-chatbubble"></i></a>
+                    <a class="category-link" href="#" onclick="pizarra.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="news-mask"></div>
+        <div class="news-container">
+        <table id = "list-news" class="w-clearfix list-news">
+            <!-- dynamic zone -->
+        </table>
+        <br/><br/><br/><br/>
+    </div>
+</div>
+
+<div class="w-clearfix input-chat-block shadowed-block">
+    <div class="w-form">
+        <div class="column-left">
+            <div class="image-message notes-avatar"><a class = "show-edit" href="#" data-load="1">
+				<img width="50" height="50" src="{{ profile.picture_public }}"></a>
+            </div>
+        </div>
+
+        <input id="edtNote" class="w-input input-chat input-notes" id="chat-message" type="text" placeholder="Escribe una nueva nota..." name="nota" data-name="Nota">
+        <input id="btnSendNote" class="w-button chat-button action-button" type="button" value="Enviar" data-wait="Por favor espere...">
+    </div>
+</div>
+
+<style>
+    #search-query{
+        margin-left: 10px;
+    }
+
+    #btnCloseSearchBox {
+        position: relative;
+        top: -30px;
+        right: -30px;
+        font-size: 12px;
+        color: gray;
+        padding: 2px;
+        z-index: 8888;
+    }
+
+    #btnCloseSearchBox:hover
+    {
+        font-weight: bold;
+    }
+</style>

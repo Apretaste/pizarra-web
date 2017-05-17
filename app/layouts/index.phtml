@@ -1,101 +1,34 @@
-<?php $wwwhttp = $this->di->get('path')['http']; ?>
-<?php $assets = $wwwhttp . "/res/"; ?>
-<!DOCTYPE html>
-<html class="w-mod-js w-mod-no-touch w-mod-video w-mod-no-ios wf-montserrat-n4-inactive wf-montserrat-n7-inactive wf-inactive">
-    <head>
-        <meta charset="utf-8">
-        <title>Pizarra</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<?php include "head.phtml"; ?>
+<section class="w-section mobile-wrapper">
+    <div class="page-content" id="main-stack">
+        <div class="w-nav navbar" data-no-scroll="1" id="navbar">
+            <div class="w-container" style="margin-right:10px;">
+                <div class="wrapper-mask" data-ix="menu-mask"></div>
+                <div class="hidden" id="navbar-title"></div>
+                <img id = "logo" src="<?php echo $assets; ?>images/icon.png">
+                <a id="btnClose" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.close();" >
+                    <div class="navbar-button-icon icon ion-ios-close"></div>
+                </a>
+                <a id="btnRefresh" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.refresh();">
+                    <div class="navbar-button-icon icon ion-ios-refresh"></div>
+                </a>
+                <a id="btnPrevious" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.showPreviousPage();">
+                    <div class="navbar-button-icon icon ion-ios-arrow-back"></div>
+                </a>
 
-        <!-- 3rd party styles -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/ionicons.min.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/normalize.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/jquery-ui.min.css">
-
-        <script>
-            WebFont.load({
-                google: {
-                    families: ["Montserrat:400,700"]
-                }
-            });
-        </script>
-
-        <!-- app styles -->
-        <link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/framework.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/pizarra.css">
-
-        <?php $this->assets->outputCss(); ?>
-
-        <!-- app icons -->
-        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/iconApretaste.png">
-        <link rel="apple-touch-icon" href="<?php echo $assets; ?>images/iconApretaste.png">
-        <link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/logoApretaste.png">
-        <link rel="apple-touch-icon" href="<?php echo $assets; ?>images/logoApretaste.png">
-
-    </head>
-    <body>
-
-        <!-- header template -->
-        <div id="header-tpl" style="display: none;" >
-            <div class="w-nav navbar" data-no-scroll="1" id="navbar">
-                <div class="w-container" style="margin-right:10px;">
-                    <div class="wrapper-mask" data-ix="menu-mask"></div>
-                    <div class="hidden" id="navbar-title"></div>
-                    <img id = "logo" src="<?php echo $assets; ?>images/icon.png">
-                    <a id="btnClose" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.close();" >
-                        <div class="navbar-button-icon icon ion-ios-close"></div>
-                    </a>
-                    <a id="btnRefresh" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.refresh();">
-                        <div class="navbar-button-icon icon ion-ios-refresh"></div>
-                    </a>
-                    <a id="btnPrevious" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.showPreviousPage();">
-                        <div class="navbar-button-icon icon ion-ios-arrow-back"></div>
-                    </a>
-
-                    <!-- page notes buttons -->
-                    <a class="w-inline-block navbar-button right show-search-box top-buttons page-top-buttons page-notes-buttons" href="#" data-ix="">
-                        <div class="navbar-button-icon icon ion-ios-search-strong"></div>
-                    </a>
-                    <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="#" data-load="1">
-                        <div class="navbar-button-icon icon ion-ios-person"></div>
-                    </a>
-                    <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="#" data-load="1">
-                        <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
-                    </a>
-                </div>
+                <!-- page notes buttons -->
+                <a class="w-inline-block navbar-button right show-search-box top-buttons page-top-buttons page-notes-buttons" href="#" data-ix="">
+                    <div class="navbar-button-icon icon ion-ios-search-strong"></div>
+                </a>
+                <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="#" data-load="1">
+                    <div class="navbar-button-icon icon ion-ios-person"></div>
+                </a>
+                <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="#" data-load="1">
+                    <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
+                </a>
             </div>
         </div>
-
-        <section class="w-section mobile-wrapper">
-            <div class="page-content" id="main-stack">
-                <?php echo $this->getContent(); ?>
-            </div>
-        </section>
-
-        <!-- loading animation -->
-        <div id="shadow-layer" style="position:fixed; top: 0px; left: 0px; height:100%;width:100%;background: #eeeeee; opacity: 0.95; z-index:9998; display: none; text-align: center; vertical-align: center;">
-            <img style="top: 50%; position: relative;" src="<?php echo $assets; ?>images/ajax-loader.gif">
-        </div>
-
-        <div class="hidden" id="dialog"></div>
-
-        <!-- 3rd party scripts -->
-        <script type="text/javascript" src="<?php echo $assets; ?>js/jquery.min.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>js/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>js/jquery-notify.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>js/jquery.cookie.min.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>js/jquery.slimscroll.min.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>js/php.js"></script>
-        <!--[if lte IE 9]><script src="<?php echo $assets; ?>js/placeholders.min.js"></script><![endif]-->
-        <script type="text/javascript" src="<?php echo $assets; ?>js/modernizr.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>js/webfont.js"></script>
-
-        <!-- app scripts -->
-        <script type="text/javascript" src="<?php echo $assets; ?>apretaste-sdk.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>pizarraPage.js"></script>
-        <script type="text/javascript" src="<?php echo $assets; ?>pizarra.js"></script>
-
-        <?php $this->assets->outputJs(); ?>
-
-    </body>
-</html>
+        <?php echo $this->getContent(); ?>
+    </div>
+</section>
+<?php include "foot.phtml"; ?>

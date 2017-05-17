@@ -100,22 +100,18 @@ $(function(){
         }
     });
 
-    refreshNotes(true);
+    refreshNotes();
 });
 
-function refreshNotes(showLoading, force)
+function refreshNotes(showLoading)
 {
     if (!isset(showLoading))
         showLoading = true;
 
-    if (!isset(force))
-        force = false;
-
     var timeout = 120000;
 
-    if (!force)
-        if (pizarra.pages.current.name != 'notes')
-            return;
+    if (pizarra.pages.current.name != 'notes')
+        return;
 
     var token = pizarra.getToken();
     var htmlNotes = '';

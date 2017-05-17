@@ -1,0 +1,28 @@
+
+<!-- loading animation -->
+<div id="shadow-layer" style="position:fixed; top: 0px; left: 0px; height:100%;width:100%;background: #eeeeee; opacity: 0.95; z-index:9998; display: none; text-align: center; vertical-align: center;">
+    <img style="top: 50%; position: relative;" src="<?php echo $assets; ?>images/ajax-loader.gif">
+</div>
+
+<div class="hidden" id="dialog"></div>
+
+<!-- 3rd party scripts -->
+<script type="text/javascript" src="<?php echo $assets; ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>js/jquery-notify.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>js/jquery.cookie.min.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>js/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>js/php.js"></script>
+<!--[if lte IE 9]><script src="<?php echo $assets; ?>js/placeholders.min.js"></script><![endif]-->
+<script type="text/javascript" src="<?php echo $assets; ?>js/modernizr.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>js/webfont.js"></script>
+
+<!-- app scripts -->
+<script type="text/javascript" src="<?php echo $assets; ?>apretaste-sdk.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>pizarraPage.js"></script>
+<script type="text/javascript" src="<?php echo $assets; ?>pizarra.js"></script>
+
+<?php $this->assets->outputJs(); ?>
+
+</body>
+</html>

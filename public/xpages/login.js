@@ -67,10 +67,9 @@ function pass(){
     var email = $("#email-field").val();
     if (is_email(email))
     {
-        var r = pizarra.action("email/" + email);
+        var r = sdk.start(email);
 
-        //var r = sdk.start();
-        if (r.code == 200 || r.code == 'ok')
+        if (r.code == 'ok')
         {
             $("#login-div").hide();
             $("#password-div").fadeIn(500);
@@ -87,16 +86,15 @@ function login() {
     var email = $("#email-field").val();
     var pin = $("#password").val();
 
-    //var result = sdk.login(email, pin);
-    var result = pizarra.action("login/" + email + "/" + pin);
+    var result = sdk.login(email, pin);
 
-    if (result.code != 200 || result.code == "error")
+    if (result.code == "error")
     {
         alert('Access denied');
         $("#password-div").hide();
         $("#login-div").fadeIn(500);
     } else {
-        pizarra.setToken(result.message);
-        window.location.pathname = "/feed";
+        pizarra.setToken(result.token);
+        pizarra.pages.notes.show();
     }
 }

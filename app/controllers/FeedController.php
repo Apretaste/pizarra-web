@@ -1,18 +1,11 @@
 <?php
-
 use Phalcon\Mvc\Controller;
 
-class FeedController extends Controller
+class FeedController extends ProtectedController
 {
     public function indexAction()
     {
-        $di = \Phalcon\DI\FactoryDefault::getDefault();
-        if ($di->getShared("session")->has("token")) {
-            $token = $di->getShared("session")->get("token");
-            $notes = Api::run("PIZARRA", "", "", $token);
-            $this->notes = $notes;
-            var_dump($notes);
-        } else
-            $this->response->redirect("login");
+        //$this->assets->addJs("res/notes.js");
+        $this->view->notes = $this->getActionResult("feed")->payload->notes;
     }
 }

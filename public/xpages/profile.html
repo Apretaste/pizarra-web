@@ -1,0 +1,49 @@
+<div class="body padding">
+    <div id="edit-image" class="profile-image">
+        <img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" src-default="images/user.png"/>
+    </div>
+    <div class="grey-header">
+        <h2 class="grey-heading-title profile-name text-centered">@{{ username }}</h2>
+    </div>
+    <div>
+        <div class="separator-button"></div>
+        <p class="description-new text-centered">{{ about_me }}
+        <div class="separator-button"></div>
+    </div>
+    <div>
+        <div class="grey-header interests-header" style="display:none;">
+            <h2 class="grey-heading-title interests-title text-centered">Cosas que me interesan</h2>
+        </div>
+
+        <!-- interest template -->
+        <div id="interest-template" style="display: none;">
+            <div class="group-block interest">
+                <div class="w-inline-block">
+                    <div class="group-title">
+                        <div class="title-text">{{ interests.value }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id = "interests" class="block-wrapper">
+            <!-- dynamic zone -->
+        </div>
+    </div>
+    <div>
+        <div class="w-clearfix options-new">
+            <a id="btnActionFollow" tag="{{ username }}" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+                <div class="icon-button bigger">
+                    <div class="icon ion-person-add"></div>
+                </div>
+                Seguir
+            </a>
+            <a onclick="pizarra.pages.chat.show({friend: '{{ username }}', profile: pizarra.getCurrentProfile(false)});" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+                <div class="icon-button bigger">
+                    <div class="icon ion-ios-chatbubble"></div>
+                </div>
+                Chat
+            </a>
+        </div>
+    </div>
+</div>

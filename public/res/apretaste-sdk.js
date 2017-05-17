@@ -21,11 +21,14 @@ var apretaste = function (pbaseUrl)
      * @param object pParams
      * @returns object
      */
-    this.getData = function(pUrl, pParams)
+    this.getData = function(pUrl, pParams, fromBase)
     {
+        if (!isset(fromBase))
+            fromBase = true;
+
         var receptor = {result: null};
         $.ajax({
-            url: this.baseUrl + pUrl,
+            url: (fromBase ? this.baseUrl : "") + pUrl,
             method: 'POST',
             data: pParams,
             async: false,

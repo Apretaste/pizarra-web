@@ -1,0 +1,36 @@
+<div class="body padding">
+        <input id="query" type="hidden" value ="{{ query }}">
+
+    <ul style="display:none;" id="news-template">
+        <li class="list-item-new">
+            <div class="w-inline-block w-row">
+                <div class="w-col w-col-tiny-2 w-col-2 note-avatar">
+                    <div class="image-message"><img src="{{ note.profile.picture_public }}"/></div>
+                </div>
+                <div class="w-col w-col-tiny-10 w-col-10 text-new">
+                    <div>
+                        <span class="flag-icon flag-icon-ca user-country"></span>
+                        <h2 class="title-new inline">
+                            <a class="user-title" href="profile.html" data-load="1">@{{ name }}</a>
+                        </h2>
+                        <span class="ion-female user-genre female"></span>
+                        <span class="notes-time">| {{ inserted }}</span>
+                    </div>
+                    <p class="note">
+                        {{ text }}
+                    </p>
+                </div>
+                <div class="buttons-section">
+                    <a class="category-link" href="#"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
+                    <a class="category-link" href="#" username = "{{ name }}"><i class="ion-person-add button-symbol"></i></a>
+                    <a class="category-link" href="#" username = "{{ name }}"><i class="icon ion-ios-chatbubble"></i></a>
+                    <a class="category-link" href="#" noteid = "{{ id }}" ><i class="ion-close button-symbol"></i></a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul id = "list-news" class="w-clearfix list-news">
+        <!-- dynamic zone -->
+    </ul>
+
+</div>
