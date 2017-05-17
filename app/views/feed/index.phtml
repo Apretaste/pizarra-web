@@ -17,7 +17,7 @@
             <?php
                 foreach ($notes as $note)
                     echo Helper::parseTpl("feed/_row", [
-                            [$profile, "note.profile.", ""],
+                            [$note->profile, "note.profile.", ""],
                             [$note, "note.", ""]
                     ]);
             ?>
