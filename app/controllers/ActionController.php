@@ -88,6 +88,12 @@ class ActionController extends Controller
         $this->defaultResponse($result);
     }
 
+    public function profileAction()
+    {
+        $result = Api::run("PERFIL");
+        $this->defaultResponse($result);
+    }
+
     private function defaultResponse($result)
     {
         switch($result->code)
