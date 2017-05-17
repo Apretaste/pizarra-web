@@ -13,16 +13,14 @@
         <div class="news-container">
         <table id = "list-news" class="w-clearfix list-news">
             <!-- dynamic zone -->
-            <?php $tpl = $this->getTemplate("feed/_row"); ?>
-            <?php foreach ($notes as $note): ?>
+
             <?php
-
-                $html = $this->replaceTags($tpl, $profile, "note.profile.");
-                $html = $this->replaceTags($html, $note, "note.");
-                echo $html;
-
-                ?>
-            <?php endforeach; ?>
+                foreach ($notes as $note)
+                    echo Helper::parseTpl("feed/_row", [
+                            [$profile, "note.profile.", ""],
+                            [$note, "note.", ""]
+                    ]);
+            ?>
         </table>
         <br/><br/><br/><br/>
     </div>
