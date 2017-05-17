@@ -327,28 +327,24 @@ var pizarra = {
             this.pages.previous.refresh();
     },
 
-    action: function(a, params){
-        return sdk.getData("/action/" + a, params, false);
+    ajax: function(path, params, showLoading){
+        if (!isset(showLoading))
+            showLoading = true;
+
+        if (showLoading)
+            $("#shadow-layer").show();
+
+        if (showLoading)
+            setTimeout('$("#shadow-layer").hide();', 1000);
+
+        return sdk.getData(path, params, false);
+    },
+
+    action: function(a, params, showLoading){
+        return this.ajax("/action/" + a, params, showLoading);
+    },
+
+    submit: function(a, params, showLoading){
+        return this.ajax("/submit/" + a, params, showLoading);
     }
 };
-
-/*
-$(function () {
-
-    var session = $.cookie('apretaste-pizarra');
-    var path = window.location.pathname;
-
-    if (session == null)
-    {
-        pizarra.pages.login.show();
-    } else
-    {
-        if (path == "/")
-            pizarra.pages.notes.show();
-        else
-        {
-            pizarra.go(path);
-        }
-    }
-});
-*/

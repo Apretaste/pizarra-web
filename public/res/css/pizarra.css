@@ -1513,3 +1513,22 @@ input[type=text]:focus, textarea:focus {
   -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
+
+#search-query{
+  margin-left: 10px;
+}
+
+#btnCloseSearchBox {
+  position: relative;
+  top: -30px;
+  right: -30px;
+  font-size: 12px;
+  color: gray;
+  padding: 2px;
+  z-index: 8888;
+}
+
+#btnCloseSearchBox:hover
+{
+  font-weight: bold;
+}

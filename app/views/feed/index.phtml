@@ -6,40 +6,23 @@
     </div>
 
     <table style="display:none;" id="news-template">
-        <tr class="list-item-new">
-            <td width="20%" align="right" style="padding:5px;">
-                <div class="image-message">
-                    <img src="{{ note.profile.picture_public }}" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" width="100%" height="100%"/>
-                </div>
-            </td>
-            <td width="80%">
-
-                    <div>
-                        <span class="flag-icon flag-icon-ca user-country"></span>
-                        <h2 class="title-new inline">
-                            <a class="action-profile user-title" href="#" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" data-load="1">@{{ name }}</a>
-                        </h2>
-                        <span class="ion-female user-genre female"></span>
-                        <span class="notes-time">| {{ inserted }}</span>
-                    </div>
-                    <p class="note">
-                        {{ text }}
-                    </p>
-
-                <div class="buttons-section">
-                    <a class="category-link" href="#" onclick="pizarra.actionLike('{{ id }}');"><i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i></a>
-                    <a class="category-link" href="#" onclick="pizarra.actionFollow('{{ name }}');"><i class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
-                    <a class="category-link" href="#" onclick="pizarra.pages.chat.show({friend: '{{ name }}', profile: pizarra.getCurrentProfile(false)});"><i class="icon ion-ios-chatbubble"></i></a>
-                    <a class="category-link" href="#" onclick="pizarra.actionBlock('{{ name }}');"><i class="ion-close button-symbol"></i></a>
-                </div>
-            </td>
-        </tr>
+    <?php include "_row.phtml"; ?>
     </table>
 
     <div class="news-mask"></div>
         <div class="news-container">
         <table id = "list-news" class="w-clearfix list-news">
             <!-- dynamic zone -->
+            <?php $tpl = $this->getTemplate("feed/_row"); ?>
+            <?php foreach ($notes as $note): ?>
+            <?php
+
+                $html = $this->replaceTags($tpl, $profile, "note.profile.");
+                $html = $this->replaceTags($html, $note, "note.");
+                echo $html;
+
+                ?>
+            <?php endforeach; ?>
         </table>
         <br/><br/><br/><br/>
     </div>
@@ -58,202 +41,167 @@
     </div>
 </div>
 
-<style>
-    #search-query{
-        margin-left: 10px;
-    }
-
-    #btnCloseSearchBox {
-        position: relative;
-        top: -30px;
-        right: -30px;
-        font-size: 12px;
-        color: gray;
-        padding: 2px;
-        z-index: 8888;
-    }
-
-    #btnCloseSearchBox:hover
-    {
-        font-weight: bold;
-    }
-</style>
-
 <script type="text/javascript">
-    $(function(){
-        $(".show-edit").click(function(){
-            pizarra.pages.edit.show(pizarra.getCurrentProfile(false));
-        });
-
-        $(".show-chats").click(function(){
-            pizarra.pages.chats.show();
-        });
-
-        $(".show-search-box").click(function(){
-            $("#search-box").dialog({
-                title: "Buscar en Pizarra",
-                modal: true,
-                buttons: [
-                    {
-                        text: "Buscar",
-                        click: function() {
-                            var query = $("#search-query").val();
-                            query = trim(query);
-                            if (query != '')
-                            {
-                                var token = pizarra.getToken();
-                                if(token != null) {
-                                    var notes = pizarra.run('PIZARRA BUSCAR ' + query, null,null, false);
-                                    if (strtoupper(notes.code) == 'OK')
-                                        if (!isset(notes.notes)) {
-                                            $("#search-box").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
-                                        } else {
-                                            pizarra.lastSearchResults = notes;
-                                            var q = $("#search-query").val();
-                                            $( this ).dialog( "close" );
-                                            pizarra.pages.search.show({query: q});
-                                        }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        text: "Cerrar",
-                        click: function(){
-                            $(this).dialog('close');
-                        }
-                    }
-
-                ]
-            });
-        });
-
-        $(".show-search").click(function(){
-            var token = pizarra.getToken();
-            if(token != null) {
-                var notes = pizarra.run('PIZARRA BUSCAR ' + $("#search-query").val(), null,null, false);
-                if (strtoupper(notes.code) == 'OK')
-                    if (!isset(notes.notes)) {
-                        $("#search-query").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
-                    } else {
-                        pizarra.lastSearchResults = notes;
-                        var q = $("#search-query").val();
-                        pizarra.pages.search.show({query: q});
-                    }
-            }
-        });
-
-        $("#edtNote").on('keydown', function(e)
-        {
-            if (e.keyCode == 13)
-                sendNote();
-        });
-
-        $("#btnSendNote").click(function(){
-            sendNote();
-        });
-
-        $('body').keypress(function(a){
-            if (a.keyCode == 27)
-            {
-                $("#search-box").hide();
-                $(".top-buttons").show();
-            }
-        });
-
-        $("#btnCloseSearchBox").click(function(){
-            $("#search-box").hide();
-            $(".top-buttons").show();
-        });
-
-        $.notify.addStyle('happyblue', {
-            html: "<div><span data-notify-text/></div>",
-            position: "top",
-            classes: {
-                base: {
-                    "white-space": "nowrap",
-                    "background-color": "lightblue",
-                    "padding": "5px"
-                },
-                superblue: {
-                    "color": "white",
-                    "background-color": "blue"
-                }
-            }
-        });
-
-        refreshNotes(true);
+$(function(){
+    $(".show-edit").click(function(){
+        pizarra.pages.edit.show(pizarra.getCurrentProfile(false));
     });
 
-    function refreshNotes(showLoading, force)
-    {
-        if (!isset(showLoading))
-            showLoading = true;
+    $(".show-chats").click(function(){
+        pizarra.pages.chats.show();
+    });
 
-        if (!isset(force))
-            force = false;
-
-        var timeout = 120000;
-
-        if (!force)
-            if (pizarra.pages.current.name != 'notes')
-                return;
-
-        var token = pizarra.getToken();
-        var htmlNotes = '';
-        if(token != null)
-        {
-            var notes = pizarra.run('PIZARRA',null,null,showLoading);
-            notes = notes.notes;
-            var tpl = $("#news-template").html();
-
-            for(var item in notes)
-            {
-                var html = tpl;
-                var profile = notes[item].profile;
-
-                if (profile.picture != '1')
-                    profile.picture_public = "images/user.png";
-
-                notes[item].followcolor = 'black';
-                if (notes[item].friend == true)
-                    notes[item].followcolor = 'red';
-
-                notes[item].text = notes[item].text.linkify();
-
-                html = pizarra.replaceTags(html, profile, 'note.profile.');
-                html = pizarra.replaceTags(html, notes[item], '');
-
-                htmlNotes += html;
-            }
-
-            $("#list-news").html(htmlNotes);
-
-            $("a").each(function(){
-                var href = $(this).attr('href');
-
-                if (strpos(href,'mailto:') !== false)
+    $(".show-search-box").click(function(){
+        $("#search-box").dialog({
+            title: "Buscar en Pizarra",
+            modal: true,
+            buttons: [
                 {
-                    $(this).attr('href',"#");
-                    var username = substr($(this).html(),1);
-                    $(this).attr('onclick', "pizarra.pages.profile.show(pizarra.getProfile('" + username + "'));");
+                    text: "Buscar",
+                    click: function() {
+                        var query = $("#search-query").val();
+                        query = trim(query);
+                        if (query != '')
+                        {
+                            var token = pizarra.getToken();
+                            if(token != null) {
+                                var notes = pizarra.run('PIZARRA BUSCAR ' + query, null,null, false);
+                                if (strtoupper(notes.code) == 'OK')
+                                    if (!isset(notes.notes)) {
+                                        $("#search-box").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
+                                    } else {
+                                        pizarra.lastSearchResults = notes;
+                                        var q = $("#search-query").val();
+                                        $( this ).dialog( "close" );
+                                        pizarra.pages.search.show({query: q});
+                                    }
+                            }
+                        }
+                    }
+                },
+                {
+                    text: "Cerrar",
+                    click: function(){
+                        $(this).dialog('close');
+                    }
                 }
 
-            });
-        }
+            ]
+        });
+    });
 
-        setTimeout("refreshNotes(false);", timeout);
-    }
-
-    function sendNote(){
+    $(".show-search").click(function(){
         var token = pizarra.getToken();
-
-        if(token !== null)
-        {
-            if (pizarra.run('PIZARRA ' + $("#edtNote").val()) != false)
-                refreshNotes();
-
-            $("#edtNote").val('');
+        if(token != null) {
+            var notes = pizarra.run('PIZARRA BUSCAR ' + $("#search-query").val(), null,null, false);
+            if (strtoupper(notes.code) == 'OK')
+                if (!isset(notes.notes)) {
+                    $("#search-query").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
+                } else {
+                    pizarra.lastSearchResults = notes;
+                    var q = $("#search-query").val();
+                    pizarra.pages.search.show({query: q});
+                }
         }
+    });
+
+    $("#edtNote").on('keydown', function(e)
+    {
+        if (e.keyCode == 13)
+            sendNote();
+    });
+
+    $("#btnSendNote").click(function(){
+        sendNote();
+    });
+
+    $('body').keypress(function(a){
+        if (a.keyCode == 27)
+        {
+            $("#search-box").hide();
+            $(".top-buttons").show();
+        }
+    });
+
+    $("#btnCloseSearchBox").click(function(){
+        $("#search-box").hide();
+        $(".top-buttons").show();
+    });
+
+    $.notify.addStyle('happyblue', {
+        html: "<div><span data-notify-text/></div>",
+        position: "top",
+        classes: {
+            base: {
+                "white-space": "nowrap",
+                "background-color": "lightblue",
+                "padding": "5px"
+            },
+            superblue: {
+                "color": "white",
+                "background-color": "blue"
+            }
+        }
+    });
+
+    refreshNotes(true);
+});
+
+function refreshNotes(showLoading)
+{
+    if (!isset(showLoading))
+        showLoading = true;
+
+    var timeout = 120000;
+    var token = pizarra.getToken();
+    var htmlNotes = '';
+    if(token != null)
+    {
+        var notes = pizarra.action("/feed").payload.notes;
+        var tpl = $("#news-template").html();
+
+        for(var item in notes)
+        {
+            var html = tpl;
+            var profile = notes[item].profile;
+
+            if (profile.picture != '1')
+                profile.picture_public = "images/user.png";
+
+            notes[item].followcolor = 'black';
+            if (notes[item].friend == true)
+                notes[item].followcolor = 'red';
+
+            notes[item].text = notes[item].text.linkify();
+
+            html = pizarra.replaceTags(html, profile, 'note.profile.');
+            html = pizarra.replaceTags(html, notes[item], '');
+
+            htmlNotes += html;
+        }
+
+        $("#list-news").html(htmlNotes);
+
+        $("a").each(function(){
+            var href = $(this).attr('href');
+
+            if (strpos(href,'mailto:') !== false)
+            {
+                $(this).attr('href',"#");
+                var username = substr($(this).html(),1);
+                $(this).attr('onclick', "pizarra.pages.profile.show(pizarra.getProfile('" + username + "'));");
+            }
+
+        });
     }
+
+    setTimeout("refreshNotes(false);", timeout);
+}
+
+function sendNote(){
+    var result = pizarra.submit('publish/' + urlencode($("#edtNote").val()));
+    refreshNotes();
+    $("#edtNote").val('');
+}
+
 </script>
