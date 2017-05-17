@@ -142,7 +142,7 @@ $(function(){
         }
     });
 
-    refreshNotes(true);
+    setTimeout("refreshNotes(false);", 20000);
 });
 
 function refreshNotes(showLoading)
@@ -150,7 +150,7 @@ function refreshNotes(showLoading)
     if (!isset(showLoading))
         showLoading = true;
 
-    var timeout = 120000;
+    var timeout = 20000;
     var token = pizarra.getToken();
     var htmlNotes = '';
     if(token != null)
