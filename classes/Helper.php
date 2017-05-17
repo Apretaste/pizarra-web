@@ -52,14 +52,8 @@ class Helper
      * @param string $suffix
      * @return mixed
      */
-    static function replaceTags($tpl, $data = null, $prefix = '', $suffix = '')
+    static function replaceTags($tpl, $parses = [])
     {
-        $parses = [];
-        if (is_array($tpl))
-            $parses = $data;
-        else
-            $parses[] = [$data, $prefix, $suffix];
-
         $html = $tpl;
 
         foreach ($parses as $parse) {
