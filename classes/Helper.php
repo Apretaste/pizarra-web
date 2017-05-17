@@ -79,7 +79,8 @@ class Helper
                 $vars = ["value" => $data];
 
             foreach ($vars as $tag => $v)
-                $html = str_replace("{{ {$prefix}{$tag}{$suffix} }}", $v, $html);
+                if (is_scalar($v))
+                    $html = str_replace("{{ {$prefix}{$tag}{$suffix} }}", $v, $html);
         }
 
         return $html;
