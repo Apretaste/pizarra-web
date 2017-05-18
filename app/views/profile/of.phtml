@@ -1,44 +1,45 @@
 <div class="body padding">
+    <br/>
     <div id="edit-image" class="profile-image">
-        <img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" />
+        <img id ="picture" src="<?php echo $profile->picture_public; ?>" alt="@<?php echo $profile->username ; ?> en Pizarra" height="200"/>
     </div>
+    <br/>
     <div class="grey-header">
-        <h2 class="grey-heading-title profile-name text-centered">@{{ username }}</h2>
+        <h2 class="grey-heading-title profile-name text-centered">@<?php echo $profile->username ; ?></h2>
     </div>
     <div>
         <div class="separator-button"></div>
-        <p class="description-new text-centered">{{ about_me }}
+        <p class="description-new text-centered"><?php echo $profile->about_me ; ?></p>
         <div class="separator-button"></div>
     </div>
     <div>
-        <div class="grey-header interests-header" style="display:none;">
+        <?php if (count($profile->interests) > 0): ?>
+        <div class="grey-header interests-header">
             <h2 class="grey-heading-title interests-title text-centered">Cosas que me interesan</h2>
         </div>
 
-        <!-- interest template -->
-        <div id="interest-template" style="display: none;">
+        <div id = "interests" class="block-wrapper">
+            <?php foreach ($profile->interests as $interest): ?>
             <div class="group-block interest">
                 <div class="w-inline-block">
                     <div class="group-title">
-                        <div class="title-text">{{ interests.value }}</div>
+                        <?php echo $interest; ?>
                     </div>
                 </div>
             </div>
+            <?php endforeach; ?>
         </div>
-
-        <div id = "interests" class="block-wrapper">
-            <!-- dynamic zone -->
-        </div>
+        <?php endif; ?>
     </div>
     <div>
         <div class="w-clearfix options-new">
-            <a id="btnActionFollow" tag="{{ username }}" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+            <a id="btnActionFollow" tag="<?php echo $profile->username ; ?>" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
                 <div class="icon-button bigger">
                     <div class="icon ion-person-add"></div>
                 </div>
                 Seguir
             </a>
-            <a onclick="pizarra.pages.chat.show({friend: '{{ username }}', profile: pizarra.getCurrentProfile(false)});" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+            <a  href="<?php echo "/chats/with/{$profile->username}"; ?>" class="w-clearfix w-inline-block action-button profile-button">
                 <div class="icon-button bigger">
                     <div class="icon ion-ios-chatbubble"></div>
                 </div>
@@ -55,7 +56,7 @@
 
         var data = pizarra.pages.profile.data;
 
-        if (!isset(data.interests))
+        if ( !isset(data.interests))
             $(".interests-title").hide();
 
         if (count(data.interests) > 0)
@@ -63,7 +64,7 @@
 
         for (var i in data.interests)
         {
-            var html = str_replace('{{ interests.value }}', data.interests[i], tpl);
+            var html = str_replace('<?php echo $profile->interests.value ; ?>', data.interests[i], tpl);
             $("#interests").append(html);
         }
 

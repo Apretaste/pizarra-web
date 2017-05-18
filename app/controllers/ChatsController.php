@@ -2,15 +2,16 @@
 
 use Phalcon\Mvc\Controller;
 
-class ChatsController extends Controller
+class ChatsController extends ProtectedController
 {
-    public function indexAction($username = null)
+    public function indexAction()
     {
-        if (is_null($username))
-        {
-            echo "ultimos chats";
-        } else
-            echo "chats con $username";
+        $this->view->notes = Helper::getActionResult("chats")->payload->notes;
+    }
 
+    public function withAction($username = null)
+    {
+        $this->view->friendProfile = Helper::getActionResult("profile", [$username])->payload->profile;
+        $this->view->notes = Helper::getActionResult("chats", [$username])->payload->chats;
     }
 }

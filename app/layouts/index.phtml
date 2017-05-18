@@ -5,7 +5,7 @@
             <div class="w-container" style="margin-right:10px;">
                 <div class="wrapper-mask" data-ix="menu-mask"></div>
                 <div class="hidden" id="navbar-title"></div>
-                <img id = "logo" src="<?php echo $assets; ?>images/icon.png">
+                <a href="/"><img id = "logo" src="<?php echo $assets; ?>images/icon.png"></a>
                 <a id="btnClose" class="w-inline-block navbar-button right" href="#" data-load="1" onclick="pizarra.pages.current.close();" >
                     <div class="navbar-button-icon icon ion-ios-close"></div>
                 </a>
@@ -20,10 +20,10 @@
                 <a class="w-inline-block navbar-button right show-search-box top-buttons page-top-buttons page-notes-buttons" href="#" data-ix="">
                     <div class="navbar-button-icon icon ion-ios-search-strong"></div>
                 </a>
-                <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="#" data-load="1">
+                <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/profile">
                     <div class="navbar-button-icon icon ion-ios-person"></div>
                 </a>
-                <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="#" data-load="1">
+                <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/chats">
                     <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
                 </a>
             </div>
@@ -31,4 +31,5 @@
         <?php echo $this->getContent(); ?>
     </div>
 </section>
+
 <?php include "foot.phtml"; ?>

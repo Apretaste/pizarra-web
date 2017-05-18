@@ -4,6 +4,7 @@ use Phalcon\Mvc\Controller;
 
 class SubmitController extends Controller
 {
+    static
     public function indexAction()
     {
 
@@ -11,19 +12,22 @@ class SubmitController extends Controller
 
     public function publishAction($text)
     {
-        Api::run("PIZARRA $text");
+        $result = Helper::getActionResult("submitPublish", [$text]);
         $this->response->redirect("feed");
+        return $result;
     }
 
     public function chatAction($username, $text)
     {
-        $result = Api::run("NOTA $username $text");
+        $result = Helper::getActionResult("submitChat", [$username, $text]);
         $this->response->redirect("chats/$username");
+        return $result;
     }
 
     public function profileAction($bulk)
     {
-        $result = Api::run("PERFIL BULK $bulk");
+        $result = Helper::getActionResult("submitProfile", [$bulk]);
         $this->response->redirect("profile");
+        return $result;
     }
 }

@@ -249,7 +249,7 @@ var pizarra = {
 
             if (isset(profile))
                 if (profile.picture != '1')
-                    profile.picture_public = "images/user.png";
+                    profile.picture_public = "/res/images/user.png";
         }
 
         return profile;

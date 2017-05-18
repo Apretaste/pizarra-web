@@ -7,6 +7,21 @@
  */
 class Helper
 {
+    public static $currentProfile = null;
+
+    /**
+     * Singleton for get current profile
+     * @return object
+     */
+    public static function getCurrentProfile()
+    {
+        if (is_null(self::$currentProfile))
+        {
+            self::$currentProfile = self::getActionResult("profile")->payload->profile;
+        }
+        return self::$currentProfile;
+    }
+
     /**
      * Execute action of ActionController and return decoded result
      *
@@ -15,7 +30,7 @@ class Helper
      * @param array $params
      * @return mixed
      */
-    static function getActionResult($action, $params = [])
+    public static function getActionResult($action, $params = [])
     {
         $controller  = new ActionController();
         ob_start();
@@ -30,10 +45,10 @@ class Helper
      * Get code of *.phtml templates inside views
      *
      * @author kumahacker
-     * @param $path
+     * @param string $path
      * @return string
      */
-    static function getTemplate($path)
+    public static function getTemplate($path)
     {
         $di = \Phalcon\DI\FactoryDefault::getDefault();
         $www_root = $di->get('path')['root'];
@@ -46,15 +61,13 @@ class Helper
      *
      * @author kumahacker
      *
-     * @param $tpl
-     * @param $data
-     * @param string $prefix
-     * @param string $suffix
-     * @return mixed
+     * @param array $parses
+     * @return string
      */
-    static function replaceTags($tpl, $parses = [])
+    public static function replaceTags($tpl, $parses = [])
     {
         $html = $tpl;
+        $parses[] = [self::getCurrentProfile(), 'profile.', ''];
 
         foreach ($parses as $parse) {
             $data = $parse[0];
@@ -85,14 +98,27 @@ class Helper
      *
      * @author kumahacker
      * @param $tplPath
-     * @param $data
-     * @param string $prefix
-     * @param string $suffix
-     * @return mixed
+     * @param array $parses
+     * @return string
      */
-    static function parseTpl($tplPath, $data, $prefix = '', $suffix = '')
+    static function parseTpl($tplPath, $parses = [])
     {
-        return self::replaceTags(self::getTemplate($tplPath), $data, $prefix, $suffix);
+        return self::replaceTags(self::getTemplate($tplPath), $parses);
     }
 
+    static function processProfile($profile)
+    {
+        $p = $profile->picture_internal;
+        $p = str_replace("\\", "/", $p);
+        $p = explode("/", $p);
+        $p = $p[count($p) - 1];
+        $profile->picture_internal = $p;
+
+        if (trim($profile->picture_public) == "")
+            $profile->picture_public = "/res/images/user.png";
+        else
+            $profile->picture_public = "/index/picture/$p";
+
+        return $profile;
+    }
 }

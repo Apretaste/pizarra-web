@@ -8,6 +8,25 @@ class ActionController extends Controller
     {
 
     }
+    #region submits
+    public function submitPublishAction($text)
+    {
+        $result = Api::run("PIZARRA $text");
+        $this->defaultResponse($result);
+    }
+
+    public function submitChatAction($username, $text)
+    {
+        $result = Api::run("NOTA $username $text");
+        $this->defaultResponse($result);
+    }
+
+    public function submitProfileAction($bulk)
+    {
+        $result = Api::run("PERFIL BULK $bulk");
+        $this->defaultResponse($result);
+    }
+    #endregion submits
 
     public function emailAction($email)
     {
@@ -36,12 +55,16 @@ class ActionController extends Controller
     public function feedAction()
     {
         $result = Api::run("PIZARRA");
+
+        foreach($result->notes as $note)
+            $note->profile = Helper::processProfile($note->profile);
+
         $this->defaultResponse($result);
     }
 
-    public function chatsAction()
+    public function chatsAction($username = null)
     {
-        $result = Api::run("NOTA");
+        $result = Api::run("NOTA $username");
         $this->defaultResponse($result);
     }
 
@@ -88,9 +111,10 @@ class ActionController extends Controller
         $this->defaultResponse($result);
     }
 
-    public function profileAction()
+    public function profileAction($username = '')
     {
-        $result = Api::run("PERFIL");
+        $result = Api::run("PERFIL $username");
+        $result->profile = Helper::processProfile($result->profile);
         $this->defaultResponse($result);
     }
 

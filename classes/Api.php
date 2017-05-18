@@ -2,19 +2,31 @@
 
 class Api {
 
-    static function get($endpoint, $params = [])
+    static function curl($endpoint, $params = [])
     {
         $di = \Phalcon\DI\FactoryDefault::getDefault();
         $config = $di->get('config');
 
         $url = $config->api->url . $endpoint;
         $c = curl_init($url);
-        curl_setopt($c, CURLOPT_POST, true);
-        curl_setopt($c, CURLOPT_POSTFIELDS, $params);
+
+        if (count($params) > 0)
+        {
+            curl_setopt($c, CURLOPT_POST, true);
+            curl_setopt($c, CURLOPT_POSTFIELDS, $params);
+        }
+
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
         $result = curl_exec($c);
+
+        return $result;
+    }
+
+    static function get($endpoint, $params = [])
+    {
+        $result = self::curl($endpoint, $params);
         return json_decode($result);
     }
 

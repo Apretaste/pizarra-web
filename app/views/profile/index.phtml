@@ -2,7 +2,7 @@
     <div class="separator-button"></div>
     <div id="edit-image" class="profile-image">
         <a href="#" style="text-decoration: none;">
-            <img id= "picture" src="{{ picture_public }}" alt="@{{ username }} en Pizarra" style="max-height:200px;"/>
+            <img id= "picture" src="<?php echo $currentProfile->picture_public; ?>" alt="@<?php echo $currentProfile->username;?> en Pizarra" />
         </a>
     </div>
     <input id="picture-file" type="file" multiple=true data-max-file-count="1" style="display:none;">

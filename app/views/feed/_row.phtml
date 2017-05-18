@@ -1,7 +1,9 @@
 <tr class="list-item-new">
     <td width="20%" align="right" style="padding:5px;">
         <div class="image-message">
-            <img src="{{ note.profile.picture_public }}" onclick="pizarra.pages.profile.show(pizarra.getProfile('{{ name }}'));" width="100%" height="100%"/>
+            <a href="/profile/of/{{ note.profile.username }}">
+            <img src="{{ note.profile.picture_public }}" width="100%" height="100%"/>
+            </a>
         </div>
     </td>
     <td width="80%">

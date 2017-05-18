@@ -23,5 +23,12 @@
 
 <?php $this->assets->outputJs(); ?>
 
+
+<script type="text/javascript">
+    $(function() {
+        pizarra.currentProfile = <?php echo json_encode(Helper::getCurrentProfile()); ?>;
+    });
+</script>
+
 </body>
 </html>

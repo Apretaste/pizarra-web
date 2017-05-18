@@ -2,10 +2,20 @@
 
 use Phalcon\Mvc\Controller;
 
-class ProfileController extends Controller
+class ProfileController extends ProtectedController
 {
-    public function indexAction()
+    public function indexAction($username = null)
     {
-        echo "profile page";
+
+    }
+    public function ofAction($username = '')
+    {
+        if (is_null($username))
+            $profile = Helper::getCurrentProfile();
+        else
+            $profile = Helper::getActionResult("profile", [$username])->payload->profile;
+
+        $this->view->profile = $profile;
+
     }
 }

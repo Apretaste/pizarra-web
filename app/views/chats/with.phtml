@@ -1,0 +1,38 @@
+<div class="body">
+
+  <!-- left globe template -->
+  <ul id="chat-left-template" class="hidden">
+    <?php echo Helper::parseTpl("chats/_left"); ?>
+  </ul>
+
+  <!-- right globe template -->
+  <ul id="chat-right-template" class="hidden">
+      <?php echo Helper::parseTpl("chast/_right"); ?>
+  </ul>
+
+  <ul id = "chat-list" class="list list-chats">
+      <!-- dynamic zone -->
+        <?php
+
+        $_left = Helper::parseTpl("chats/_left", [
+                [$friendProfile, 'note.profile.', '']
+        ]);
+
+        $_right = Helper::getTemplate("chats/_right");
+        $notes = array_reverse($notes);
+
+        foreach ($notes as $note) {
+            $_tpl = ($note->username == $currentProfile->username)? $_right : $_left;
+            echo Helper::replaceTags($_tpl,[
+                [$note, 'note.', '']
+            ]);
+        }
+        ?>
+  </ul>
+</div>
+<input id = "friend-username" type="hidden" value="<?php echo $friendProfile->username; ?>">
+<?php echo Helper::parseTpl("chats/_chat_block"); ?>
+
+<script type="text/javascript">
+    <?php include "_events.js"; ?>
+</script>
