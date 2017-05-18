@@ -193,20 +193,22 @@ var pizarra = {
     },
 
     getProfile: function(username) {
+
         if (!isset(username))
             username = '';
 
-        var token = this.getToken();
         var profile = null;
+        profile = this.action('profile/' + username, null, false);
+        profile = profile.profile;
 
-        if (token != null)
+        var d = profile.date_of_birth;
+        if (strpos(d, '-') !== false)
         {
-            profile = this.run('PERFIL ' + username, null, null, false);
-            profile = profile.profile;
-
-            if (isset(profile))
-                if (profile.picture != '1')
-                    profile.picture_public = "/res/images/user.png";
+            var parts = explode('-', d);
+            var y = parts[0];
+            var m = parts[1];
+            var d = parts[2];
+            profile.date_of_birth = d + '/' + m  + '/' + y;
         }
 
         return profile;
@@ -235,7 +237,7 @@ var pizarra = {
                 {
                     text: "Si",
                     click: function() {
-                        pizarra.run('PIZARRA BLOQUEAR ' + username,'','',false);
+                        pizarra.action('block/' + username,'','',false);
                         if (isset(refreshNotes))
                             refreshNotes();
                         $( this ).dialog( "close" );
@@ -320,6 +322,7 @@ var pizarra = {
             var param = $(this).attr("data-param");
             var showLoading = $(this).attr("data-show-loading");
             var callback = $(this).attr("data-callback");
+            var xconfirm = $(this).attr("data-confirm");
 
             param = typeof(param) == "undefined"? "null" : param;
             param = eval(param);
@@ -327,12 +330,49 @@ var pizarra = {
             showLoading = typeof(showLoading) == "undefined"? "false" : showLoading;
             showLoading = showLoading == "true" ? true : false;
 
-            pizarra.action(action, param, showLoading);
+            xconfirm = typeof(xconfirm) == "undefined"? "false": xconfirm;
+            xconfirm = xconfirm == "true" ? true : false;
 
-            callback = typeof(callback) == "undefined"? "null" : callback;
-            callback = eval(callback);
+            if (xconfirm == true)
+            {
+                var title = $(this).attr("data-confirm-title");
+                var msg = $(this).attr("data-confirm-msg");
+                $("#dialog").html(msg);
 
+                $("#dialog").dialog({
+                    title: title,
+                    modal: true,
+                    buttons: [
+                        {
+                            text: "Si",
+                            click: function() {
+                                pizarra.action(action, param, showLoading);
+                                callback = typeof(callback) == "undefined"? "null" : callback;
+                                callback = eval(callback);
+                                $( this ).dialog( "close" );
+                            }
+                        },
+                        {
+                            text: "No",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]
+                });
+            }
+            else
+            {
+                pizarra.action(action, param, showLoading);
+                callback = typeof(callback) == "undefined"? "null" : callback;
+                callback = eval(callback);
+            }
         });
+    },
+
+    redirect: function(path)
+    {
+        window.location.pathname = "/" + path;
     }
 };
 

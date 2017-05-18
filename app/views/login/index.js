@@ -67,7 +67,7 @@ function pass(){
     var email = $("#email-field").val();
     if (is_email(email))
     {
-        var r = sdk.start(email);
+        var r = pizarra.action("email/" + email);
 
         if (r.code == 'ok')
         {
@@ -86,7 +86,7 @@ function login() {
     var email = $("#email-field").val();
     var pin = $("#password").val();
 
-    var result = sdk.login(email, pin);
+    var result = pizarra.action("login/" + email + "/" + pin);
 
     if (result.code == "error")
     {
@@ -94,7 +94,7 @@ function login() {
         $("#password-div").hide();
         $("#login-div").fadeIn(500);
     } else {
-        pizarra.setToken(result.token);
-        pizarra.pages.notes.show();
+        pizarra.setToken(result.message);
+        pizarra.redirect("feed");
     }
 }

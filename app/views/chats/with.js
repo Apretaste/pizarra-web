@@ -33,17 +33,14 @@ function refreshChat(showLoading, force)
 
     var tplLeft = $("#chat-left-template").html();
     var tplRight = $("#chat-right-template").html();
-    var notes = pizarra.run('NOTA @' + $("#friend-username").val(), null,null,showLoading);
-    var friendProfile =  pizarra.getProfile(pizarra.pages.chat.data.friend);
-
-    if (friendProfile.picture != '1')
-        friendProfile.picture_public = "/res/images/user.png";
+    var notes = pizarra.action('chats/' + $("#friend-username").val(), null, showLoading);
+    var friendProfile =  pizarra.getProfile($("#friend-username").val());
 
     var allhtml = '';
     for (var i in notes.chats) {
         var tpl = tplLeft;
         var chat = notes.chats[i];
-        if (chat.username == pizarra.currentProfile.username)
+        if (chat.username != $("#friend-username").val())
             tpl = tplRight;
 
         var html = tpl;

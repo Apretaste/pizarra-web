@@ -23,7 +23,10 @@ class ActionController extends Controller
 
     public function submitProfileAction($bulk)
     {
+        $bulk = base64_decode($bulk);
+
         $result = Api::run("PERFIL BULK $bulk");
+
         $this->defaultResponse($result);
     }
     #endregion submits

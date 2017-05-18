@@ -2,7 +2,7 @@ $(function(){
 
     $(".show-search-box").click(function(){
         $("#search-box").dialog({
-            title: "Buscar en Pizarra",
+            title: null,
             modal: true,
             buttons: [
                 {
@@ -12,19 +12,8 @@ $(function(){
                         query = trim(query);
                         if (query != '')
                         {
-                            var token = pizarra.getToken();
-                            if(token != null) {
-                                var notes = pizarra.run('PIZARRA BUSCAR ' + query, null,null, false);
-                                if (strtoupper(notes.code) == 'OK')
-                                    if (!isset(notes.notes)) {
-                                        $("#search-box").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
-                                    } else {
-                                        pizarra.lastSearchResults = notes;
-                                        var q = $("#search-query").val();
-                                        $( this ).dialog( "close" );
-                                        pizarra.pages.search.show({query: q});
-                                    }
-                            }
+                            $( this ).dialog( "close" );
+                            pizarra.redirect("feed/search/" + query);
                         }
                     }
                 },
@@ -37,21 +26,8 @@ $(function(){
 
             ]
         });
-    });
 
-    $(".show-search").click(function(){
-        var token = pizarra.getToken();
-        if(token != null) {
-            var notes = pizarra.action('search/' + $("#search-query").val(), null, true);
-            if (strtoupper(notes.code) == 'OK')
-                if (!isset(notes.notes)) {
-                    $("#search-query").notify(wordwrap(html_entity_decode(notes.text),20,'\n',false));
-                } else {
-                    pizarra.lastSearchResults = notes;
-                    var q = $("#search-query").val();
-                    pizarra.pages.search.show({query: q});
-                }
-        }
+        $(".ui-dialog-titlebar").hide();
     });
 
     $("#edtNote").on('keydown', function(e)

@@ -1525,18 +1525,3 @@ input[type=text]:focus, textarea:focus {
 #search-query{
   margin-left: 10px;
 }
-
-#btnCloseSearchBox {
-  position: relative;
-  top: -30px;
-  right: -30px;
-  font-size: 12px;
-  color: gray;
-  padding: 2px;
-  z-index: 8888;
-}
-
-#btnCloseSearchBox:hover
-{
-  font-weight: bold;
-}
