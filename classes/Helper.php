@@ -123,4 +123,34 @@ class Helper
 
         return $profile;
     }
+
+    static function setFlag($flag, $value)
+    {
+        if ($flag == 'token')
+            throw new Exception('don\'t use token flag');
+
+        $di = \Phalcon\DI\FactoryDefault::getDefault();
+        $di->getShared("session")->set($flag, $value);
+    }
+
+    static function getFlag($flag)
+    {
+        $di = \Phalcon\DI\FactoryDefault::getDefault();
+        return $di->getShared("session")->get($flag);
+    }
+
+    static function delFlag($flag)
+    {
+        if ($flag == 'token')
+            throw new Exception('don\'t use token flag');
+
+        $di = \Phalcon\DI\FactoryDefault::getDefault();
+        $di->getShared("session")->remove($flag);
+    }
+
+    static function hasFlag($flag)
+    {
+        $di = \Phalcon\DI\FactoryDefault::getDefault();
+        return $di->getShared("session")->has($flag);
+    }
 }

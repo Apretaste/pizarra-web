@@ -127,7 +127,7 @@ function refreshNotes(showLoading, autoRefresh)
 }
 
 function sendNote(){
-    var result = pizarra.submit('publish/' + urlencode($("#edtNote").val()));
+    var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
     refreshNotes();
     $("#edtNote").val('');
 }

@@ -1,4 +1,14 @@
 <div class="body padding notes">
+
+    <?php if ($message !== false): ?>
+        <br/>
+        <div class="alert alert-<?php echo $message_type; ?>" role="alert" style="width: 50%; float: right;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <?php echo $message; ?>
+        </div>
+        <br/>
+    <?php endif; ?>
+
     <div style="display:none;padding:0px;" id = "search-box">
          <br/>
         <p>Por favor escriba un @username, un #hashtag o un texto a buscar</p>

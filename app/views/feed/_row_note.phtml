@@ -4,11 +4,12 @@
 
         <?php
 
-        foreach ($notes as $note)
-            echo Helper::parseTpl("feed/_row", [
-                [$note->profile, "note.profile.", ""],
-                [$note, "", ""]
-            ]);
+        if (is_array($notes))
+            foreach ($notes as $note)
+                echo Helper::parseTpl("feed/_row", [
+                    [$note->profile, "note.profile.", ""],
+                    [$note, "", ""]
+                ]);
         ?>
     </table>
     <br/><br/><br/><br/>
