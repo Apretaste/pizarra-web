@@ -23,7 +23,7 @@ function refreshChat(showLoading, force)
 
     if ( ! force)
     {
-        var items = pizarra.run("NOTA UNREAD", null, null, false);
+        var items = pizarra.action("unread", null, false);
 
         if (items.total < 1) {
             setTimeout("refreshChat(false, false);", timeout);

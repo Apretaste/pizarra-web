@@ -8,4 +8,11 @@ class FeedController extends ProtectedController
         $this->view->notes = Helper::getActionResult("feed")->payload->notes;
         $this->view->profile = Helper::getActionResult("profile")->payload->profile;
     }
+
+    public function searchAction($phrase)
+    {
+        $this->view->phrase = $phrase;
+        $result = Helper::getActionResult('search', [$phrase]);
+        $this->view->notes = $result->payload->notes;
+    }
 }

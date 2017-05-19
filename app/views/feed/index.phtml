@@ -10,20 +10,7 @@
     </table>
 
     <div class="news-mask"></div>
-        <div class="news-container">
-        <table id = "list-news" class="w-clearfix list-news">
-            <!-- dynamic zone -->
-
-            <?php
-                foreach ($notes as $note)
-                    echo Helper::parseTpl("feed/_row", [
-                            [$note->profile, "note.profile.", ""],
-                            [$note, "", ""]
-                    ]);
-            ?>
-        </table>
-        <br/><br/><br/><br/>
-    </div>
+    <?php include "_row_note.phtml"; ?>
 </div>
 
 <div class="w-clearfix input-chat-block shadowed-block">

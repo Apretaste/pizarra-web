@@ -7,6 +7,9 @@ class ChatsController extends ProtectedController
     public function indexAction()
     {
         $this->view->notes = Helper::getActionResult("chats")->payload->notes;
+        $this->view->unread = Api::run("NOTA UNREAD")->items;
+        foreach($this->view->unread as $note)
+            $note->profile = Helper::processProfile($note->profile);
     }
 
     public function withAction($username = null)

@@ -4,9 +4,60 @@
  * @author @kumahacker
  */
 
-var sdk = new apretaste("/proxy/");
 
+// ------------------ Some functions ------------------- //
+/**
+ * Clone isset() PHP function
+ */
+function isset(v){
+    return typeof v !== 'undefined';
+}
+
+function is_email(emailAddress) {
+    var sQtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
+    var sDtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]';
+    var sAtom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
+    var sQuotedPair = '\\x5c[\\x00-\\x7f]';
+    var sDomainLiteral = '\\x5b(' + sDtext + '|' + sQuotedPair + ')*\\x5d';
+    var sQuotedString = '\\x22(' + sQtext + '|' + sQuotedPair + ')*\\x22';
+    var sDomain_ref = sAtom;
+    var sSubDomain = '(' + sDomain_ref + '|' + sDomainLiteral + ')';
+    var sWord = '(' + sAtom + '|' + sQuotedString + ')';
+    var sDomain = sSubDomain + '(\\x2e' + sSubDomain + ')*';
+    var sLocalPart = sWord + '(\\x2e' + sWord + ')*';
+    var sAddrSpec = sLocalPart + '\\x40' + sDomain; // complete RFC822 email address spec
+    var sValidEmail = '^' + sAddrSpec + '$'; // as whole string
+
+    var reValidEmail = new RegExp(sValidEmail);
+
+    return reValidEmail.test(emailAddress);
+}
+
+if(!String.linkify) {
+    String.prototype.linkify = function(target) {
+        if (!isset(target))
+            target = "_blank";
+
+        // http://, https://, ftp://
+        var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
+
+        // www. sans http:// or https://
+        var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+
+        // Email addresses
+        var emailAddressPattern = /[\w.]+@[a-zA-Z_-]+?(?:\.[a-zA-Z]{2,6})+/gim;
+
+        return this
+            .replace(urlPattern, '<a target="'+target+'" href="$&">$&</a>')
+            .replace(pseudoUrlPattern, '$1<a target="'+target+'" href="http://$2">$2</a>');
+        /*.replace(emailAddressPattern, '<a href="mailto:$&">$&</a>');*/
+    };
+}
+
+// ------------------- pizarra controller ------------------ //
 var pizarra = {
+
+    baseUrl: "",
 
     /**
      * Data of current user
@@ -23,110 +74,6 @@ var pizarra = {
     lastSearchResults: null,
 
     /**
-     * Pages collection
-     *
-     */
-    pages: {
-        current: {name: 'empty'},
-        previous: {name: 'none'},
-        login: new pizarraPage({
-            name: "login",
-            title: "Ingresar",
-            sdk: sdk,
-            showHeader: false,
-            showFooter: false,
-            close: function () {
-
-            }
-        }),
-        notes: new pizarraPage({
-            name: "notes",
-            title: "&Uacute;ltimas notas",
-            sdk: sdk,
-            showBtnClose: false,
-            showBtnPrevious: false,
-            close: function () {
-                pizarra.logout();
-            }
-        }),
-        chats: new pizarraPage({
-            name: 'chats',
-            title: "Chats",
-            sdk: sdk,
-            showBtnPrevious: false,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        }),
-        edit: new pizarraPage({
-            name: 'edit',
-            title: 'Editando perfil',
-            sdk: sdk,
-            showBtnPrevious: false,
-            showBtnRefresh: false,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        }),
-        search: new pizarraPage({
-            name: 'search',
-            title: 'Resultados de b&uacute;squeda',
-            sdk: sdk,
-            showBtnRefresh: false,
-            showBtnPrevious: false,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        }),
-        about: new pizarraPage({
-            name: 'about',
-            title: 'Acerca de',
-            sdk: sdk,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        }),
-        chat: new pizarraPage({
-            name: 'chat',
-            title: 'Chat',
-            sdk: sdk,
-            showBtnPrevious: false,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        }),
-        terms: new pizarraPage({
-            name: 'terms',
-            title: 'T&eacute;rminos de uso',
-            sdk: sdk,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        }),
-        profile: new pizarraPage({
-            name: 'profile',
-            title: 'Perfil',
-            showBtnPrevious: false,
-            showBtnRefresh: false,
-            sdk: sdk,
-            close: function () {
-                pizarra.pages.notes.show();
-            }
-        })
-    },
-
-    hookPreparseHtml: function(html) {
-
-        var profile = this.getCurrentProfile(false);
-
-        for(var prop in profile)
-        {
-            html = str_replace('{{ profile.' + prop + ' }}', profile[prop], html);
-        }
-        return html;
-    },
-
-    /**
      * Logout
      *
      * @author @kumahacker
@@ -141,58 +88,69 @@ var pizarra = {
     },
 
     /**
-     * Run a service
+     * Get HTML via AJAX
      *
      * @author @kumahacker
-     * @param string subject
-     * @param string body
-     * @param string token
-     * @returns {*}
+     * @param string pUrl
+     * @returns string
      */
-    run: function (subject, body, attachment, showLoading) {
-
-        var token = this.getToken();
-
-        if (!isset(subject))
-            subject = 'PIZARRA';
-
-        if (!isset(body))
-            body = '';
-
-        if (!isset(attachment))
-            attachment = null;
-
-        if (!isset(showLoading))
-            showLoading = true;
-
-        if (showLoading)
-            $("#shadow-layer").show();
-
-        var result = sdk.run(subject, body, attachment, token);
-
-        if (showLoading)
-            setTimeout('$("#shadow-layer").hide();', 1000);
-
-		if (is_null(result))
-		{
-            return false;
-		}
-
-		if (!isset(result))
-		    return false;
-
-       /*
-       if (isset(result)) {
-            if (result.code == 'error') {
-                if (result.message == 'bad authentication') {
-                    //alert('Your session was expired ');
-                    this.logout();
-                    return false;
+    getHTML: function(pUrl){
+        var receptor = {result: null};
+        $.ajax({
+            url: pUrl,
+            method: 'GET',
+            async: false,
+            complete: function(res, status) {
+                if (status == "success" || status == "notmodified") {
+                    receptor.result = res.responseText;
                 }
             }
-        } else return false;*/
+        });
+        return receptor.result;
+    },
 
-        return result;
+    /**
+     * Get data via AJAX
+     *
+     * @author @kumahacker
+     * @param string pUrl
+     * @param object pParams
+     * @returns object
+     */
+    getData: function(pUrl, pParams)
+    {
+        var receptor = {result: null};
+        $.ajax({
+            url: this.baseUrl + pUrl,
+            method: 'POST',
+            data: pParams,
+            async: false,
+            complete: function(res, status) {
+                if (status == "success" || status == "notmodified") {
+                    eval('receptor.result = ' + res.responseText +';');
+                }
+            }
+        });
+        return receptor.result;
+    },
+
+    /**
+     * Check online URL
+     *
+     * @param url
+     * @returns {boolean}
+     */
+    checkUrl: function(url){
+        try {
+            var http = new XMLHttpRequest();
+            http.open('HEAD', url, false);
+            http.send();
+            return http.status != 404;
+        }
+        catch(err)
+        {
+            return false;
+        }
     },
 
     /**
@@ -214,7 +172,6 @@ var pizarra = {
     getToken: function () {
         return $.cookie('apretaste-pizarra');
     },
-
 
     /**
      * Load data of current profile
@@ -337,14 +294,57 @@ var pizarra = {
         if (showLoading)
             setTimeout('$("#shadow-layer").hide();', 1000);
 
-        return sdk.getData(path, params, false);
+        return this.getData(path, params, false);
     },
 
     action: function(a, params, showLoading){
-        return this.ajax("/action/" + a, params, showLoading);
+        var result = this.ajax("/action/" + a, params, showLoading);
+
+        if (result.code == 200)
+        {
+            return result.payload;
+        }
+
+        // TODO: do something
     },
 
     submit: function(a, params, showLoading){
         return this.ajax("/submit/" + a, params, showLoading);
+    },
+
+    reEvents: function()
+    {
+        $("a.action").click(function(){
+
+            var action = $(this).attr("data-action");
+            var param = $(this).attr("data-param");
+            var showLoading = $(this).attr("data-show-loading");
+            var callback = $(this).attr("data-callback");
+
+            param = typeof(param) == "undefined"? "null" : param;
+            param = eval(param);
+
+            showLoading = typeof(showLoading) == "undefined"? "false" : showLoading;
+            showLoading = showLoading == "true" ? true : false;
+
+            pizarra.action(action, param, showLoading);
+
+            callback = typeof(callback) == "undefined"? "null" : callback;
+            callback = eval(callback);
+
+        });
     }
 };
+
+$(function(){
+    $('.mobile-wrapper').height($(window).height());
+
+    $(".body").slimscroll({
+        alwaysVisible: false,
+        allowPageScroll: true,
+        height: 'auto',
+        railVisible: true
+    });
+
+    window.scrollTo(0, 0);
+});

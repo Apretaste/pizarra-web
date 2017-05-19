@@ -1,123 +1,47 @@
 <div class="body padding">
 
     <div class="separator-fields"></div>
-    <!-- new chat template -->
-	<div id="new-template" style="display:none;">
-		<li class="list-message" data-ix="list-item" >
-			<a class="w-clearfix w-inline-block" href="#" data-load="1" onclick="pizarra.pages.chat.show({friend: '{{ username }}', profile: pizarra.getCurrentProfile(false)});">
-				<div class="w-clearfix column-left">
-					<div class="image-message chat">
-						<img width="100%" height="100%" src="{{ chat.profile.picture_public }}">
-					</div>
-				</div>
-				<div class="column-right">
-					<span class="flag-icon flag-icon-cu user-country"></span><div class="message-title user-title"><b>@{{ username }}</b></div>
-				</div>
-			</a>
-		</li>
-	</div>
+
     <ul id ="new-chat" class="list">
-        <!-- dynamic zone -->
+        <?php foreach($unread as $note): ?>
+            <li class="list-message" >
+                <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>">
+                    <div class="w-clearfix column-left">
+                        <div class="image-message chat">
+                            <img width="100%" height="100%" src="<?php echo $note->profile->picture_public; ?>">
+                        </div>
+                    </div>
+                    <div class="column-right">
+                        <span class="flag-icon flag-icon-cu user-country"></span>
+                        <div class="message-title user-title"><b>@<?php echo $note->username; ?></b></div>
+                    </div>
+                </a>
+            </li>
+        <?php endforeach; ?>
     </ul>
+
     <div class="separator-fields"></div>
 
-    <!-- chat template -->
-	<div id="template" style="display:none;">
-		<li class="list-message" data-ix="list-item">
-			<a class="w-clearfix w-inline-block" href="#" data-load="1" onclick="pizarra.pages.chat.show({friend: '{{ username }}', profile: pizarra.getCurrentProfile(false)});">
-				<div class="w-clearfix column-left">
-					<div class="image-message chat">
-						<img width="100%" height="100%" src="{{ chat.profile.picture_public }}">
-					</div>
-				</div>
-				<div class="column-right">
-					<span class="flag-icon flag-icon-cu user-country"></span><div class="message-title user-title">@{{ username }}</div>
-					<div class="message-text">{{ last_note.note }}</div>
-				</div>
-			</a>
-		</li>
-	</div>
     <ul id="list" class="list">
-        <!-- dynamic zone -->
+        <?php foreach($notes as $note): ?>
+        <li class="list-message">
+            <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>">
+                <div class="w-clearfix column-left">
+                    <div class="image-message chat">
+                        <img width="100%" height="100%" src="<?php echo $note->profile->picture_public; ?>">
+                    </div>
+                </div>
+                <div class="column-right">
+                    <span class="flag-icon flag-icon-cu user-country"></span>
+                    <div class="message-title user-title">@<?php echo $note->profile->username; ?></div>
+                    <div class="message-text"><?php echo $note->last_note->note; ?></div>
+                </div>
+            </a>
+        </li>
+        <?php endforeach; ?>
     </ul>
-
 </div>
 
-<script>
-    $(function(){
-        refreshChats();
-    });
-
-    function refreshChats() {
-
-        $("#list").html("");
-        $("#new-chat").html("");
-        var token = $.cookie('apretaste-pizarra');
-
-        if (token !== null) {
-            var items = pizarra.run("NOTA UNREAD");
-            var notes = pizarra.run('NOTA');
-            notes = notes.notes;
-            items = items.items;
-
-            if (count(items) + count(notes) == 0)
-            {
-                $("#shadow-layer").hide();
-                $("#dialog").html("No tienes conversaciones pendientes");
-                $("#dialog").dialog({
-                    title: "Chats",
-                    modal: true,
-                    buttons: [
-                        {
-                            text: "Cerrar",
-                            click: function(){
-                                $(this).dialog('close');
-                                pizarra.pages.current.close();
-                            }
-                        }
-                    ]
-                });
-                return;
-            }
-
-            var news = [];
-            var tpl = $("#new-template").html();
-
-
-            for (var i in items) {
-                var html = tpl;
-                var profile = pizarra.getProfile(items[i].username);
-
-                if (profile.picture != '1')
-                    profile.picture_public = "images/user.png";
-
-                html = pizarra.replaceTags(html, profile, 'chat.profile.');
-                html = pizarra.replaceTags(html, items[i], '');
-
-                $("#new-chat").append(html);
-
-                news[items[i].username] = true;
-            }
-
-            tpl = $("#template").html();
-
-
-            for (var i in notes) {
-                if ( ! isset(news[notes[i].profile.username]))
-                {
-                    var html = tpl;
-                    var profile = notes[i].profile;
-
-                    if (profile.picture != '1')
-                        profile.picture_public = "images/user.png";
-
-                    html = pizarra.replaceTags(html, notes[i].last_note, 'last_note.');
-                    html = pizarra.replaceTags(html, profile, 'chat.profile.');
-                    html = pizarra.replaceTags(html, notes[i], '');
-
-                    $("#list").append(html);
-                }
-            }
-        }
-    }
+<script type="text/javascript">
+<?php include "index.js"; ?>
 </script>

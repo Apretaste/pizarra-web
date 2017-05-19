@@ -65,6 +65,24 @@ class ActionController extends Controller
     public function chatsAction($username = null)
     {
         $result = Api::run("NOTA $username");
+
+        if (isset($result->chats))
+            $result->notes = $result->chats;
+
+        foreach($result->notes as $note)
+            if (isset($note->profile))
+                $note->profile = Helper::processProfile($note->profile);
+            else
+                if (isset($note->username))
+                    $note->profile = Helper::getActionResult("profile", [$note->username])->payload->profile;
+
+        $this->defaultResponse($result);
+    }
+
+    public function unreadAction()
+    {
+        $result = Api::run("NOTA UNREAD");
+
         $this->defaultResponse($result);
     }
 
@@ -115,6 +133,23 @@ class ActionController extends Controller
     {
         $result = Api::run("PERFIL $username");
         $result->profile = Helper::processProfile($result->profile);
+        $this->defaultResponse($result);
+    }
+
+    public function searchAction($phrase)
+    {
+        $result = Api::run("PIZARRA BUSCAR $phrase");
+
+        if (!isset($result->notes))
+            $result->notes = [];
+
+        foreach($result->notes as $note)
+            if (isset($note->profile))
+                $note->profile = Helper::processProfile($note->profile);
+            else
+                if (isset($note->username))
+                    $note->profile = Helper::getActionResult("profile", [$note->username])->payload->profile;
+
         $this->defaultResponse($result);
     }
 

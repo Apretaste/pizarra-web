@@ -1252,6 +1252,7 @@ html.w-mod-js *[data-ix="list-item"] {
   -ms-transform: translate(-26px, 0px);
   transform: translate(-26px, 0px);
 }
+
 @media (max-width: 991px) {
   .w-container {
     max-width: 100%;

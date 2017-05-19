@@ -33,12 +33,14 @@
     </div>
     <div>
         <div class="w-clearfix options-new">
-            <a id="btnActionFollow" tag="<?php echo $profile->username ; ?>" class="w-clearfix w-inline-block action-button profile-button" href="#" data-load="1">
+            <?php if (!$profile->follow): ?>
+            <a class="action w-clearfix w-inline-block action-button profile-button" data-action="follow/<?php echo $profile->username ; ?>" data-callback="$(this).hide();" data-showloading="true" href="#">
                 <div class="icon-button bigger">
                     <div class="icon ion-person-add"></div>
                 </div>
                 Seguir
             </a>
+            <?php endif; ?>
             <a  href="<?php echo "/chats/with/{$profile->username}"; ?>" class="w-clearfix w-inline-block action-button profile-button">
                 <div class="icon-button bigger">
                     <div class="icon ion-ios-chatbubble"></div>
@@ -51,32 +53,6 @@
 
 <script>
     $(function(){
-
-        var tpl = $("#interest-template").html();
-
-        var data = pizarra.pages.profile.data;
-
-        if ( !isset(data.interests))
-            $(".interests-title").hide();
-
-        if (count(data.interests) > 0)
-            $(".interests-header").show();
-
-        for (var i in data.interests)
-        {
-            var html = str_replace('<?php echo $profile->interests.value ; ?>', data.interests[i], tpl);
-            $("#interests").append(html);
-        }
-
-        $("#btnActionFollow").click(function(){
-            pizarra.actionFollow($(this).attr('tag'));
-            $(this).hide();
-        });
-
-        if (isset(data.follow))
-            if (data.follow == true)
-            {
-                $("#btnActionFollow").hide();
-            }
+        pizarra.reEvents();
     });
 </script>

@@ -17,7 +17,9 @@ class Helper
     {
         if (is_null(self::$currentProfile))
         {
-            self::$currentProfile = self::getActionResult("profile")->payload->profile;
+            $result = self::getActionResult("profile");
+            if (isset($result->payload->profile))
+                self::$currentProfile = self::getActionResult("profile")->payload->profile;
         }
         return self::$currentProfile;
     }

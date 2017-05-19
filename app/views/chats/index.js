@@ -1,0 +1,3 @@
+$(function(){
+    pizarra.reEvents();
+});
