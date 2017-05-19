@@ -117,20 +117,29 @@ var pizarra = {
      * @param object pParams
      * @returns object
      */
-    getData: function(pUrl, pParams)
+    getData: function(pUrl, pParams, async, callback)
     {
+        if ( ! isset(async))
+            async = false;
+
+        if (!isset(callback))
+            callback = function(result){};
+
         var receptor = {result: null};
+
         $.ajax({
             url: this.baseUrl + pUrl,
             method: 'POST',
             data: pParams,
-            async: false,
+            async: async,
             complete: function(res, status) {
                 if (status == "success" || status == "notmodified") {
                     eval('receptor.result = ' + res.responseText +';');
+                    callback(receptor.result);
                 }
             }
         });
+
         return receptor.result;
     },
 
@@ -198,7 +207,7 @@ var pizarra = {
             username = '';
 
         var profile = null;
-        profile = this.action('profile/' + username, null, false);
+        profile = this.action('profile/' + username, null, false, false);
         profile = profile.profile;
 
         var d = profile.date_of_birth;
@@ -286,7 +295,7 @@ var pizarra = {
             this.pages.previous.refresh();
     },
 
-    ajax: function(path, params, showLoading){
+    ajax: function(path, params, showLoading, async, callback){
         if (!isset(showLoading))
             showLoading = true;
 
@@ -296,16 +305,19 @@ var pizarra = {
         if (showLoading)
             setTimeout('$("#shadow-layer").hide();', 1000);
 
-        return this.getData(path, params, false);
+        return this.getData(path, params, async, callback);
     },
 
-    action: function(a, params, showLoading){
-        var result = this.ajax("/action/" + a, params, showLoading);
+    action: function(a, params, showLoading, async, callback){
+        var result = this.ajax("/action/" + a, params, showLoading, async, callback);
 
-        if (result.code == 200)
-        {
-            return result.payload;
-        }
+        if ( ! isset(async))
+            async = false;
+
+        if (async == false)
+            if ( ! is_null(result))
+                if (result.code == 200)
+                    return result.payload;
 
         // TODO: do something
     },

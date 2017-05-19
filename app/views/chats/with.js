@@ -9,11 +9,12 @@ $(function(){
     });
 
     setTimeout("refreshChat(false, false);", 1000);
+    setTimeout('$(".body").slimscroll({scrollTo: "999px"})', 500);
 });
 
 function refreshChat(showLoading, force)
 {
-    var timeout = 10000;
+    var timeout = 1000;
 
     if (!isset(showLoading))
         showLoading = true;
@@ -23,18 +24,18 @@ function refreshChat(showLoading, force)
 
     if ( ! force)
     {
-        var items = pizarra.action("unread", null, false);
-
-        if (items.total < 1) {
-            setTimeout("refreshChat(false, false);", timeout);
-            return;
-        }
+        pizarra.action("unread", null, false, true, function(result){
+            items = result.payload;
+            if (items.total < 1) {
+                setTimeout("refreshChat(false, false);", timeout);
+            }
+        });
+        return;
     }
 
     var tplLeft = $("#chat-left-template").html();
     var tplRight = $("#chat-right-template").html();
     var notes = pizarra.action('chats/' + $("#friend-username").val(), null, showLoading);
-    var friendProfile =  pizarra.getProfile($("#friend-username").val());
 
     var allhtml = '';
     for (var i in notes.chats) {
@@ -45,7 +46,7 @@ function refreshChat(showLoading, force)
 
         var html = tpl;
 
-        html = pizarra.replaceTags(html, friendProfile, 'note.profile.');
+        html = pizarra.replaceTags(html, chat.profile, 'note.profile.');
         html = pizarra.replaceTags(html, chat, 'note.');
 
         allhtml = html + allhtml; // inverse order of notes
