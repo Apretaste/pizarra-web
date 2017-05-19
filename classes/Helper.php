@@ -119,7 +119,7 @@ class Helper
         if (trim($profile->picture_public) == "")
             $profile->picture_public = "/res/images/user.png";
         else
-            $profile->picture_public = "/index/picture/$p";
+            $profile->picture_public = "/picture/of/$p";
 
         return $profile;
     }
