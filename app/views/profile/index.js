@@ -96,10 +96,10 @@ $(function(){
         }
 
         $("#shadow-layer").hide();
-        $("#btnSaveData").notify(wordwrap(html_entity_decode('Su perfil ha sido guardado satisfactoriamente'),20,'\n',false), 'base');
+
+        pizarra.messageBox("Tu perfil ha sido actualizado satisfactoriamente.", "Perfil actualizado");
 
         refreshProfile();
-
     });
 
     $("#country").change(function(){

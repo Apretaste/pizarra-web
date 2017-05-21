@@ -224,44 +224,6 @@ var pizarra = {
 
     },
 
-    actionLike: function(noteId) {
-        this.run('PIZARRA LIKE ' + noteId,null,null,false);
-        if (isset(refreshNotes))
-            refreshNotes();
-    },
-
-    actionFollow: function(username) {
-        this.run('PIZARRA SEGUIR ' + username,'','',false);
-        if (isset(refreshNotes))
-            refreshNotes();
-    },
-
-    actionBlock: function (username) {
-        $("#dialog").html('De verdad quieres bloquear a <b>@' + username + '</b>? No ver&aacute;s m&aacute;s notas suyas.');
-
-        $("#dialog").dialog({
-            title: "Bloquear usuario",
-            modal: true,
-            buttons: [
-                {
-                    text: "Si",
-                    click: function() {
-                        pizarra.action('block/' + username,'','',false);
-                        if (isset(refreshNotes))
-                            refreshNotes();
-                        $( this ).dialog( "close" );
-                    }
-                },
-                {
-                    text: "No",
-                    click: function() {
-                        $( this ).dialog( "close" );
-                    }
-                }
-            ]
-        });
-    },
-
     checkImage: function (imgUrl)
     {
         var d = 'images/user.png';
@@ -385,6 +347,27 @@ var pizarra = {
     redirect: function(path)
     {
         window.location.pathname = "/" + path;
+    },
+
+    messageBox: function (message, title, callback)
+    {
+        if (!isset(callback))
+            callback = function(){};
+
+        $("#dialog").html(message);
+        $("#dialog").dialog({
+            title: title,
+            modal: true,
+            buttons: [
+                {
+                    text: "Aceptar",
+                    click: function() {
+                        callback();
+                        $( this ).dialog( "close" );
+                    }
+                }
+            ]
+        });
     }
 };
 

@@ -420,7 +420,7 @@ a {
 .b-link:active {
   color: #5EBB47;
 }
-.action-button {
+.action-button, .ui-dialog-buttonset button {
   display: inline-block;
   width: 100%;
   height: 51px;
@@ -433,6 +433,11 @@ a {
   text-align: center;
   letter-spacing: 1px;
   text-decoration: none;
+}
+
+.ui-dialog-buttonset button {
+  border: 0px;
+  width: 100px;
 }
 .action-button:active {
   background-color: #3ab5a7;
@@ -1524,4 +1529,7 @@ input[type=text]:focus, textarea:focus {
 
 #search-query{
   margin-left: 10px;
+}
+#interests{
+  display: block;
 }
