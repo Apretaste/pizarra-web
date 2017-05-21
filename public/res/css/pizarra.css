@@ -64,6 +64,10 @@ p {
 p > a:hover {
   text-decoration:underline;
 }
+
+#search-box p{
+    padding-left:10px;
+}
 a {
   width: 100%;
   color: #0799DF;
@@ -1532,4 +1536,19 @@ input[type=text]:focus, textarea:focus {
 }
 #interests{
   display: block;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    margin: auto;
+    float: none;
+    display: table;
+    padding: 0.1em;
+}
+
+.ui-dialog .ui-dialog-buttonpane  .ui-dialog-buttonset button{
+    padding: 0px;
+    margin: 3px;
+}
+.ui-dialog .ui-dialog-buttonpane{
+    padding: 0.2em;
 }

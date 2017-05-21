@@ -10,6 +10,13 @@ class ChatsController extends ProtectedController
         $this->view->unread = Api::run("NOTA UNREAD")->items;
         foreach($this->view->unread as $note)
             $note->profile = Helper::processProfile($note->profile);
+
+        if (count($this->view->notes) + count($this->view->unread) == 0)
+        {
+            Helper::setFlag("message", "No tienes conversaciones pendientes ni antiguas.");
+            Helper::setFlag("message_type", "info");
+            $this->response->redirect("feed");
+        }
     }
 
     public function withAction($username = null)
