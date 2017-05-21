@@ -122,7 +122,7 @@ function refreshNotes(showLoading, autoRefresh)
 
     pizarra.reEvents();
 
-    if (autoRefresh == true)
+    if (autoRefresh == true && false)
         setTimeout("refreshNotes(false);", timeout);
 }
 

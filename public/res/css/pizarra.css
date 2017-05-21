@@ -110,7 +110,7 @@ a {
 }
 .navbar-button {
   position: relative;
-  width: 25px;
+  width: 50px;
   height: 45px;
   padding: 0px;
   color: #ccc;
@@ -392,8 +392,8 @@ a {
   transform: translate(-50%, -50%);
 }
 .padding {
-  padding-right: 28px;
-  padding-left: 28px;
+  padding-right: 5px;
+  padding-left: 5px;
   background-color: white;
   opacity: 1;
 }
@@ -913,11 +913,18 @@ a {
   position: relative;
   display: inline-block;
   margin-top: 10px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0px;
+  padding-left: 0px;
   background-color: white;
+  width: 100%;
 }
-
+.news-container table {
+  width: 100%;
+}
+.news-container td, .list-message td {
+  padding: 2px;
+  padding-bottom: 20px;
+}
 .news-container.item-new {
   margin-top: 0px;
   padding-right: 0px;
@@ -1057,7 +1064,7 @@ a {
   overflow-y: hidden;
   width: 60px;
   height: 60px;
-  margin: 10px 0px 10px 40px;
+  margin: 5px 0px 5px 5px;
   border-radius: 50%;
   cursor: pointer;
   cursor: hand;
@@ -1082,7 +1089,7 @@ a {
 .column-left {
   position: relative;
   display: block;
-  width: 70px;
+  width: 50px;
   height: 40px;
   float: left;
   text-align: center;

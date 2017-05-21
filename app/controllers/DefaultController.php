@@ -7,6 +7,7 @@ class DefaultController extends Controller
     public function initialize(){
         $this->view->setLayout('index');
         $this->view->currentProfile = Helper::getCurrentProfile();
+        $this->view->message = false;
 
         if (Helper::hasFlag("message"))
         {
