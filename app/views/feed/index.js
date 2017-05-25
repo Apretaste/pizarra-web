@@ -26,8 +26,6 @@ $(function(){
 
             ]
         });
-
-        $(".ui-dialog-titlebar").hide();
     });
 
     $("#edtNote").on('keydown', function(e)
@@ -53,21 +51,7 @@ $(function(){
         $(".top-buttons").show();
     });
 
-    $.notify.addStyle('happyblue', {
-        html: "<div><span data-notify-text/></div>",
-        position: "top",
-        classes: {
-            base: {
-                "white-space": "nowrap",
-                "background-color": "lightblue",
-                "padding": "5px"
-            },
-            superblue: {
-                "color": "white",
-                "background-color": "blue"
-            }
-        }
-    });
+    highlight();
 
     setTimeout("refreshNotes(false);", 20000);
 
@@ -109,6 +93,25 @@ function refreshNotes(showLoading, autoRefresh)
 
     $("#list-news").html(htmlNotes);
 
+    highlight();
+    pizarra.reEvents();
+
+    if (autoRefresh == true)
+        setTimeout("refreshNotes(false);", timeout);
+}
+
+function sendNote(){
+    var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
+    refreshNotes();
+    $("#edtNote").val('');
+}
+
+function highlight()
+{
+    $("p.note").each(function(e){
+        $(this).html($(this).html().linkify());
+    });
+
     $("a").each(function(){
         var href = $(this).attr('href');
 
@@ -117,17 +120,5 @@ function refreshNotes(showLoading, autoRefresh)
             var username = substr($(this).html(),1);
             $(this).attr('href',"/profile/of/" + username);
         }
-
     });
-
-    pizarra.reEvents();
-
-    if (autoRefresh == true && false)
-        setTimeout("refreshNotes(false);", timeout);
-}
-
-function sendNote(){
-    var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
-    refreshNotes();
-    $("#edtNote").val('');
 }

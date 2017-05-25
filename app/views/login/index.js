@@ -1,20 +1,6 @@
 $(function(){
     $("#navbar").hide();
     $("#email-field").focus();
-    $.notify.addStyle('happyblue', {
-        html: "<div><span data-notify-text/></div>",
-        classes: {
-            base: {
-                "white-space": "nowrap",
-                "background-color": "lightblue",
-                "padding": "5px"
-            },
-            superblue: {
-                "color": "white",
-                "background-color": "blue"
-            }
-        }
-    });
 
     $("#password").on('keydown', function(e)
     {
@@ -46,13 +32,6 @@ $('#email-field').keypress(function(e) {
     }
 });
 
-$(".password-block").keyup(function() {
-    if($(this).val().length >= 1) {
-        var input_flds = $(this).closest('form').find(':input');
-        input_flds.eq(input_flds.index(this) + 1).focus();
-    }
-});
-
 $('#login-submit').click(function() {
     login();
 });
@@ -61,6 +40,7 @@ $('#login-back').click(function() {
     $("#password-div").hide();
     $("#login-div").show();
     $("#email-field").focus();
+    $("#password").val('');
 });
 
 function pass(){
@@ -85,14 +65,16 @@ function pass(){
 function login() {
     var email = $("#email-field").val();
     var pin = $("#password").val();
+    $("#shadow-layer").show();
+    var result = pizarra.action("login/" + email + "/" + pin, false);
 
-    var result = pizarra.action("login/" + email + "/" + pin);
-
-    if (result.code == "error")
+    if (result.code == "error" || result.code == 215)
     {
-        alert('Access denied');
+        pizarra.messageBox('Acceso denegado');
+        $("#password").val('');
         $("#password-div").hide();
         $("#login-div").fadeIn(500);
+        $("#shadow-layer").hide();
     } else {
         pizarra.setToken(result.message);
         pizarra.redirect("feed");

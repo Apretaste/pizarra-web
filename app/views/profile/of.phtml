@@ -18,20 +18,15 @@
             <h2 class="grey-heading-title interests-title text-centered">Cosas que me interesan</h2>
         </div>
 
-        <div id = "interests" class="block-wrapper">
+        <div id = "interests" style="text-align:center;">
             <?php foreach ($profile->interests as $interest): ?>
-            <div class="group-block interest">
-                <div class="w-inline-block">
-                    <div class="group-title">
-                        <?php echo $interest; ?>
-                    </div>
-                </div>
-            </div>
+            <span> <?php echo $interest; ?></span>
             <?php endforeach; ?>
         </div>
         <?php endif; ?>
     </div>
     <div>
+        <?php if ($currentProfile->username != $profile->username): ?>
         <div class="w-clearfix options-new">
             <?php if (!$profile->follow): ?>
             <a class="action w-clearfix w-inline-block action-button profile-button" data-action="follow/<?php echo $profile->username ; ?>" data-callback="$(this).hide();" data-showloading="true" href="#">
@@ -48,6 +43,7 @@
                 Chat
             </a>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 

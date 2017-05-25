@@ -278,10 +278,14 @@ var pizarra = {
 
         if (async == false)
             if ( ! is_null(result))
-                if (result.code == 200)
-                    return result.payload;
+            {
+                if ( ! isset(result.payload))
+                    return {code: 215, message: "error", payload: {}}
 
-        // TODO: do something
+                return result.payload;
+            }
+            else
+                    return {code: 500, message: 'server error', payload: {}}
     },
 
     submit: function(a, params, showLoading){

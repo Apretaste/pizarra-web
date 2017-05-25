@@ -471,14 +471,14 @@ a {
 .input-form {
   display: inline-block;
   width: 100%;
-  height: 40px;
-  border-style: 1px none solid;
+  height: 65px;
+  border: 1px solid;
   border-width: 1px;
   border-color: #5EBB47;
   border-radius: 2px;
   background-color: #eee;
   color: #333;
-  font-size: 14px;
+  font-size: 17px;
 }
 .input-form:focus {
   border-color: #5EBB47;
@@ -556,7 +556,7 @@ a {
   display: inline-block;
   padding: 10px;
   border: 1px solid #ddd;
-  height: 20%;
+  height: 65px;
   text-align: center;
   font-size: 30px;
 }
@@ -1541,9 +1541,6 @@ input[type=text]:focus, textarea:focus {
 #search-query{
   margin-left: 10px;
 }
-#interests{
-  display: block;
-}
 
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
     margin: auto;
@@ -1555,7 +1552,22 @@ input[type=text]:focus, textarea:focus {
 .ui-dialog .ui-dialog-buttonpane  .ui-dialog-buttonset button{
     padding: 0px;
     margin: 3px;
+    height:40px;
 }
 .ui-dialog .ui-dialog-buttonpane{
     padding: 0.2em;
+}
+.ui-dialog-titlebar{
+  display: none;
+}
+
+#interests span {
+  padding: 4px;
+  margin: 4px;
+  background: #f2f2f2;
+  line-height: 2;
+  border-radius: 5px;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: unset;
 }

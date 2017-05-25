@@ -57,11 +57,22 @@ class Api {
         $di = \Phalcon\DI\FactoryDefault::getDefault();
         $token = $di->getShared("session")->get("token");
 
-        return self::get("run/api", [
+        $result = self::get("run/api", [
            "subject" => $subject,
            "body" => $body,
            "attachment" => $attachment,
            "token" => $token
         ]);
+
+        if ( ! is_object($result))
+            $result = new stdClass();
+
+        if ( ! isset($result->code))
+            $result->code = "error";
+
+        if ( ! isset($result->message))
+            $result->message = '';
+
+        return $result;
     }
 }

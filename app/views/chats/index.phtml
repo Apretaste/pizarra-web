@@ -3,7 +3,7 @@
     <div class="separator-fields"></div>
 
     <ul id ="new-chat" class="list">
-        <?php foreach($unread as $note): ?>
+        <?php if (is_array($unread)) foreach($unread as $note): ?>
             <li class="list-message" >
                 <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>">
                     <div class="w-clearfix column-left">
@@ -14,6 +14,7 @@
                     <div class="column-right">
                         <span class="flag-icon flag-icon-cu user-country"></span>
                         <div class="message-title user-title"><b>@<?php echo $note->username; ?></b></div>
+                        <div class="message-text"><b><?php echo $note->sent; ?></b></div>
                     </div>
                 </a>
             </li>
@@ -23,10 +24,10 @@
     <div class="separator-fields"></div>
 
     <table id="list" class="list" width="100%">
-        <?php foreach($notes as $note): ?>
+        <?php if (is_array($notes)) foreach($notes as $note): ?>
         <tr class="list-message">
             <td width="50" valign="top" align="right" style="padding-right:5px;">
-            <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>">
+            <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>" style="text-decoration:none;">
                 <div class="w-clearfix column-left">
                     <div class="image-message chat">
                         <img width="100%" height="100%" src="<?php echo $note->profile->picture_public; ?>">
@@ -35,13 +36,15 @@
             </a>
             </td>
             <td>
+                <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>" style="text-decoration:none;">
                 <div class="column-right">
                     <span class="flag-icon flag-icon-cu user-country"></span>
                     <div class="message-title user-title">@<?php echo $note->profile->username; ?></div>
                     <div class="message-text"><?php echo $note->last_note->note; ?></div>
                 </div>
+                </a>
             </td>
-            <td>
+            <td align="right">
                 <a class="action category-link" href="#" data-action="block/<?php echo $note->profile->username; ?>"
                    data-callback="pizarra.redirect('chats');"
                    data-confirm="true"

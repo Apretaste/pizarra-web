@@ -7,20 +7,29 @@
                 <div class="hidden" id="navbar-title"></div>
                 <a href="/"><img id = "logo" src="<?php echo $assets; ?>images/icon.png"></a>
 
-                <a class="w-inline-block navbar-button right" href="/feed">
+                <a class="w-inline-block navbar-button right" href="<?php if (isset($closeLink)) echo $closeLink; else echo "/feed";?>">
                     <div class="navbar-button-icon icon ion-ios-close"></div>
                 </a>
 
                 <!-- page notes buttons -->
+                <?php if ($showSearchButton): ?>
                 <a class="w-inline-block navbar-button right show-search-box top-buttons page-top-buttons page-notes-buttons" href="#" data-ix="">
                     <div class="navbar-button-icon icon ion-ios-search-strong"></div>
                 </a>
+                <?php endif; ?>
+
+                <?php if ($showProfileButton): ?>
                 <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/profile">
                     <div class="navbar-button-icon icon ion-ios-person"></div>
                 </a>
+                <?php endif; ?>
+
+                <?php if ($showChatsButton): ?>
                 <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/chats">
                     <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
                 </a>
+                <?php endif; ?>
+
             </div>
         </div>
         <?php echo $this->getContent(); ?>

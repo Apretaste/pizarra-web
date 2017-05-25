@@ -10,11 +10,16 @@ class ProfileController extends ProtectedController
     }
     public function ofAction($username = '')
     {
+        $this->view->showSearchButton = false;
+
         if (is_null($username))
             $profile = Helper::getCurrentProfile();
         else
+        {
             $profile = Helper::getActionResult("profile", [$username])->payload->profile;
-
+            if (is_null($profile))
+                header("Location: /feed");
+        }
         $this->view->profile = $profile;
 
     }

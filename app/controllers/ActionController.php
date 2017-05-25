@@ -49,6 +49,9 @@ class ActionController extends Controller
                 "message" => $token,
                 "payload" => []
             ];
+
+            setcookie("token", $token, time() + (3600*24*7));
+
             echo json_encode($result);
         }
         else
@@ -59,8 +62,10 @@ class ActionController extends Controller
     {
         $result = Api::run("PIZARRA");
 
-        foreach($result->notes as $note)
+        foreach($result->notes as $note) {
             $note->profile = Helper::processProfile($note->profile);
+            $note->hideOwnLinks = $note->profile->username == Helper::getCurrentProfile()->username? "hidden" : "";
+        }
 
         $this->defaultResponse($result);
     }
@@ -72,12 +77,25 @@ class ActionController extends Controller
         if (isset($result->chats))
             $result->notes = $result->chats;
 
+        if (!isset($result->notes))
+            $result->notes = [];
+
+        $new_result = [];
         foreach($result->notes as $note)
+        {
             if (isset($note->profile))
                 $note->profile = Helper::processProfile($note->profile);
             else
                 if (isset($note->username))
                     $note->profile = Helper::getActionResult("profile", [$note->username])->payload->profile;
+
+            if (!isset($note->profile)) continue;
+            if (empty($note->username)) continue;
+
+            $new_result[] = $note;
+        }
+
+        $result->notes = $new_result;
 
         $this->defaultResponse($result);
     }
@@ -85,7 +103,6 @@ class ActionController extends Controller
     public function unreadAction()
     {
         $result = Api::run("NOTA UNREAD");
-
         $this->defaultResponse($result);
     }
 
@@ -135,7 +152,10 @@ class ActionController extends Controller
     public function profileAction($username = '')
     {
         $result = Api::run("PERFIL $username");
-        $result->profile = Helper::processProfile($result->profile);
+
+        if (isset($result->profile))
+            $result->profile = Helper::processProfile($result->profile);
+
         $this->defaultResponse($result);
     }
 

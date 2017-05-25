@@ -20,14 +20,14 @@
         </p>
 
         <div class="buttons-section">
-            <a class="action category-link"
+            <a class="action category-link {{ hideOwnLinks }}"
                href="#" data-action="like/{{ id }}"
                data-callback="refreshNotes(false, false);">
                 <i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i>
             </a>
-            <a class="action category-link" href="#" data-action="follow/{{ name }}" data-callback="refreshNotes(false, false);"><i class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
-            <a class="category-link" href="/chats/with/{{ name }}"><i class="icon ion-ios-chatbubble"></i></a>
-            <a class="action category-link" href="#" data-action="block/{{ name }}"
+            <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="follow/{{ name }}" data-callback="refreshNotes(false, false);"><i class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
+            <a class="category-link {{ hideOwnLinks }}" href="/chats/with/{{ name }}"><i class="icon ion-ios-chatbubble"></i></a>
+            <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="block/{{ name }}"
                data-callback="refreshNotes(false, false);"
                data-confirm="true"
                data-confirm-msg="De verdad quieres bloquear a <b>@{{ name }}</b>? No ver&aacute;s m&aacute;s sus notas."
