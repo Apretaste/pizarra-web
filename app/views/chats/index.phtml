@@ -2,24 +2,38 @@
 
     <div class="separator-fields"></div>
 
-    <ul id ="new-chat" class="list">
+	<table id="new-list" class="list" width="100%">
         <?php if (is_array($unread)) foreach($unread as $note): ?>
-            <li class="list-message" >
+            <tr class="list-message">
+				<td width="50" valign="top" align="right" style="padding-right:5px;">
                 <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>">
                     <div class="w-clearfix column-left">
                         <div class="image-message chat">
                             <img width="100%" height="100%" src="<?php echo $note->profile->picture_public; ?>">
                         </div>
                     </div>
+				</a>
+				</td>
+				<td>
                     <div class="column-right">
                         <span class="flag-icon flag-icon-cu user-country"></span>
                         <div class="message-title user-title"><b>@<?php echo $note->username; ?></b></div>
                         <div class="message-text"><b><?php echo $note->sent; ?></b></div>
                     </div>
                 </a>
-            </li>
+				</td>
+				<td align="right">
+					<a class="action category-link" href="#" data-action="block/<?php echo $note->profile->username; ?>"
+					   data-callback="pizarra.redirect('chats');"
+					   data-confirm="true"
+					   data-confirm-msg="De verdad quieres bloquear a <b>@<?php echo $note->profile->username; ?></b>? No ver&aacute;s m&aacute;s sus notas."
+					   data-confirm-title="Bloquear usuario">
+						<i class="ion-close button-symbol"></i>
+					</a>
+				</td>
+            </tr>
         <?php endforeach; ?>
-    </ul>
+    </table>
 
     <div class="separator-fields"></div>
 
