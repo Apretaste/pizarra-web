@@ -14,18 +14,24 @@
       <!-- dynamic zone -->
         <?php
 
-        $_left = Helper::parseTpl("chats/_left", [
+       /* $_left = Helper::parseTpl("chats/_left", [
                 [$friendProfile, 'note.profile.', '']
         ]);
-
+*/
+        $_left = Helper::getTemplate("chats/_left");
         $_right = Helper::getTemplate("chats/_right");
 
         $notes = array_reverse($notes);
 
         foreach ($notes as $note) {
             $_tpl = ($note->username == $currentProfile->username)? $_right : $_left;
+
+            if ( ! isset($note->profile))
+                $note->profile = $friendProfile;
+
             echo Helper::replaceTags($_tpl,[
-                [$note, 'note.', '']
+                [$note, 'note.', ''],
+                [$note->profile, 'note.profile.', '']
             ]);
         }
         ?>

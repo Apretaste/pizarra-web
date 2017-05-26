@@ -36,15 +36,28 @@ class ChatsController extends ProtectedController
         $this->view->friendProfile = $result->payload->profile;
         $notes = Helper::getActionResult("chats", [$username])->payload->notes;
 
-        if (count($this->view->notes) == 0) // never chat with this user?
+        if (count($notes) == 0) // never chat with this user?
         {
             $dynamicNote = new stdClass();
-            $dynamicNote->profile = $this->view->friendProfile;
+            $dynamicNote->profile = clone $this->view->friendProfile;
+            $dynamicNote->profile->picture_public = "/res/images/icon.png";
             $dynamicNote->sent = date("d/m/Y h:i:s");
-            $dynamicNote->username = $this->view->friendProfile->username;
-            $dynamicNote->text = "Ahora cu&eacute;ntame de ti, ser&aacute; un placer conocerte.";
+            $dynamicNote->username = "pizarra";
+            $dynamicNote->text = "Te propongo que le cuentes a @{$this->view->friendProfile->username} acerca de ti, seguro le gustar&aacute; conocerte. Abajo hay un espacio para que escribas y un bot&oacute;n para enviar la nota. Ahora los dejo para que conversen.";
             $notes[] = clone $dynamicNote;
-            $dynamicNote->text = $this->view->friendProfile->about_me;
+            $about = $this->view->friendProfile->about_me;
+
+            $about = str_replace("soy profeso", "profesa", $about);
+            $about = str_replace("soy", "es", $about);
+            $about = str_replace("tengo", "tiene", $about);
+            $about = str_replace("Vivo", "Vive", $about);
+            $about = str_replace("estoy", "est&aacute;", $about);
+            $about = str_replace("Hola,", "", $about);
+            $about = str_replace("mi nombre es", "Su nombre es", $about);
+            $about = str_replace("annos", "a&ntilde;os", $about);
+            $about = str_replace("trabajo", "trabaja", $about);
+
+            $dynamicNote->text = "Hola soy @pizarra y quisiera presentarte a @{$this->view->friendProfile->username} pues nunca han conversado en este chat. $about";
             $notes[] = clone $dynamicNote;
         }
 

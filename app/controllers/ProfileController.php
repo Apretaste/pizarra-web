@@ -6,7 +6,8 @@ class ProfileController extends ProtectedController
 {
     public function indexAction($username = null)
     {
-
+        $this->view->showSearchButton = false;
+        $this->view->showProfileButton = false;
     }
     public function ofAction($username = '')
     {

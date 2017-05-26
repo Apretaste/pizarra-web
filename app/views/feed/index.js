@@ -19,6 +19,7 @@ $(function(){
                 },
                 {
                     text: "Cerrar",
+                    class: "btn-close-dialog",
                     click: function(){
                         $(this).dialog('close');
                     }

@@ -135,7 +135,12 @@ var pizarra = {
             complete: function(res, status) {
                 if (status == "success" || status == "notmodified") {
                     eval('receptor.result = ' + res.responseText +';');
-                    callback(receptor.result);
+
+                    if (typeof(callback) == "function")
+                        callback(receptor.result);
+
+                    else if (typeof(callback) == "string")
+                        eval(callback);
                 }
             }
         });
@@ -285,7 +290,7 @@ var pizarra = {
                 return result.payload;
             }
             else
-                    return {code: 500, message: 'server error', payload: {}}
+                return {code: 500, message: 'server error', payload: {}}
     },
 
     submit: function(a, params, showLoading){
@@ -324,16 +329,16 @@ var pizarra = {
                         {
                             text: "Si",
                             click: function() {
-                                pizarra.action(action, param, showLoading);
-                                callback = typeof(callback) == "undefined"? "null" : callback;
-                                callback = eval(callback);
-                                $( this ).dialog( "close" );
+                                pizarra.action(action, param, showLoading, true, callback);
+                                //callback = typeof(callback) == "undefined"? "null" : callback;
+                                //callback = eval(callback);
+                                $(this).dialog( "close" );
                             }
                         },
                         {
                             text: "No",
                             click: function() {
-                                $( this ).dialog( "close" );
+                                $(this).dialog( "close" );
                             }
                         }
                     ]
@@ -341,9 +346,9 @@ var pizarra = {
             }
             else
             {
-                pizarra.action(action, param, showLoading);
-                callback = typeof(callback) == "undefined"? "null" : callback;
-                callback = eval(callback);
+                pizarra.action(action, param, showLoading, true, callback);
+                //callback = typeof(callback) == "undefined"? "null" : callback;
+                //callback = eval(callback);
             }
         });
     },

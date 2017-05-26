@@ -1571,3 +1571,8 @@ input[type=text]:focus, textarea:focus {
   text-align: center;
   text-decoration: unset;
 }
+
+.ui-dialog .ui-dialog-buttonpane  .ui-dialog-buttonset button.btn-close-dialog{
+  background: #f2f2f2;
+  color: black;
+}
