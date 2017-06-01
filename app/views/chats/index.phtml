@@ -4,6 +4,9 @@
 
 	<table id="new-list" class="list" width="100%">
         <?php if (is_array($unread)) foreach($unread as $note): ?>
+
+            <?php if (trim($note->username)=="") continue; ?>
+
             <tr class="list-message">
 				<td width="50" valign="top" align="right" style="padding-right:5px;">
                 <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>">
@@ -55,6 +58,7 @@
                 <div class="column-right">
                     <span class="flag-icon flag-icon-cu user-country"></span>
                     <div class="message-title user-title">@<?php echo $note->profile->username; ?></div>
+                    <div class="message-text"><b><?php echo $note->sent; ?></b></div>
                     <div class="message-text"><?php echo $note->last_note->note; ?></div>
                 </div>
                 </a>
