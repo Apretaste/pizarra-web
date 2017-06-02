@@ -302,6 +302,8 @@ var pizarra = {
         $("a.action").click(function(){
 
             var action = $(this).attr("data-action");
+			var action_name = explode('/', action);
+			action_name = action_name[0];
             var param = $(this).attr("data-param");
             var showLoading = $(this).attr("data-show-loading");
             var callback = $(this).attr("data-callback");
@@ -328,15 +330,15 @@ var pizarra = {
                     buttons: [
                         {
                             text: "Si",
+							class: "btn-yes-dialog btn-action-yes-" + action_name,
                             click: function() {
                                 pizarra.action(action, param, showLoading, true, callback);
-                                //callback = typeof(callback) == "undefined"? "null" : callback;
-                                //callback = eval(callback);
                                 $(this).dialog( "close" );
                             }
                         },
                         {
                             text: "No",
+							class: "btn-no-dialog btn-action-no-" + action_name,
                             click: function() {
                                 $(this).dialog( "close" );
                             }
