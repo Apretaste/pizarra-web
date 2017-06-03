@@ -47,7 +47,7 @@ function pass(){
     var email = $("#email-field").val();
     if (is_email(email))
     {
-        var r = pizarra.action("email/" + email, false, true, true, function(r){
+        var r = pizarra.action("email/" + email, false, false, true, function(r){
 			if (r.code == 'ok' || r.code == 200)
 			{
 				$("#login-div").hide();
