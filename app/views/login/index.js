@@ -47,15 +47,16 @@ function pass(){
     var email = $("#email-field").val();
     if (is_email(email))
     {
-        var r = pizarra.action("email/" + email);
-
-        if (r.code == 'ok')
-        {
-            $("#login-div").hide();
-            $("#password-div").fadeIn(500);
-            $(".password-block-first").focus();
-            return true;
-        }
+        var r = pizarra.action("email/" + email, false, true, true, function(r){
+			if (r.code == 'ok')
+			{
+				$("#login-div").hide();
+				$("#password-div").fadeIn(500);
+				$(".password-block-first").focus();
+			}	
+			$("#shadow-layer").hide();
+		});
+        
     } else {
         $("#email-field").notify(wordwrap(html_entity_decode('Direcci&oacute;n email incorrecta'),20,'\n',false));
     }
@@ -65,18 +66,21 @@ function pass(){
 function login() {
     var email = $("#email-field").val();
     var pin = $("#password").val();
-    $("#shadow-layer").show();
-    var result = pizarra.action("login/" + email + "/" + pin, false);
+    
+	$("#shadow-layer").show();
+	
+    var result = pizarra.action("login/" + email + "/" + pin, false, true, true, function(result){
+		if (result.code == "error" || result.code == 215)
+		{
+			pizarra.messageBox('Acceso denegado');
+			$("#password").val('');
+			$("#password-div").hide();
+			$("#login-div").fadeIn(500);
+			$("#shadow-layer").hide();
+		} else {
+			pizarra.setToken(result.message);
+			pizarra.redirect("feed");
+		}
+	});
 
-    if (result.code == "error" || result.code == 215)
-    {
-        pizarra.messageBox('Acceso denegado');
-        $("#password").val('');
-        $("#password-div").hide();
-        $("#login-div").fadeIn(500);
-        $("#shadow-layer").hide();
-    } else {
-        pizarra.setToken(result.message);
-        pizarra.redirect("feed");
-    }
 }
