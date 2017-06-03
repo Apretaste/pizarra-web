@@ -69,7 +69,7 @@ function login() {
     
 	$("#shadow-layer").show();
 	
-    var result = pizarra.action("login/" + email + "/" + pin, false, true, true, function(result){
+    var result = pizarra.action("login/" + email + "/" + pin, false, false, true, function(result){
 		if (result.code == "error" || result.code == 215)
 		{
 			pizarra.messageBox('Acceso denegado');
