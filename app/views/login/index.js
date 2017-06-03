@@ -48,7 +48,7 @@ function pass(){
     if (is_email(email))
     {
         var r = pizarra.action("email/" + email, false, true, true, function(r){
-			if (r.code == 'ok')
+			if (r.code == 'ok' || r.code == 200)
 			{
 				$("#login-div").hide();
 				$("#password-div").fadeIn(500);
