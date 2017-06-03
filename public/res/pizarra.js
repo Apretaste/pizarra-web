@@ -357,6 +357,7 @@ var pizarra = {
 
     redirect: function(path)
     {
+		$("#shadow-layer").show();
         window.location.pathname = "/" + path;
     },
 
