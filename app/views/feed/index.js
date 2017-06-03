@@ -54,7 +54,7 @@ $(function(){
 
     highlight();
 
-    setTimeout("refreshNotes(false);", 20000);
+    //setTimeout("refreshNotes(false);", 20000);
 
     pizarra.reEvents();
 });
@@ -97,8 +97,8 @@ function refreshNotes(showLoading, autoRefresh)
     highlight();
     pizarra.reEvents();
 
-    if (autoRefresh == true)
-        setTimeout("refreshNotes(false);", timeout);
+   /* if (autoRefresh == true)
+        setTimeout("refreshNotes(false);", timeout);*/
 }
 
 function sendNote(){

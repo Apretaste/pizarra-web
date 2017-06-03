@@ -7,6 +7,7 @@ class FeedController extends ProtectedController
     {
         $this->view->notes = Helper::getActionResult("feed")->payload->notes;
         $this->view->profile = Helper::getActionResult("profile")->payload->profile;
+		$this->view->showRefreshButton = true;
         $this->view->closeLink = "/logout";
     }
 

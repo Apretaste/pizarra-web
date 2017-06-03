@@ -8,6 +8,7 @@ class DefaultController extends Controller
         $this->view->setLayout('index');
         $this->view->currentProfile = Helper::getCurrentProfile();
         $this->view->message = false;
+		$this->view->showRefreshButton = false;
         $this->view->showSearchButton = true;
         $this->view->showProfileButton = true;
         $this->view->showChatsButton = true;

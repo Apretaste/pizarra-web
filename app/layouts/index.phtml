@@ -12,6 +12,12 @@
                 </a>
 
                 <!-- page notes buttons -->
+				<?php if ($showRefreshButton): ?>
+                <a class="action w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="#" onclick = "refreshNotes(true, false);">
+                    <div class="navbar-button-icon icon ion-ios-refresh"></div>
+                </a>
+                <?php endif; ?>
+				
                 <?php if ($showSearchButton): ?>
                 <a class="w-inline-block navbar-button right show-search-box top-buttons page-top-buttons page-notes-buttons" href="#" data-ix="">
                     <div class="navbar-button-icon icon ion-ios-search-strong"></div>
