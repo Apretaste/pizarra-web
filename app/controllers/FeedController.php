@@ -5,10 +5,18 @@ class FeedController extends ProtectedController
 {
     public function indexAction()
     {
-        $this->view->notes = Helper::getActionResult("feed")->payload->notes;
-        $this->view->profile = Helper::getActionResult("profile")->payload->profile;
-		$this->view->showRefreshButton = true;
-        $this->view->closeLink = "/logout";
+		$result = Helper::getActionResult("feed");
+		if (isset($result->payload->notes)
+		{
+			$this->view->notes = $result->payload->notes;
+			$this->view->profile = Helper::getActionResult("profile")->payload->profile;
+			$this->view->showRefreshButton = true;
+			$this->view->closeLink = "/logout";	
+		} else
+		{
+			$this->response->redirect("logout");
+		}
+        
     }
 
     public function searchAction($phrase)

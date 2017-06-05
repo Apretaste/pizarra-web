@@ -62,7 +62,7 @@ class ActionController extends Controller
     {
         $result = Api::run("PIZARRA");
 
-        foreach($result->notes as $note) {
+        if (isset($result->notes)) foreach($result->notes as $note) {
             $note->profile = Helper::processProfile($note->profile);
             $note->hideOwnLinks = $note->profile->username == Helper::getCurrentProfile()->username? "hidden" : "";
         }
