@@ -6,7 +6,7 @@ class FeedController extends ProtectedController
     public function indexAction()
     {
 		$result = Helper::getActionResult("feed");
-		if (isset($result->payload->notes)
+		if (isset($result->payload->notes))
 		{
 			$this->view->notes = $result->payload->notes;
 			$this->view->profile = Helper::getActionResult("profile")->payload->profile;
