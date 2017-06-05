@@ -3,7 +3,7 @@
     <div class="separator-fields"></div>
 
 	<table id="new-list" class="list" width="100%">
-        <?php if (is_array($unread)) foreach($unread as $note): ?>
+        <?php if (isset($unred)) if (is_array($unread)) foreach($unread as $note): ?>
 
             <?php if (trim($note->username)=="") continue; ?>
 
