@@ -65,6 +65,9 @@ class ActionController extends Controller
         if (isset($result->notes)) foreach($result->notes as $note) {
             $note->profile = Helper::processProfile($note->profile);
             $note->hideOwnLinks = $note->profile->username == Helper::getCurrentProfile()->username? "hidden" : "";
+            $note->followcolor = 'black';
+            if ($note->friend == true)
+                $note->followcolor = 'red';
         }
 
         $this->defaultResponse($result);
