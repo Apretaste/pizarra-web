@@ -12,6 +12,7 @@ class DefaultController extends Controller
         $this->view->showSearchButton = true;
         $this->view->showProfileButton = true;
         $this->view->showChatsButton = true;
+        $this->view->showCloseButton = true;
 
         if (Helper::hasFlag("message"))
         {

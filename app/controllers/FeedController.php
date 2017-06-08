@@ -6,11 +6,13 @@ class FeedController extends ProtectedController
     public function indexAction()
     {
 		$result = Helper::getActionResult("feed");
+		$this->view->profile = Helper::getActionResult("profile")->payload->profile;
+		
 		if (isset($result->payload->notes))
 		{
 			$this->view->notes = $result->payload->notes;
-			$this->view->profile = Helper::getActionResult("profile")->payload->profile;
 			$this->view->showRefreshButton = true;
+            $this->view->showCloseButton = false;
 			$this->view->closeLink = "/logout";	
 		} else
 		{

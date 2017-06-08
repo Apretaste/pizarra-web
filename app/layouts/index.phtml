@@ -7,10 +7,11 @@
                 <div class="hidden" id="navbar-title"></div>
                 <a href="/"><img id = "logo" src="<?php echo $assets; ?>images/icon.png"></a>
 
+                <?php if ($showCloseButton): ?>
                 <a class="w-inline-block navbar-button right" href="<?php if (isset($closeLink)) echo $closeLink; else echo "/feed";?>">
                     <div class="navbar-button-icon icon ion-ios-close"></div>
                 </a>
-
+                <?php endif; ?>
                 <!-- page notes buttons -->
 				<?php if ($showRefreshButton): ?>
                 <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="#" onclick = "refreshNotes(true, false);">
