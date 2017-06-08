@@ -24,7 +24,7 @@ $(function(){
             orientation: 'ORIENTACION',
             country: 'PAIS',
             province: 'PROVINCIA',
-            usstate: 'USSTAE',
+            usstate: 'USSTATE',
             eyes: 'OJOS',
             hair: 'PELO',
             skin: 'PIEL',
@@ -80,7 +80,9 @@ $(function(){
                     pizarra.currentProfile[fieldmap[prop]] = v;
             }
         }
-        jsondata += '"nothing":""}';
+        if (substr(jsondata, strlen(jsondata)-1,1)==",")
+            jsondata = substr(jsondata,0,strlen(jsondata)-1);
+        jsondata += '}';
 
         pizarra.action("submitProfile/" + base64_encode(jsondata), null, null, false);
 
@@ -123,6 +125,16 @@ $(function(){
     });
 
     refreshProfile();
+
+    $("#birthday-day").change(function(){
+        buildBirthday();
+    });
+    $("#birthday-month").change(function(){
+        buildBirthday();
+    });
+    $("#birthday-year").change(function(){
+        buildBirthday();
+    });
 });
 
 function showHideProvinces()
@@ -178,5 +190,21 @@ function refreshProfile()
         }
 
         showHideProvinces();
+
+        fillBirthday();
     }
+}
+
+function buildBirthday()
+{
+    var b = $("#birthday-day").val() + "/" + $("#birthday-month").val() + "/" + $("#birthday-year").val();
+    $("#birthday").val(b);
+}
+
+function fillBirthday()
+{
+    var parts = explode("/", $("#birthday").val());
+    $("#birthday-day").val(intval(parts[0]));
+    $("#birthday-month").val(intval(parts[1]));
+    $("#birthday-year").val(parts[2]);
 }

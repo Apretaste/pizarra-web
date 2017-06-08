@@ -8,13 +8,7 @@ $(function(){
                 {
                     text: "Buscar",
                     click: function() {
-                        var query = $("#search-query").val();
-                        query = trim(query);
-                        if (query != '')
-                        {
-                            $( this ).dialog( "close" );
-                            pizarra.redirect("feed/search/" + query);
-                        }
+                        searchFeed();
                     }
                 },
                 {
@@ -26,6 +20,13 @@ $(function(){
                 }
 
             ]
+        });
+
+        $("#search-query").on('keypress',function(e) {
+            if(e.which == 13)
+            {
+                searchFeed();
+            }
         });
     });
 
@@ -122,4 +123,15 @@ function highlight()
             $(this).attr('href',"/profile/of/" + username);
         }
     });
+}
+
+function searchFeed()
+{
+    var query = $("#search-query").val();
+    query = trim(query);
+    if (query != '')
+    {
+        $("#search-box").dialog( "close" );
+        pizarra.redirect("feed/search/" + query);
+    }
 }
