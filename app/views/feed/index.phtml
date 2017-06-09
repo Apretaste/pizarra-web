@@ -9,11 +9,7 @@
         <br/>
     <?php endif; ?>
 
-    <div style="display:none;padding:0px;" id = "search-box">
-         <br/>
-        <p>Por favor escriba un @username, un #hashtag o un texto a buscar</p>
-          <input type="text" class="w-input input-form" id="search-query" style="width:95%;">
-    </div>
+    <?php include "_search_box.phtml"; ?>
 
     <table style="display:none;" id="news-template">
     <?php include "_row.phtml"; ?>
@@ -40,4 +36,5 @@
 
 <script type="text/javascript">
 <?php include "index.js"; ?>
+<?php include "search.js"; ?>
 </script>

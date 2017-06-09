@@ -1,6 +1,12 @@
 <div class="body padding">
     <input id="query" type="hidden" value ="<?php echo $phrase; ?>">
 
-   <?php include "_row_note.phtml"; ?>
+    <?php include "_search_box.phtml"; ?>
+
+    <?php include "_row_note.phtml"; ?>
 
 </div>
+
+<script type="text/javascript">
+    <?php include "search.js"; ?>
+</script>
