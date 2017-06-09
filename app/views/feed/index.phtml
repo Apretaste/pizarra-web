@@ -11,9 +11,13 @@
 
     <?php include "_search_box.phtml"; ?>
 
-    <table style="display:none;" id="news-template">
-    <?php include "_row.phtml"; ?>
-    </table>
+    <textarea style="display:none;" id="news-template">
+        <?php
+        $tpl = Helper::getTemplate("feed/_row");
+        echo base64_encode($tpl);
+        ?>
+        <?php /* include "_row.phtml";*/  ?>
+    </textarea>
 
     <div class="news-mask"></div>
     <?php include "_row_note.phtml"; ?>

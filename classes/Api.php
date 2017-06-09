@@ -38,12 +38,13 @@ class Api {
 
     static function login($email, $pin)
     {
-        $result = self::get("api/auth", ["email" => $email, "pin" => $pin]);
+        $result = self::get("api/auth", ["email" => $email, "pin" => $pin, "appname" => "pizarra"]);
         if ($result->code == "ok")
         {
             $di = \Phalcon\DI\FactoryDefault::getDefault();
             $di->getShared("session")->set("token", $result->token);
             $di->getShared("session")->set("email", $email);
+            Helper::getCurrentProfile();
         }
 		return $result;
     }

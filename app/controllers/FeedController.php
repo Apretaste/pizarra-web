@@ -6,7 +6,7 @@ class FeedController extends ProtectedController
     public function indexAction()
     {
 		$result = Helper::getActionResult("feed");
-		$this->view->profile = Helper::getActionResult("profile")->payload->profile;
+		$this->view->profile = Helper::getCurrentProfile();
 		
 		if (isset($result->payload->notes))
 		{
@@ -18,7 +18,6 @@ class FeedController extends ProtectedController
 		{
 			$this->response->redirect("logout");
 		}
-        
     }
 
     public function searchAction($phrase)

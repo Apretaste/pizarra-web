@@ -27,6 +27,8 @@ class ActionController extends Controller
 
         $result = Api::run("PERFIL BULK $bulk");
 
+        Helper::getCurrentProfile(true);
+
         $this->defaultResponse($result);
     }
     #endregion submits

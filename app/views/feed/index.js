@@ -41,7 +41,7 @@ function refreshNotes(showLoading, autoRefresh)
     var timeout = 20000;
     var htmlNotes = '';
     var notes = pizarra.action("/feed", null, showLoading).notes;
-    var tpl = $("#news-template").html();
+    var tpl = base64_decode(trim($("#news-template").html()));
 
     for(var item in notes)
     {

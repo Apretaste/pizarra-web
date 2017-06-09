@@ -13,14 +13,24 @@ class Helper
      * Singleton for get current profile
      * @return object
      */
-    public static function getCurrentProfile()
+    public static function getCurrentProfile($force = false)
     {
-        if (is_null(self::$currentProfile))
+        if (is_null(self::$currentProfile) || $force == true)
         {
-            $result = self::getActionResult("profile");
-            if (isset($result->payload->profile))
-                self::$currentProfile = self::getActionResult("profile")->payload->profile;
+            $di = \Phalcon\DI\FactoryDefault::getDefault();
+
+            if ($di->getShared("session")->has('profile') && $force == false)
+                self::$currentProfile = $di->getShared("session")->get('profile');
+            else
+            {
+                $result = self::getActionResult("profile");
+                if (isset($result->payload->profile))
+                    self::$currentProfile = $result->payload->profile;
+
+                $di->getShared("session")->set('profile', self::$currentProfile);
+            }
         }
+
         return self::$currentProfile;
     }
 
