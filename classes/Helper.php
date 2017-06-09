@@ -19,8 +19,12 @@ class Helper
         {
             $di = \Phalcon\DI\FactoryDefault::getDefault();
 
-            if ($di->getShared("session")->has('profile') && $force == false)
-                self::$currentProfile = $di->getShared("session")->get('profile');
+            $currentProfileSession = null;
+            if ($di->getShared("session")->has('profile'))
+                $currentProfileSession = $di->getShared("session")->get('profile');
+
+            if (!is_null($currentProfileSession) && $force == false)
+                self::$currentProfile = $currentProfileSession;
             else
             {
                 $result = self::getActionResult("profile");

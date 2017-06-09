@@ -7,7 +7,7 @@ class FeedController extends ProtectedController
     {
 		$result = Helper::getActionResult("feed");
 		$this->view->profile = Helper::getCurrentProfile();
-		
+
 		if (isset($result->payload->notes))
 		{
 			$this->view->notes = $result->payload->notes;
