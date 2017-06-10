@@ -85,7 +85,8 @@ class Helper
         $html = $tpl;
         $parses[] = [self::getCurrentProfile(), 'profile.', ''];
 
-        foreach ($parses as $parse) {
+        foreach ($parses as $parse)
+        {
             $data = $parse[0];
             $prefix = $parse[1];
             $suffix = $parse[2];

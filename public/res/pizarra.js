@@ -67,9 +67,16 @@ var pizarra = {
     currentProfile: null,
 
     /**
+     * List of notes of current chat
+     *
+     * @type Array
+     */
+    currentChat: {code: "ok", last_id: 0, friendUsername: null, chats: []},
+
+    /**
      * List of last results
      *
-     * @type array
+     * @type Array
      */
     lastSearchResults: null,
 
@@ -139,7 +146,7 @@ var pizarra = {
                     if (typeof(callback) == "function")
                         callback(receptor.result);
 
-                    else if (typeof(callback) == "string")
+                    if (typeof(callback) == "string")
                         eval(callback);
                 }
             }

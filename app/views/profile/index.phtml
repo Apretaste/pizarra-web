@@ -23,26 +23,26 @@
             <div class="separator-fields"></div>
             <table width="100%">
                 <tr>
-                    <td width="20%" style="padding-right:10px;">
+                    <td width="23%">
                         <!-- <label class="label-form">D&Iacute;A:</label> -->
-                        <select id="birthday-day" class="input-form w-select w-clearfix">
+                        <select style="padding:5px;" id="birthday-day" class="input-form w-select w-clearfix">
                             <?php for ($i = 1; $i <= 31; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
                     </td>
-                    <td width="60%">
+                    <td width="47%">
                         <!-- <label class="label-form">MES:</label> -->
-                        <select id="birthday-month" class="input-form w-select w-clearfix">
+                        <select style="padding:5px;" id="birthday-month" class="input-form w-select w-clearfix">
                             <?php $months = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]; ?>
                             <?php for ($i = 1; $i <= 12; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $months[$i]; ?></option>
                             <?php endfor; ?>
                         </select>
                     </td>
-                    <td width="20%" style="padding-left:10px;">
+                    <td width="30%">
                         <!-- <label class="label-form">A&Ntilde;O:</label> -->
-                        <select id="birthday-year" class="input-form w-select w-clearfix">
+                        <select style="padding:5px;" id="birthday-year" class="input-form w-select w-clearfix">
                             <?php for ($i = 1900; $i <= 2050; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                             <?php endfor; ?>

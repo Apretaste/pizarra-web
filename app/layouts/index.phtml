@@ -5,7 +5,7 @@
             <div class="w-container" style="margin-right:5px;margin-left:10px;">
                 <div class="wrapper-mask" data-ix="menu-mask"></div>
                 <div class="hidden" id="navbar-title"></div>
-                <a href="/"><img id = "logo" src="<?php echo $assets; ?>images/icon.png"></a>
+                <a href="/" onclick = "$('#shadow-layer').show();"><img id = "logo" src="<?php echo $assets; ?>images/icon.png"></a>
 
                 <?php if ($showCloseButton): ?>
                 <a class="w-inline-block navbar-button right" href="<?php if (isset($closeLink)) echo $closeLink; else echo "/feed";?>" onclick = "$('#shadow-layer').show();">

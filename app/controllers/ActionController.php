@@ -153,6 +153,10 @@ class ActionController extends Controller
     {
         $pic = $this->request->get("picture");
         $result = Api::run("PERFIL FOTO", "", $pic);
+
+        // to know the location of saved picture in the server
+        Helper::getCurrentProfile(true);
+
         $this->defaultResponse($result);
     }
 
