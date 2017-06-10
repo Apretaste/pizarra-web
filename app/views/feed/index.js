@@ -22,12 +22,6 @@ $(function(){
         $("#search-box").hide();
         $(".top-buttons").show();
     });
-
-    highlight();
-
-    //setTimeout("refreshNotes(false);", 20000);
-
-    pizarra.reEvents();
 });
 
 function refreshNotes(showLoading, autoRefresh)
