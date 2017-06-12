@@ -56,41 +56,60 @@ $(function(){
         var jsondata = '{';
         for (var prop in datamap)
         {
-            var v = $("#" + prop).val();
-
-            if (strtolower(profile[fieldmap[prop]]) != strtolower(v))
+            var v = trim($("#" + prop).val());
+			while (strpos(v,'  ')!==false) v = str_replace('  ',' ', v);
+			
+		    var f = fieldmap[prop];
+			
+            var currentValue = profile[f];
+			
+			if (typeof(f) == typeof([]))
+            {
+				currentValue = '';
+				for (var i in f) currentValue += profile[f[i]] + ' ';
+			} 
+					
+			if (trim(strtolower(currentValue)) != trim(strtolower(v))) // no send no changed fields
             {
                 jsondata += '"' + datamap[prop] + '": "' + v + '",';
 
-                // update local data and not call to the api
-                var f = fieldmap[prop];
-
-                if (typeof(f) == typeof([]))
+                // update local data and no call to the api
+                if (typeof(f) == typeof([])) // composite fields (concat)
                 {
                     var s = split(' ', v);
+					for (var i in f) profile[f[i]] = '';
+					
+					// special cases
+					switch (prop){
+						case "fullname":
+						if 	(count(s) < 4) // ignore middle name
+							f = ['first_name', 'last_name', 'mother_name'];
+						
+						pizarra.currentProfile.full_name = trim(v);
+						break;
+						
+					}
 
-                    if 	(count(s) < 4) // ignore middle name
-                        f = ['first_name', 'last_name', 'mother_name'];
-
-                    for (var i in f) profile[f[i]] = '';
-                    for (var i in f) if (isset(s[i])) if (trim(s[i])!='') profile[f[i]] = s[i];
-
+                    for (var i in f) if (isset(s[i])) if (trim(s[i])!='') pizarra.currentProfile[f[i]] = s[i];
                 }
                 else
                     pizarra.currentProfile[fieldmap[prop]] = v;
             }
         }
+		
         if (substr(jsondata, strlen(jsondata)-1,1)==",")
             jsondata = substr(jsondata,0,strlen(jsondata)-1);
+		
         jsondata += '}';
 
-        pizarra.action("submitProfile/" + base64_encode(jsondata), null, null, false);
+        if (jsondata != '{}')
+			pizarra.action("submitProfile/" + base64_encode(jsondata), null, null, false);
 
-        if ($("#picture-file").val() !='')
+        if ($("#picture-file").val() != '')
         {
             var picture = $("#picture").attr('src');
             var p = strpos(picture,'base64,');
-            picture = substr(picture, p+7);
+            picture = substr(picture, p + 7);
             pizarra.action("picture", {picture: picture});
 
             // TODO: the new url of public picture are unknown, recall to the api
@@ -185,7 +204,7 @@ function refreshProfile()
             else
                 v = profile[f];
 
-            $("#" + prop).val(v);
+            $("#" + prop).val(trim(v));
 
         }
 
@@ -197,8 +216,14 @@ function refreshProfile()
 
 function buildBirthday()
 {
-    var b = $("#birthday-day").val() + "/" + $("#birthday-month").val() + "/" + $("#birthday-year").val();
-    $("#birthday").val(b);
+	var d = $("#birthday-day").val();
+	var m = $("#birthday-month").val();
+	var y = $("#birthday-year").val();
+	
+	if (intval(d) < 10) d = "0" + intval(d);
+	if (intval(m) < 10) d = "0" + intval(m);
+	
+    $("#birthday").val(d + "/" + m + "/" + y);
 }
 
 function fillBirthday()
