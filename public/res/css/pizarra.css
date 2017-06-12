@@ -1878,5 +1878,9 @@ input[type=text]:focus, textarea:focus {
 
 .options-new .profile-button, #btnSaveData {
     text-decoration: none;
-    font-size: 20px;
+    /*font-size: 20px;*/
+}
+
+.profile-form .separator-fields{
+    margin-bottom: 10px;
 }

@@ -1,4 +1,4 @@
-<div class="body padding">
+<div class="body padding profile-form">
     <div class="separator-button"></div>
     <div id="edit-image" class="profile-image">
         <a href="#" style="text-decoration: none;">
@@ -43,7 +43,7 @@
                     <td width="30%">
                         <!-- <label class="label-form">A&Ntilde;O:</label> -->
                         <select style="padding:5px;" id="birthday-year" class="input-form w-select w-clearfix">
-                            <?php for ($i = 1900; $i <= 2050; $i++): ?>
+                            <?php for ($i = intval(date("Y")."")-90; $i <= intval(date("Y")."")-12; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
