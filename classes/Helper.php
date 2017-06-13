@@ -125,17 +125,19 @@ class Helper
 
     static function processProfile($profile)
     {
-        $p = $profile->picture_internal;
-        $p = str_replace("\\", "/", $p);
-        $p = explode("/", $p);
-        $p = $p[count($p) - 1];
-        $profile->picture_internal = $p;
+		if (is_object($profile))
+		{
+			$p = $profile->picture_internal;
+			$p = str_replace("\\", "/", $p);
+			$p = explode("/", $p);
+			$p = $p[count($p) - 1];
+			$profile->picture_internal = $p;
 
-        if (trim($profile->picture_public) == "")
-            $profile->picture_public = "/res/images/user.png";
-        else
-            $profile->picture_public = "/picture/of/$p";
-
+			if (!isset($profile->picture_public) || trim($profile->picture_public) == "")
+				$profile->picture_public = "/res/images/user.png";
+			else
+				$profile->picture_public = "/picture/of/$p";
+		}
         return $profile;
     }
 
