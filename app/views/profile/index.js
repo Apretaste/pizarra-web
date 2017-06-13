@@ -155,7 +155,7 @@ $(function(){
         buildBirthday();
     });
 	
-	$("div.profile-form").show();
+	$("div.profile-form").removeClass("hidden");
 });
 
 function showHideProvinces()
