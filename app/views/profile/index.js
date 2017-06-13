@@ -154,6 +154,8 @@ $(function(){
     $("#birthday-year").change(function(){
         buildBirthday();
     });
+	
+	$("div.profile-form").show();
 });
 
 function showHideProvinces()
