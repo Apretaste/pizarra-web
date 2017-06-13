@@ -76,6 +76,7 @@ function login() {
 			pizarra.messageBox('Su c&oacute;digo es incorrecto. Por favor, revise su email e intente nuevamente.');
 			$("#password").val('');
 			$("#shadow-layer").hide();
+			$("#password").focus();
 		} else {
 			pizarra.setToken(result.message);
 			pizarra.redirect("feed");
