@@ -24,8 +24,14 @@ class FeedController extends ProtectedController
     {
         $this->view->phrase = $phrase;
         $result = Helper::getActionResult('search', [$phrase]);
-        $this->view->notes = $result->payload->notes;
-        $total = count($this->view->notes);
+		
+		$total = 0;
+		
+		if (isset($result->payload->notes))
+        {
+			$this->view->notes = $result->payload->notes;
+			$total = count($this->view->notes);
+		}
 
         if ($total == 0)
         {
