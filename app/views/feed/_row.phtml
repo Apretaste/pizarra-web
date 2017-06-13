@@ -1,7 +1,7 @@
 <tr class="list-item-new">
     <td width="50" align="right">
         <div class="image-message">
-            <a href="/profile/of/{{ note.profile.username }}">
+            <a href="/profile/of/{{ note.profile.username }}" onclick = "$('#shadow-layer').show();">
             <img src="{{ note.profile.picture_public }}" width="100%" height="100%"/>
             </a>
         </div>
@@ -10,7 +10,7 @@
         <div>
             <span class="flag-icon flag-icon-ca user-country"></span>
             <h2 class="title-new inline">
-                <a class="action-profile user-title" href="/profile/of/{{ name }}">@{{ name }}</a>
+                <a class="action-profile user-title" href="/profile/of/{{ name }}" onclick = "$('#shadow-layer').show();">@{{ name }}</a>
             </h2>
             <span class="ion-female user-genre female"></span>
             <span class="notes-time">| {{ inserted }}</span>
@@ -20,17 +20,22 @@
         </p>
 
         <div class="buttons-section">
-            <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="like/{{ id }}">
-                <i class="ion-ios-heart like"></i><i class="like-number">{{ likes }}</i>
+            <a class="action category-link {{ hideOwnLinks }}" href="#"
+               data-action="like/{{ id }}"
+               data-callback="$('#likes-{{ id }}').html(intval($('#likes-{{ id }}').html()) + 1);">
+                <i class="ion-ios-heart like"></i><i id = "likes-{{ id }}" class="like-number">{{ likes }}</i>
             </a>
-            <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="follow/{{ name }}"><i class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
+            <a class="action category-link {{ hideOwnLinks }}" href="#"
+                data-action="follow/{{ name }}"
+                data-callback="$('#follow-heart-{{ id }}').css('color','red');">
+                <i id="follow-heart-{{ id }}" class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i></a>
             <a class="category-link {{ hideOwnLinks }}" href="/chats/with/{{ name }}"><i class="icon ion-ios-chatbubble"></i></a>
-            <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="block/{{ name }}"
+            <!-- <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="block/{{ name }}"
                data-confirm="true"
                data-confirm-msg="De verdad quieres bloquear a <b>@{{ name }}</b>? No ver&aacute;s m&aacute;s sus notas."
                data-confirm-title="Bloquear usuario">
                 <i class="ion-close button-symbol"></i>
-            </a>
+            </a> -->
         </div>
     </td>
 </tr>

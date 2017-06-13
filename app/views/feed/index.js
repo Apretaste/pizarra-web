@@ -1,34 +1,5 @@
 $(function(){
 
-    $(".show-search-box").click(function(){
-        $("#search-box").dialog({
-            title: null,
-            modal: true,
-            buttons: [
-                {
-                    text: "Buscar",
-                    click: function() {
-                        var query = $("#search-query").val();
-                        query = trim(query);
-                        if (query != '')
-                        {
-                            $( this ).dialog( "close" );
-                            pizarra.redirect("feed/search/" + query);
-                        }
-                    }
-                },
-                {
-                    text: "Cerrar",
-                    class: "btn-close-dialog",
-                    click: function(){
-                        $(this).dialog('close');
-                    }
-                }
-
-            ]
-        });
-    });
-
     $("#edtNote").on('keydown', function(e)
     {
         if (e.keyCode == 13)
@@ -51,12 +22,6 @@ $(function(){
         $("#search-box").hide();
         $(".top-buttons").show();
     });
-
-    highlight();
-
-    //setTimeout("refreshNotes(false);", 20000);
-
-    pizarra.reEvents();
 });
 
 function refreshNotes(showLoading, autoRefresh)
@@ -70,7 +35,7 @@ function refreshNotes(showLoading, autoRefresh)
     var timeout = 20000;
     var htmlNotes = '';
     var notes = pizarra.action("/feed", null, showLoading).notes;
-    var tpl = $("#news-template").html();
+    var tpl = base64_decode(trim($("#news-template").html()));
 
     for(var item in notes)
     {
@@ -105,21 +70,4 @@ function sendNote(){
     var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
     refreshNotes();
     $("#edtNote").val('');
-}
-
-function highlight()
-{
-    $("p.note").each(function(e){
-        $(this).html($(this).html().linkify());
-    });
-
-    $("a").each(function(){
-        var href = $(this).attr('href');
-
-        if (strpos(href, 'mailto:') !== false)
-        {
-            var username = substr($(this).html(),1);
-            $(this).attr('href',"/profile/of/" + username);
-        }
-    });
 }

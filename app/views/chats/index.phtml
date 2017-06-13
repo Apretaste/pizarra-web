@@ -9,7 +9,7 @@
 
             <tr class="list-message">
 				<td width="50" valign="top" align="right" style="padding-right:5px;">
-                <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>">
+                <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>" onclick = "$('#shadow-layer').show();">
                     <div class="w-clearfix column-left">
                         <div class="image-message chat">
                             <img width="100%" height="100%" src="<?php echo $note->profile->picture_public; ?>">
@@ -18,7 +18,7 @@
 				</a>
 				</td>
 				<td>
-				<a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>">
+				<a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->username; ?>" onclick = "$('#shadow-layer').show();">
                     <div class="column-right">
                         <span class="flag-icon flag-icon-cu user-country"></span>
                         <div class="message-title user-title"><b>@<?php echo $note->username; ?></b></div>
@@ -46,7 +46,7 @@
         <?php if (is_array($notes)) foreach($notes as $note): ?>
         <tr class="list-message">
             <td width="50" valign="top" align="right" style="padding-right:5px;">
-            <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>" style="text-decoration:none;">
+            <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>" style="text-decoration:none;" onclick = "$('#shadow-layer').show();">
                 <div class="w-clearfix column-left">
                     <div class="image-message chat">
                         <img width="100%" height="100%" src="<?php echo $note->profile->picture_public; ?>">
@@ -55,7 +55,7 @@
             </a>
             </td>
             <td>
-                <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>" style="text-decoration:none;">
+                <a class="w-clearfix w-inline-block" href="/chats/with/<?php echo $note->profile->username; ?>" style="text-decoration:none;" onclick = "$('#shadow-layer').show();">
                 <div class="column-right">
                     <span class="flag-icon flag-icon-cu user-country"></span>
                     <div class="message-title user-title">@<?php echo $note->profile->username; ?></div>
@@ -74,7 +74,6 @@
                 </a>
             </td>
         </tr>
-
         <?php endforeach; ?>
     </table>
 </div>

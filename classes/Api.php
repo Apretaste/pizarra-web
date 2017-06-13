@@ -32,17 +32,20 @@ class Api {
 
     static function start($email)
     {
-        return self::get("api/start", ["email" => $email]);
+        $result = self::get("api/start", ["email" => $email]);
+        return $result;
     }
 
     static function login($email, $pin)
     {
-        $result = self::get("api/auth", ["email" => $email, "pin" => $pin]);
+        $result = self::get("api/auth", ["email" => $email, "pin" => $pin, "appname" => "pizarra"]);
+
         if ($result->code == "ok")
         {
             $di = \Phalcon\DI\FactoryDefault::getDefault();
             $di->getShared("session")->set("token", $result->token);
             $di->getShared("session")->set("email", $email);
+            Helper::getCurrentProfile(true);
         }
 		return $result;
     }

@@ -24,6 +24,7 @@
 <script type="text/javascript">
     $(function() {
         pizarra.currentProfile = <?php echo json_encode(Helper::getCurrentProfile()); ?>;
+		pizarra.currentProfile = pizarra.getCurrentProfile(); // do fixes to fields
     });
 </script>
 

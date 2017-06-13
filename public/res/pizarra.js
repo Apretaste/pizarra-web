@@ -67,9 +67,16 @@ var pizarra = {
     currentProfile: null,
 
     /**
+     * List of notes of current chat
+     *
+     * @type Array
+     */
+    currentChat: {code: "ok", last_id: 0, friendUsername: null, chats: []},
+
+    /**
      * List of last results
      *
-     * @type array
+     * @type Array
      */
     lastSearchResults: null,
 
@@ -139,7 +146,7 @@ var pizarra = {
                     if (typeof(callback) == "function")
                         callback(receptor.result);
 
-                    else if (typeof(callback) == "string")
+                    if (typeof(callback) == "string")
                         eval(callback);
                 }
             }
@@ -203,6 +210,18 @@ var pizarra = {
             this.currentProfile = this.getProfile();
         }
 
+		// fix birthday
+		
+		if (strpos(this.currentProfile.date_of_birth, "-") !== false)
+		{
+			var parts = explode('-', this.currentProfile.date_of_birth);
+			
+			if (intval(parts[2]) < 10) parts[2] = "0" + intval(parts[2]);
+			if (intval(parts[1]) < 10) parts[1] = "0" + intval(parts[1]);
+			
+			this.currentProfile.date_of_birth = parts[2] + "/" + parts[1] + "/" + parts[0];
+		}
+		
         return this.currentProfile;
     },
 

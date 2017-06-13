@@ -2,22 +2,18 @@
 
   <!-- left globe template -->
   <ul id="chat-left-template" class="hidden">
-    <?php echo Helper::parseTpl("chats/_left"); ?>
+    <?php echo base64_encode(Helper::parseTpl("chats/_left")); ?>
   </ul>
 
   <!-- right globe template -->
   <ul id="chat-right-template" class="hidden">
-      <?php echo Helper::parseTpl("chats/_right"); ?>
+      <?php echo base64_encode(Helper::parseTpl("chats/_right")); ?>
   </ul>
 
   <ul id = "chat-list" class="list list-chats">
       <!-- dynamic zone -->
         <?php
 
-       /* $_left = Helper::parseTpl("chats/_left", [
-                [$friendProfile, 'note.profile.', '']
-        ]);
-*/
         $_left = Helper::getTemplate("chats/_left");
         $_right = Helper::getTemplate("chats/_right");
 
@@ -42,4 +38,8 @@
 
 <script type="text/javascript">
     <?php include "with.js"; ?>
+    $(function(){
+        pizarra.currentChat.chats = <?php echo json_encode(array_reverse($notes)); ?>;
+        pizarra.friendUsername = '<?php echo $friendProfile->username; ?>';
+    });
 </script>

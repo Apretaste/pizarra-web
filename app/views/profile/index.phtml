@@ -1,8 +1,9 @@
-<div class="body padding">
+<div class="body padding profile-form hidden">
     <div class="separator-button"></div>
     <div id="edit-image" class="profile-image">
         <a href="#" style="text-decoration: none;">
-            <img id= "picture" src="<?php echo $currentProfile->picture_public; ?>" alt="@<?php echo $currentProfile->username;?> en Pizarra" height="200" width="200"/>
+            <img id="picture" src="<?php echo $currentProfile->picture_public; ?>"
+                 alt="@<?php echo $currentProfile->username; ?> en Pizarra" height="200" width="200"/>
         </a>
     </div>
     <input id="picture-file" type="file" multiple=true data-max-file-count="1" style="display:none;">
@@ -13,281 +14,313 @@
         <div>
             <label class="label-form" for="fullname">NOMBRE COMPLETO</label>
             <div class="separator-fields"></div>
-            <input id="fullname" class="w-input input-form" id="full-name-field" type="text" name="full-name" data-name="full-name" placeholder="Fulano De Tal" required="required">
-            <div class="separator-fields"></div>
+            <input id="fullname" class="w-input input-form" id="full-name-field" type="text" name="full-name"
+                   data-name="full-name" placeholder="Fulano De Tal" required="required">
+			<div class="separator-fields"></div>			
         </div>
         <div>
             <label class="label-form" for="birthday">FECHA DE NACIMIENTO</label>
             <div class="separator-fields"></div>
-            <input id="birthday" class="w-input input-form" id="birthday-field" type="date" name="birthday" data-name="birthday" placeholder="DD/MM/AA" pattern="(^(((0[1-9]|1[0-9]|2[0-8])[\/](0[1-9]|1[012]))|((29|30|31)[\/](0[13578]|1[02]))|((29|30)[\/](0[4,6,9]|11)))[\/](19|[2-9][0-9])\d\d$)|(^29[\/]02[\/](19|[2-9][0-9])(00|04|08|12|16|20|24|28|32|36|40|44|48|52|56|60|64|68|72|76|80|84|88|92|96)$)" required="required">
+            <table width="100%">
+                <tr>
+                    <td width="23%">
+                        <!-- <label class="label-form">D&Iacute;A:</label> -->
+                        <select style="padding:5px;" id="birthday-day" class="input-form w-select w-clearfix">
+                            <?php for ($i = 1; $i <= 31; $i++): ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </td>
+                    <td width="47%">
+                        <!-- <label class="label-form">MES:</label> -->
+                        <select style="padding:5px;" id="birthday-month" class="input-form w-select w-clearfix">
+                            <?php $months = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]; ?>
+                            <?php for ($i = 1; $i <= 12; $i++): ?>
+                                <option value="<?php echo $i; ?>"><?php echo $months[$i]; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </td>
+                    <td width="30%">
+                        <!-- <label class="label-form">A&Ntilde;O:</label> -->
+                        <select style="padding:5px;" id="birthday-year" class="input-form w-select w-clearfix">
+                            <?php for ($i = intval(date("Y")."")-90; $i <= intval(date("Y")."")-12; $i++): ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="gender">GÉNERO</label>
-                <div class="w-clearfix">
-                    <select id="gender" class="input-form w-select w-clearfix">
-                        <option value="F">Femenino</option>
-                        <option value="M">Masculino</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="orientation">ORIENTACIÓN SEXUAL</label>
-                <div class="w-clearfix">
-                    <select id="orientation" class="input-form w-select w-clearfix">
-                        <option value="HETERO">Hetero</option>
-                        <option value="HOMO">Gay</option>
-                        <option value="BI">Bi</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="country">PAÍS</label>
-                <div class="w-clearfix block-input-combined" id="location" type="text" name="location" data-name="location">
-                    <select id="country" class="input-form w-select w-clearfix">
-                        <option value="US">Estados Unidos</option>
-                        <option value="AT">Austria</option>
-                        <option value="ES">España</option>
-                        <option value="BR">Brasil</option>
-                        <option value="CU">Cuba</option>
-                        <option value="CA">Canada</option>
-                        <option value="UY">Uruguay</option>
-                        <option value="AR">Argentina</option>
-                        <option value="DE">Alemania</option>
-                        <option value="GB">Reino Unido</option>
-                        <option value="FR">Francia</option>
-                        <option value="VI">Islas Vírgenes, US</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div id="city-select" style="display:none;">
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="province">PROVINCIA</label>
-                <div class="w-clearfix">
-                    <select id="province" class="input-form w-select w-clearfix">
-                        <option value="LA_HABANA">La Habana</option>
-                        <option value="PINAR_DEL_RIO">Pinar del R&iacute;o</option>
-                        <option value="ARTEMISA">Artemisa</option>
-                        <option value="MAYABEQUE">Mayabeque</option>
-                        <option value="MATANZAS">Matanzas</option>
-                        <option value="VILLA_CLARA">Villas Clara</option>
-                        <option value="CIENFUEGOS">Cienfuegos</option>
-                        <option value="SANCTI_SPIRITUS">Sancti Sp&iacute;ritus</option>
-                        <option value="CIEGO_DE_AVILA">Ciego de &Aacute;vila</option>
-                        <option value="CAMAGUEY">Camagüey</option>
-                        <option value="LAS_TUNAS">Las Tunas</option>
-                        <option value="HOLGUIN">Holguín</option>
-                        <option value="GRANMA">Granma</option>
-                        <option value="SANTIAGO_DE_CUBA">Santiago de Cuba</option>
-                        <option value="GUANTANAMO">Guantánamo</option>
-                        <option value="ISLA_DE_LA_JUVENTUD">Isla de la Juventud</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div id="state-select" style="display:none;">
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="province">ESTADO</label>
-                <div class="w-clearfix">
-                    <select id="usstate" class="input-form w-select w-clearfix">
-                        <option value="AL">Alabama</option>
-                        <option value="AK">Alaska</option>
-                        <option value="AS">American Samoa</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="AR">Arkansas</option>
-                        <option value="CA">California</option>
-                        <option value="CO">Colorado</option>
-                        <option value="CT">Connecticut</option>
-                        <option value="DE">Delaware</option>
-                        <option value="DC">District of Columbia</option>
-                        <option value="FL">Florida</option>
-                        <option value="GA">Georgia</option>
-                        <option value="GU">Guam</option>
-                        <option value="HI">Hawaii</option>
-                        <option value="ID">Idaho</option>
-                        <option value="IL">Illinois</option>
-                        <option value="IN">Indiana</option>
-                        <option value="IA">Iowa</option>
-                        <option value="KS">Kansas</option>
-                        <option value="KY">Kentucky</option>
-                        <option value="LA">Louisiana</option>
-                        <option value="ME">Maine</option>
-                        <option value="MD">Maryland</option>
-                        <option value="MH">Islas Marshall</option>
-                        <option value="MA">Maine</option>
-                        <option value="MI">Michigan</option>
-                        <option value="FM">Micronesia</option>
-                        <option value="MN">Minnesota</option>
-                        <option value="MS">Mississippi</option>
-                        <option value="MO">Missouri</option>
-                        <option value="MT">Montana</option>
-                        <option value="NE">Nebraska</option>
-                        <option value="NV">Nevada</option>
-                        <option value="NH">Nuevo Hampshire</option>
-                        <option value="NJ">Nueva Jersey</option>
-                        <option value="NM">Nuevo M&eacute;xico</option>
-                        <option value="NY">Nueva York</option>
-                        <option value="NC">Carolina del norte</option>
-                        <option value="ND">Dakota del Norte</option>
-                        <option value="MP">Northern Mariana Islands</option>
-                        <option value="OH">Ohio</option>
-                        <option value="OK">Oklahoma</option>
-                        <option value="OR">Oreg&oacute;n</option>
-                        <option value="PW">Palau</option>
-                        <option value="PA">Pennsylvania</option>
-                        <option value="PR">Puerto Rico</option>
-                        <option value="RI">Rhode Island</option>
-                        <option value="SC">Carolina del Sur</option>
-                        <option value="SD">Dakota del Sur</option>
-                        <option value="TN">Tennessee</option>
-                        <option value="TX">Texas</option>
-                        <option value="UT">Utah</option>
-                        <option value="VT">Vermont</option>
-                        <option value="VA">Virginia</option>
-                        <option value="VI">Islas V&iacute;rgenes</option>
-                        <option value="WA">Washington</option>
-                        <option value="WV">Virginia del Oeste</option>
-                        <option value="WI">Wisconsin</option>
-                        <option value="WY">Wyoming</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="eyes">OJOS</label>
-                <div class="w-clearfix">
-                    <select id="eyes" class="input-form w-select w-clearfix">
-                        <option value="NEGRO">Negros</option>
-                        <option value="CARMELITA">Carmelitas</option>
-                        <option value="VERDE">Verdes</option>
-                        <option value="AZUL">Azules</option>
-                        <option value="AVELLANA">Avellana</option>
-                        <option value="OTRO">Otro color</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="hair">PELO</label>
-                <div class="w-clearfix">
-                    <select id="hair" class="input-form w-select w-clearfix">
-                        <option value="TRIGUENO">Trigue&ntilde;o</option>
-                        <option value="CASTANO">Casta&ntilde;o</option>
-                        <option value="RUBIO">Rubio</option>
-                        <option value="NEGRO">Negro</option>
-                        <option value="ROJO">Rojo</option>
-                        <option value="BLANCO">Blanco</option>
-                        <option value="OTRO">Otro</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="skin">PIEL</label>
-                <div class="w-clearfix">
-                    <select id="skin" class="input-form w-select w-clearfix">
-                        <option value="BLANCO">Blanca</option>
-                        <option value="NEGRO">Negra</option>
-                        <option value="MESTIZO">Mestiza</option>
-                        <option value="OTRO">Otra</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="status">ESTADO CIVIL</label>
-                <div class="w-clearfix">
-                    <select id="status" class="input-form w-select w-clearfix">
-                        <option value="SOLTERO">Soltero</option>
-                        <option value="SALIENDO">Saliendo</option>
-                        <option value="COMPROMETIDO">Comprometido</option>
-                        <option value="CASADO">Casado</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="level">NIVEL ESCOLAR</label>
-                <div class="w-clearfix">
-                    <select id="level" class="input-form w-select w-clearfix">
-                        <option value="PRIMARIO">Primaria</option>
-                        <option value="SECUNDARIO">Secundaria</option>
-                        <option value="TECNICO">Técnico</option>
-                        <option value="UNIVERSITARIO">Universitario</option>
-                        <option value="POSTGRADUADO">Postgraduado</option>
-                        <option value="DOCTORADO">Doctorado</option>
-                        <option value="OTRO">Otro</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-button"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form" for="occupation">PROFESI&Oacute;N</label>
-                <div class="separator-fields"></div>
-                <div class="block-input-combined">
-                    <input id="occupation" class="w-input input-form left" id="profesion" type="text" name="profesion" data-name="profesion" placeholder="Director Ejecutivo en Etecsa">
-                </div>
-            </div>
-            <div class="separator-fields"></div>
-        </div>
-        <div>
-            <div class="w-clearfix one-line">
-                <label class="label-form middle" for="religion">RELIGIÓN</label>
-                <div class="w-clearfix">
-                    <select id="religion" class="input-form w-select w-clearfix">
-                        <option value="ATEISMO">Ateísmo</option>
-                        <option value="SECULARISMO">Secularismo</option>
-                        <option value="AGNOSTICISMO">Agnosticismo</option>
-                        <option value="ISLAM">Islam</option>
-                        <option value="JUDAISTA">Judaismo</option>
-                        <option value="CATOLICISMO">Catolicismo</option>
-                        <option value="ABAKUA">Abakua</option>
-                        <option value="SANTERO">Santer&iacute;a</option>
-                        <option value="YORUBA">Yoruba</option>
-                        <option value="BUDISMO">Budismo</option>
-                        <option value="CRISTIANISMO">Cristianismo</option>
-                        <option value="OTRA">Otra</option>
-                    </select>
-                </div>
-            </div>
-            <div class="separator-button"></div>
-        </div>
-
-        <a class="w-button action-button" href="#" id="btnSaveData">GUARDAR PERFIL</a>
+        <input id="birthday" class="hidden">
     </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="gender">GÉNERO</label>
+            <div class="w-clearfix">
+                <select id="gender" class="input-form w-select w-clearfix">
+                    <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="orientation">ORIENTACIÓN SEXUAL</label>
+            <div class="w-clearfix">
+                <select id="orientation" class="input-form w-select w-clearfix">
+                    <option value="HETERO">Hetero</option>
+                    <option value="HOMO">Gay</option>
+                    <option value="BI">Bi</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="country">PAÍS</label>
+            <div class="w-clearfix block-input-combined" id="location" type="text" name="location" data-name="location">
+                <select id="country" class="input-form w-select w-clearfix">
+                    <option value="US">Estados Unidos</option>
+                    <option value="AT">Austria</option>
+                    <option value="ES">España</option>
+                    <option value="BR">Brasil</option>
+                    <option value="CU">Cuba</option>
+                    <option value="CA">Canada</option>
+                    <option value="UY">Uruguay</option>
+                    <option value="AR">Argentina</option>
+                    <option value="DE">Alemania</option>
+                    <option value="GB">Reino Unido</option>
+                    <option value="FR">Francia</option>
+                    <option value="VI">Islas Vírgenes, US</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div id="city-select" style="display:none;">
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="province">PROVINCIA</label>
+            <div class="w-clearfix">
+                <select id="province" class="input-form w-select w-clearfix">
+                    <option value="LA_HABANA">La Habana</option>
+                    <option value="PINAR_DEL_RIO">Pinar del R&iacute;o</option>
+                    <option value="ARTEMISA">Artemisa</option>
+                    <option value="MAYABEQUE">Mayabeque</option>
+                    <option value="MATANZAS">Matanzas</option>
+                    <option value="VILLA_CLARA">Villas Clara</option>
+                    <option value="CIENFUEGOS">Cienfuegos</option>
+                    <option value="SANCTI_SPIRITUS">Sancti Sp&iacute;ritus</option>
+                    <option value="CIEGO_DE_AVILA">Ciego de &Aacute;vila</option>
+                    <option value="CAMAGUEY">Camagüey</option>
+                    <option value="LAS_TUNAS">Las Tunas</option>
+                    <option value="HOLGUIN">Holguín</option>
+                    <option value="GRANMA">Granma</option>
+                    <option value="SANTIAGO_DE_CUBA">Santiago de Cuba</option>
+                    <option value="GUANTANAMO">Guantánamo</option>
+                    <option value="ISLA_DE_LA_JUVENTUD">Isla de la Juventud</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div id="state-select" style="display:none;">
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="province">ESTADO</label>
+            <div class="w-clearfix">
+                <select id="usstate" class="input-form w-select w-clearfix">
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AS">American Samoa</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="GU">Guam</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MH">Islas Marshall</option>
+                    <option value="MA">Maine</option>
+                    <option value="MI">Michigan</option>
+                    <option value="FM">Micronesia</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">Nuevo Hampshire</option>
+                    <option value="NJ">Nueva Jersey</option>
+                    <option value="NM">Nuevo M&eacute;xico</option>
+                    <option value="NY">Nueva York</option>
+                    <option value="NC">Carolina del norte</option>
+                    <option value="ND">Dakota del Norte</option>
+                    <option value="MP">Northern Mariana Islands</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oreg&oacute;n</option>
+                    <option value="PW">Palau</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="PR">Puerto Rico</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">Carolina del Sur</option>
+                    <option value="SD">Dakota del Sur</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="VI">Islas V&iacute;rgenes</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">Virginia del Oeste</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="eyes">OJOS</label>
+            <div class="w-clearfix">
+                <select id="eyes" class="input-form w-select w-clearfix">
+                    <option value="NEGRO">Negros</option>
+                    <option value="CARMELITA">Carmelitas</option>
+                    <option value="VERDE">Verdes</option>
+                    <option value="AZUL">Azules</option>
+                    <option value="AVELLANA">Avellana</option>
+                    <option value="OTRO">Otro color</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="hair">PELO</label>
+            <div class="w-clearfix">
+                <select id="hair" class="input-form w-select w-clearfix">
+                    <option value="TRIGUENO">Trigue&ntilde;o</option>
+                    <option value="CASTANO">Casta&ntilde;o</option>
+                    <option value="RUBIO">Rubio</option>
+                    <option value="NEGRO">Negro</option>
+                    <option value="ROJO">Rojo</option>
+                    <option value="BLANCO">Blanco</option>
+                    <option value="OTRO">Otro</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="skin">PIEL</label>
+            <div class="w-clearfix">
+                <select id="skin" class="input-form w-select w-clearfix">
+                    <option value="BLANCO">Blanca</option>
+                    <option value="NEGRO">Negra</option>
+                    <option value="MESTIZO">Mestiza</option>
+                    <option value="OTRO">Otra</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="status">ESTADO CIVIL</label>
+            <div class="w-clearfix">
+                <select id="status" class="input-form w-select w-clearfix">
+                    <option value="SOLTERO">Soltero</option>
+                    <option value="SALIENDO">Saliendo</option>
+                    <option value="COMPROMETIDO">Comprometido</option>
+                    <option value="CASADO">Casado</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="level">NIVEL ESCOLAR</label>
+            <div class="w-clearfix">
+                <select id="level" class="input-form w-select w-clearfix">
+                    <option value="PRIMARIO">Primaria</option>
+                    <option value="SECUNDARIO">Secundaria</option>
+                    <option value="TECNICO">Técnico</option>
+                    <option value="UNIVERSITARIO">Universitario</option>
+                    <option value="POSTGRADUADO">Postgraduado</option>
+                    <option value="DOCTORADO">Doctorado</option>
+                    <option value="OTRO">Otro</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-button"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form" for="occupation">PROFESI&Oacute;N</label>
+            <div class="separator-fields"></div>
+            <div class="block-input-combined">
+                <input id="occupation" class="w-input input-form left" id="profesion" type="text" name="profesion"
+                       data-name="profesion" placeholder="Director Ejecutivo en Etecsa">
+            </div>
+        </div>
+        <div class="separator-fields"></div>
+    </div>
+    <div>
+        <div class="w-clearfix one-line">
+            <label class="label-form middle" for="religion">RELIGIÓN</label>
+            <div class="w-clearfix">
+                <select id="religion" class="input-form w-select w-clearfix">
+                    <option value="ATEISMO">Ateísmo</option>
+                    <option value="SECULARISMO">Secularismo</option>
+                    <option value="AGNOSTICISMO">Agnosticismo</option>
+                    <option value="ISLAM">Islam</option>
+                    <option value="JUDAISTA">Judaismo</option>
+                    <option value="CATOLICISMO">Catolicismo</option>
+                    <option value="ABAKUA">Abakua</option>
+                    <option value="SANTERO">Santer&iacute;a</option>
+                    <option value="YORUBA">Yoruba</option>
+                    <option value="BUDISMO">Budismo</option>
+                    <option value="CRISTIANISMO">Cristianismo</option>
+                    <option value="OTRA">Otra</option>
+                </select>
+            </div>
+        </div>
+        <div class="separator-button"></div>
+    </div>
+
+    <a class="w-button action-button" href="#" id="btnSaveData">GUARDAR PERFIL</a>
+</div>
 </div>
 
 <style>
-#picture{
-    position: relative;
-    display: inline-block;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-radius: 50%;
-}
+    #picture {
+        position: relative;
+        display: inline-block;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        border-radius: 50%;
+    }
 </style>
 
 <script type="text/javascript">
-<?php include "index.js"; ?>
+    <?php include "index.js"; ?>
 </script>

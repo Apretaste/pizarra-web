@@ -5,12 +5,13 @@
             <div class="w-container" style="margin-right:5px;margin-left:10px;">
                 <div class="wrapper-mask" data-ix="menu-mask"></div>
                 <div class="hidden" id="navbar-title"></div>
-                <a href="/"><img id = "logo" src="<?php echo $assets; ?>images/icon.png"></a>
+                <a href="/" onclick = "$('#shadow-layer').show();"><img id = "logo" src="<?php echo $assets; ?>images/logoApretaste.png" width="35" style="margin:0px;"></a>
 
-                <a class="w-inline-block navbar-button right" href="<?php if (isset($closeLink)) echo $closeLink; else echo "/feed";?>">
+                <?php if ($showCloseButton): ?>
+                <a class="w-inline-block navbar-button right" href="<?php if (isset($closeLink)) echo $closeLink; else echo "/feed";?>" onclick = "$('#shadow-layer').show();">
                     <div class="navbar-button-icon icon ion-ios-close"></div>
                 </a>
-
+                <?php endif; ?>
                 <!-- page notes buttons -->
 				<?php if ($showRefreshButton): ?>
                 <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="#" onclick = "refreshNotes(true, false);">
@@ -25,13 +26,13 @@
                 <?php endif; ?>
 
                 <?php if ($showProfileButton): ?>
-                <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/profile">
+                <a class="w-inline-block navbar-button right show-edit top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/profile" onclick = "$('#shadow-layer').show();">
                     <div class="navbar-button-icon icon ion-ios-person"></div>
                 </a>
                 <?php endif; ?>
 
                 <?php if ($showChatsButton): ?>
-                <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/chats">
+                <a class="w-inline-block navbar-button right show-chats top-buttons page-top-buttons page-notes-buttons" href="<?php $wwwroot; ?>/chats" onclick = "$('#shadow-layer').show();">
                     <div class="navbar-button-icon icon ion-ios-chatbubble"></div>
                 </a>
                 <?php endif; ?>

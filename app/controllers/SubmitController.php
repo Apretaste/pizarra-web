@@ -4,7 +4,6 @@ use Phalcon\Mvc\Controller;
 
 class SubmitController extends Controller
 {
-    static
     public function indexAction()
     {
 

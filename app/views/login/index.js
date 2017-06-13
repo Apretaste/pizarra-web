@@ -73,11 +73,10 @@ function login() {
     var result = pizarra.action("login/" + email + "/" + pin, false, false, true, function(result){
 		if (result.code == "error" || result.code == 215)
 		{
-			pizarra.messageBox('Acceso denegado');
+			pizarra.messageBox('Su c&oacute;digo es incorrecto. Por favor, revise su email e intente nuevamente.');
 			$("#password").val('');
-			$("#password-div").hide();
-			$("#login-div").fadeIn(500);
 			$("#shadow-layer").hide();
+			$("#password").focus();
 		} else {
 			pizarra.setToken(result.message);
 			pizarra.redirect("feed");

@@ -20,7 +20,7 @@
 
         <div id = "interests" style="text-align:center;">
             <?php foreach ($profile->interests as $interest): ?>
-            <span> <?php echo $interest; ?></span>
+            <div class="item"> <?php echo $interest; ?></div>
             <?php endforeach; ?>
         </div>
         <?php endif; ?>
@@ -29,14 +29,19 @@
         <?php if ($currentProfile->username != $profile->username): ?>
         <div class="w-clearfix options-new">
             <?php if (!$profile->follow): ?>
-            <a class="action w-clearfix w-inline-block action-button profile-button" data-action="follow/<?php echo $profile->username ; ?>" data-callback="$(this).hide();" data-showloading="true" href="#">
+            <a id="btn-follow" class="action w-clearfix w-inline-block action-button profile-button"
+               data-action="follow/<?php echo $profile->username ; ?>"
+               data-callback="$('#btn-follow').hide();"
+               data-showloading="true" href="#">
                 <div class="icon-button bigger">
                     <div class="icon ion-person-add"></div>
                 </div>
                 Seguir
             </a>
             <?php endif; ?>
-            <a href="<?php echo "/chats/with/{$profile->username}"; ?>" class="w-button w-inline-block action-button profile-button">
+            <a id="btn-chat" href="<?php echo "/chats/with/{$profile->username}"; ?>"
+               class="w-button w-inline-block action-button profile-button"
+               onclick = "$('#shadow-layer').show();">
                 <div class="icon-button bigger">
                     <div class="icon ion-ios-chatbubble"></div>
                 </div>

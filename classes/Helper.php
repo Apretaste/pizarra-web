@@ -13,14 +13,28 @@ class Helper
      * Singleton for get current profile
      * @return object
      */
-    public static function getCurrentProfile()
+    public static function getCurrentProfile($force = false)
     {
-        if (is_null(self::$currentProfile))
+        if (is_null(self::$currentProfile) || $force == true)
         {
-            $result = self::getActionResult("profile");
-            if (isset($result->payload->profile))
-                self::$currentProfile = self::getActionResult("profile")->payload->profile;
+            $di = \Phalcon\DI\FactoryDefault::getDefault();
+
+            $currentProfileSession = null;
+            if ($di->getShared("session")->has('profile'))
+                $currentProfileSession = $di->getShared("session")->get('profile');
+
+            if (!is_null($currentProfileSession) && $force == false)
+                self::$currentProfile = $currentProfileSession;
+            else
+            {
+                $result = self::getActionResult("profile");
+                if (isset($result->payload->profile))
+                    self::$currentProfile = $result->payload->profile;
+
+                $di->getShared("session")->set('profile', self::$currentProfile);
+            }
         }
+
         return self::$currentProfile;
     }
 
@@ -71,7 +85,8 @@ class Helper
         $html = $tpl;
         $parses[] = [self::getCurrentProfile(), 'profile.', ''];
 
-        foreach ($parses as $parse) {
+        foreach ($parses as $parse)
+        {
             $data = $parse[0];
             $prefix = $parse[1];
             $suffix = $parse[2];
@@ -110,17 +125,19 @@ class Helper
 
     static function processProfile($profile)
     {
-        $p = $profile->picture_internal;
-        $p = str_replace("\\", "/", $p);
-        $p = explode("/", $p);
-        $p = $p[count($p) - 1];
-        $profile->picture_internal = $p;
+		if (is_object($profile))
+		{
+			$p = $profile->picture_internal;
+			$p = str_replace("\\", "/", $p);
+			$p = explode("/", $p);
+			$p = $p[count($p) - 1];
+			$profile->picture_internal = $p;
 
-        if (trim($profile->picture_public) == "")
-            $profile->picture_public = "/res/images/user.png";
-        else
-            $profile->picture_public = "/picture/of/$p";
-
+			if (!isset($profile->picture_public) || trim($profile->picture_public) == "")
+				$profile->picture_public = "/res/images/user.png";
+			else
+				$profile->picture_public = "/picture/of/$p";
+		}
         return $profile;
     }
 

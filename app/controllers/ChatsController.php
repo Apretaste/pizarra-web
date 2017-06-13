@@ -19,6 +19,7 @@ class ChatsController extends ProtectedController
         }
 
         $this->view->showSearchButton = false;
+        $this->view->showChatsButton = false;
     }
 
     public function withAction($username = null)

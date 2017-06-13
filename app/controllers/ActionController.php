@@ -27,6 +27,8 @@ class ActionController extends Controller
 
         $result = Api::run("PERFIL BULK $bulk");
 
+        Helper::getCurrentProfile(true);
+
         $this->defaultResponse($result);
     }
     #endregion submits
@@ -62,9 +64,14 @@ class ActionController extends Controller
     {
         $result = Api::run("PIZARRA");
 
-        if (isset($result->notes)) foreach($result->notes as $note) {
+        $currentProfile = Helper::getCurrentProfile();
+        if (isset($result->notes)) foreach($result->notes as $note)
+        {
             $note->profile = Helper::processProfile($note->profile);
-            $note->hideOwnLinks = $note->profile->username == Helper::getCurrentProfile()->username? "hidden" : "";
+            $note->hideOwnLinks = $note->profile->username == $currentProfile->username? "hidden" : "";
+            $note->followcolor = 'black';
+            if ($note->friend == true)
+                $note->followcolor = 'red';
         }
 
         $this->defaultResponse($result);
@@ -146,6 +153,10 @@ class ActionController extends Controller
     {
         $pic = $this->request->get("picture");
         $result = Api::run("PERFIL FOTO", "", $pic);
+
+        // to know the location of saved picture in the server
+        Helper::getCurrentProfile(true);
+
         $this->defaultResponse($result);
     }
 
