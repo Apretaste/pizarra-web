@@ -3,15 +3,15 @@
 <!DOCTYPE html>
 <html class="w-mod-js w-mod-no-touch w-mod-video w-mod-no-ios wf-montserrat-n4-inactive wf-montserrat-n7-inactive wf-inactive">
 <head>
-	<meta charset="utf-8">
 	<title>Pizarra</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-	<link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/bootstrap.min.css">
 	<!-- 3rd party styles -->
+	<link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/ionicons.min.css" />
-	<!-- <link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/normalize.css"> -->
 	<link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/jquery-ui.min.css">
+
 	<!-- app styles -->
 	<link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/framework.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo $assets; ?>css/pizarra.css">
@@ -24,19 +24,29 @@
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/logoApretaste.png">
 	<link rel="apple-touch-icon" href="<?php echo $assets; ?>images/logoApretaste.png">
 
+	<!-- load jquery -->
 	<script type="text/javascript" src="<?php echo $assets; ?>js/jquery.min.js"></script>
 
-	<!-- load the browser notification library -->
-	<script type="text/javascript" src="https://cdn.pushassist.com/account/assets/psa-pizarracuba.js" async></script>
+	<script type="text/javascript">
+		// load push notifications
+		(function(p,u,s,h){
+			p._pcq=p._pcq||[];
+			p._pcq.push(['_currentTime',Date.now()]);
+			s=u.createElement('script');
+			s.type='text/javascript';
+			s.async=true;
+			s.src='https://cdn.pushcrew.com/js/13ea9a36b3f61a05ce3e1cf74f808a3d.js';
+			h=u.getElementsByTagName('script')[0];
+			h.parentNode.insertBefore(s,h);
+		})(window,document);
+
+		// add google analytics
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-100216557-1', 'auto');
+		ga('send', 'pageview');
+	</script>
 </head>
 <body>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-100216557-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
