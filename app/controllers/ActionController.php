@@ -99,6 +99,8 @@ class ActionController extends Controller
             if (!isset($note->profile)) continue;
             if (empty($note->username)) continue;
 
+            $note->sent = date("d/m/Y h:i:s a", (new DateTime($note->sent))->getTimestamp());
+
             $new_result[] = $note;
         }
 

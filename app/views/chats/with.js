@@ -72,8 +72,8 @@ function sendNote(){
         profile: pizarra.currentProfile,
         id: -1,
         username: pizarra.currentProfile.username,
-        text: note,
-        sent: date("Y-m-d h:i:s")
+        text: strip_tags(note),
+        sent: date("d/m/Y h:i:s a")
     });
 
     paintNotes(pizarra.currentChat);

@@ -6,12 +6,20 @@ class ChatsController extends ProtectedController
 {
     public function indexAction()
     {
-        $this->view->notes = Helper::getActionResult("chats")->payload->notes;
+        $notes = [];
+        $result = Helper::getActionResult("chats")->payload->notes;
+        if (isset($result->payload->notes))
+            $notes = $result->payload->notes;
+
+        $total = count($notes);
+
+        $this->view->notes = $notes;
+
         /*$this->view->unread = Api::run("NOTA UNREAD")->items;
         foreach($this->view->unread as $note)
             $note->profile = Helper::processProfile($note->profile);
         */
-        if (count($this->view->notes) /*+ count($this->view->unread)*/ == 0)
+        if ($total /*+ count($this->view->unread)*/ == 0)
         {
             Helper::setFlag("message", "No tienes conversaciones. Puedes chatear con cualquiera en Pizarra visitando su perfil.");
             Helper::setFlag("message_type", "info");
@@ -42,7 +50,7 @@ class ChatsController extends ProtectedController
             $dynamicNote = new stdClass();
             $dynamicNote->profile = clone $this->view->friendProfile;
             $dynamicNote->profile->picture_public = "/res/images/icon.png";
-            $dynamicNote->sent = date("d/m/Y h:i:s");
+            $dynamicNote->sent = date("d/m/Y h:i:s a");
             $dynamicNote->username = "pizarra";
             $dynamicNote->text = "Te propongo que le cuentes a @{$this->view->friendProfile->username} acerca de ti, seguro le gustar&aacute; conocerte. Abajo hay un espacio para que escribas y un bot&oacute;n para enviar la nota. Ahora los dejo para que conversen.";
             $notes[] = clone $dynamicNote;
