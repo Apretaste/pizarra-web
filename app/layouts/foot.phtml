@@ -1,7 +1,7 @@
 
 <!-- loading animation -->
 <div id="shadow-layer" style="position:fixed; top: 0px; left: 0px; height:100%;width:100%;background: #eeeeee; opacity: 0.95; z-index:9998; display: none; text-align: center; vertical-align: center;">
-    <img style="top: 50%; position: relative;" src="<?php echo $assets; ?>images/ajax-loader.gif">
+	<img style="top: 50%; position: relative;" src="<?php echo $assets; ?>images/ajax-loader.gif">
 </div>
 
 <div class="" id="dialog"></div>
@@ -22,10 +22,10 @@
 <?php $this->assets->outputJs(); ?>
 
 <script type="text/javascript">
-    $(function() {
-        pizarra.currentProfile = <?php echo json_encode(Helper::getCurrentProfile()); ?>;
+	$(function() {
+		pizarra.currentProfile = <?php echo json_encode(Helper::getCurrentProfile()); ?>;
 		pizarra.currentProfile = pizarra.getCurrentProfile(); // do fixes to fields
-    });
+	});
 </script>
 
 </body>

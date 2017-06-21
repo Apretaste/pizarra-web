@@ -1,5 +1,6 @@
 <?php $wwwhttp = $this->di->get('path')['http']; ?>
-<?php $assets = $wwwhttp . "/res/"; ?>
+<?php $assets = "$wwwhttp/res/"; ?>
+
 <!DOCTYPE html>
 <html class="w-mod-js w-mod-no-touch w-mod-video w-mod-no-ios wf-montserrat-n4-inactive wf-montserrat-n7-inactive wf-inactive">
 <head>
@@ -19,15 +20,16 @@
 	<?php $this->assets->outputCss(); ?>
 
 	<!-- app icons -->
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/iconApretaste.png">
-	<link rel="apple-touch-icon" href="<?php echo $assets; ?>images/iconApretaste.png">
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/logoApretaste.png">
-	<link rel="apple-touch-icon" href="<?php echo $assets; ?>images/logoApretaste.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/icon.png">
+	<link rel="apple-touch-icon" href="<?php echo $assets; ?>images/icon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $assets; ?>images/logo.png">
+	<link rel="apple-touch-icon" href="<?php echo $assets; ?>images/logo.png">
 
 	<!-- load jquery -->
 	<script type="text/javascript" src="<?php echo $assets; ?>js/jquery.min.js"></script>
 
 	<script type="text/javascript">
+/*
 		// load push notifications
 		(function(p,u,s,h){
 			p._pcq=p._pcq||[];
@@ -39,6 +41,7 @@
 			h=u.getElementsByTagName('script')[0];
 			h.parentNode.insertBefore(s,h);
 		})(window,document);
+*/
 
 		// add google analytics
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -1,73 +1,72 @@
 $(function(){
+	$("#edtNote").on('keydown', function(e)
+	{
+		if (e.keyCode == 13)
+			sendNote();
+	});
 
-    $("#edtNote").on('keydown', function(e)
-    {
-        if (e.keyCode == 13)
-            sendNote();
-    });
+	$("#btnSendNote").click(function(){
+		sendNote();
+	});
 
-    $("#btnSendNote").click(function(){
-        sendNote();
-    });
+	$('body').keypress(function(a){
+		if (a.keyCode == 27)
+		{
+			$("#search-box").hide();
+			$(".top-buttons").show();
+		}
+	});
 
-    $('body').keypress(function(a){
-        if (a.keyCode == 27)
-        {
-            $("#search-box").hide();
-            $(".top-buttons").show();
-        }
-    });
-
-    $("#btnCloseSearchBox").click(function(){
-        $("#search-box").hide();
-        $(".top-buttons").show();
-    });
+	$("#btnCloseSearchBox").click(function(){
+		$("#search-box").hide();
+		$(".top-buttons").show();
+	});
 });
 
 function refreshNotes(showLoading, autoRefresh)
 {
-    if (!isset(showLoading))
-        showLoading = true;
+	if (!isset(showLoading))
+		showLoading = true;
 
-    if (!isset(autoRefresh))
-        autoRefresh = true;
+	if (!isset(autoRefresh))
+		autoRefresh = true;
 
-    var timeout = 20000;
-    var htmlNotes = '';
-    var notes = pizarra.action("/feed", null, showLoading).notes;
-    var tpl = base64_decode(trim($("#news-template").html()));
+	var timeout = 20000;
+	var htmlNotes = '';
+	var notes = pizarra.action("/feed", null, showLoading).notes;
+	var tpl = base64_decode(trim($("#news-template").html()));
 
-    for(var item in notes)
-    {
-        var html = tpl;
-        var profile = notes[item].profile;
+	for(var item in notes)
+	{
+		var html = tpl;
+		var profile = notes[item].profile;
 
-        if (profile.picture != '1')
-            profile.picture_public = "/res/images/user.png";
+		if (profile.picture != '1')
+			profile.picture_public = "/res/images/user.png";
 
-        notes[item].followcolor = 'black';
-        if (notes[item].friend == true)
-            notes[item].followcolor = 'red';
+		notes[item].followcolor = 'black';
+		if (notes[item].friend == true)
+			notes[item].followcolor = 'red';
 
-        notes[item].text = notes[item].text.linkify();
+		notes[item].text = notes[item].text.linkify();
 
-        html = pizarra.replaceTags(html, profile, 'note.profile.');
-        html = pizarra.replaceTags(html, notes[item], '');
+		html = pizarra.replaceTags(html, profile, 'note.profile.');
+		html = pizarra.replaceTags(html, notes[item], '');
 
-        htmlNotes += html;
-    }
+		htmlNotes += html;
+	}
 
-    $("#list-news").html(htmlNotes);
+	$("#list-news").html(htmlNotes);
 
-    highlight();
-    pizarra.reEvents();
+	highlight();
+	pizarra.reEvents();
 
-   /* if (autoRefresh == true)
-        setTimeout("refreshNotes(false);", timeout);*/
+	/* if (autoRefresh == true)
+		setTimeout("refreshNotes(false);", timeout);*/
 }
 
 function sendNote(){
-    var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
-    refreshNotes();
-    $("#edtNote").val('');
+	var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
+	refreshNotes();
+	$("#edtNote").val('');
 }

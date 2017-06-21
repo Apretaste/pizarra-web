@@ -23,13 +23,13 @@ ExpiresByType application/javascript "access plus 604800 seconds"
 #
 # Remove www from the URLs
 #
-RewriteCond %{SERVER_NAME} etecsa.co
+RewriteCond %{SERVER_NAME} pizarracuba.com
 RewriteCond %{HTTP_HOST} ^www\.
-RewriteRule ^(.*)$ https://etecsa.co/ [R=301,L]
+RewriteRule ^(.*)$ https://pizarracuba.com/ [R=301,L]
 
 #
-# Force https for pizarra.com
+# Force https for pizarracuba.com
 #
-RewriteCond %{SERVER_NAME} pizarra.com
+RewriteCond %{SERVER_NAME} pizarracuba.com
 RewriteCond %{HTTPS} !=on
 RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
