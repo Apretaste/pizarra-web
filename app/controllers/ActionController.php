@@ -26,7 +26,6 @@ class ActionController extends Controller
 
 		$this->defaultResponse($result);
 	}
-	#endregion submits
 
 	public function emailAction($email)
 	{
@@ -51,8 +50,7 @@ class ActionController extends Controller
 
 			echo json_encode($result);
 		}
-		else
-			$this->defaultResponse($result);
+		else $this->defaultResponse($result);
 	}
 
 	public function feedAction()
