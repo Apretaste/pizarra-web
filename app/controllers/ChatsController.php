@@ -6,26 +6,20 @@ class ChatsController extends ProtectedController
 {
 	public function indexAction()
 	{
-		$notes = [];
-		$result = Helper::getActionResult("chats")->payload->notes;
-		if (isset($result->payload->notes))
-			$notes = $result->payload->notes;
+		// load list of open chats
+		$result = Helper::getActionResult("chats");
+		$notes = $result->code == "200" ? $result->payload->notes : [];
 
-		$total = count($notes);
-
-		$this->view->notes = $notes;
-
-		/*$this->view->unread = Api::run("NOTA UNREAD")->items;
-		foreach($this->view->unread as $note)
-			$note->profile = Helper::processProfile($note->profile);
-		*/
-		if ($total /*+ count($this->view->unread)*/ == 0)
+		// if there are no chats, show info message
+		if (empty($notes))
 		{
 			Helper::setFlag("message", "No tienes conversaciones. Puedes chatear con cualquiera en Pizarra visitando su perfil.");
 			Helper::setFlag("message_type", "info");
 			$this->response->redirect("feed");
 		}
 
+		// send information to the view
+		$this->view->notes = $notes;
 		$this->view->showSearchButton = false;
 		$this->view->showChatsButton = false;
 	}
@@ -34,13 +28,13 @@ class ChatsController extends ProtectedController
 	{
 		$profile = Helper::getCurrentProfile();
 
-		if ($profile->username == $username) // chat with yourself?
-			header("Location: /feed");
+		// chat with yourself?
+		if ($profile->username == $username) header("Location: /feed");
 
 		$result = Helper::getActionResult("profile", [$username]);
 
-		if ($result->code == 215)  // user not exists?
-			header("Location: /feed");
+		// user not exists?
+		if ($result->code == 215) header("Location: /feed");
 
 		$this->view->friendProfile = $result->payload->profile;
 		$notes = Helper::getActionResult("chats", [$username])->payload->notes;

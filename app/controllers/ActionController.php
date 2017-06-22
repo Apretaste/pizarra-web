@@ -72,29 +72,20 @@ class ActionController extends Controller
 	{
 		$result = Api::run("NOTA $username");
 
-		if (isset($result->chats))
-			$result->notes = $result->chats;
-
-		if (!isset($result->notes))
-			$result->notes = [];
+		if (isset($result->chats)) $result->notes = $result->chats;
+		if (!isset($result->notes)) $result->notes = [];
 
 		$new_result = [];
 		foreach($result->notes as $note)
 		{
-			if (isset($note->profile))
-				$note->profile = Helper::processProfile($note->profile);
-			else
-				if (isset($note->username))
-					$note->profile = Helper::getActionResult("profile", [$note->username])->payload->profile;
-
-			if (!isset($note->profile)) continue;
+			if (isset($note->profile)) $note->profile = Helper::processProfile($note->profile);
+			elseif (isset($note->username)) $note->profile = Helper::getActionResult("profile", [$note->username])->payload->profile;
+			if ( ! isset($note->profile)) continue;
 			if (empty($note->username)) continue;
-
 			$new_result[] = $note;
 		}
 
 		$result->notes = $new_result;
-
 		$this->defaultResponse($result);
 	}
 

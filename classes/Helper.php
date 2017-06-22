@@ -48,11 +48,10 @@ class Helper
 	 */
 	public static function getActionResult($action, $params = [])
 	{
-		$controller = new ActionController();
+		$actionController = new ActionController();
 		ob_start();
-		$action = "{$action}Action";
-		call_user_func_array([$controller, $action], $params);
-		$result = ob_get_contents();
+			call_user_func_array([$actionController, "{$action}Action"], $params);
+			$result = ob_get_contents();
 		ob_end_clean();
 		return json_decode($result);
 	}
