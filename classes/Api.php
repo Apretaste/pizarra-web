@@ -50,6 +50,15 @@ class Api
 		return $result;
 	}
 
+	//@NOTE added by Salvi
+	static function updateappid($appid)
+	{
+		$di = \Phalcon\DI\FactoryDefault::getDefault();
+		$token = $di->getShared("session")->get("token");
+
+		return self::get("api/updateAppId", ["token" => $token, "appid" => $appid, "appname" => "pizarra"]);
+	}
+
 	static function logout($token)
 	{
 		return self::get("api/logout", ["token" => $token]);

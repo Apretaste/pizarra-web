@@ -174,6 +174,14 @@ class ActionController extends Controller
 		$this->defaultResponse($result);
 	}
 
+	//@NOTE added by Salvi
+	public function updateAppIdAction()
+	{
+		$appid = $this->request->get('appid');
+		$result = Api::updateappid($appid);
+		$this->defaultResponse($result);
+	}
+
 	private function defaultResponse($result)
 	{
 		switch($result->code)
