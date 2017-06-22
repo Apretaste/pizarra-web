@@ -45,7 +45,6 @@ class ChatsController extends ProtectedController
 		$this->view->friendProfile = $result->payload->profile;
 		$notes = Helper::getActionResult("chats", [$username])->payload->notes;
 
-<<<<<<< HEAD
 		if (count($notes) == 0) // never chat with this user?
 		{
 			$dynamicNote = new stdClass();
@@ -55,20 +54,8 @@ class ChatsController extends ProtectedController
 			$dynamicNote->username = "pizarra";
 			$dynamicNote->text = "Te propongo que le cuentes a @{$this->view->friendProfile->username} acerca de ti, seguro le gustar&aacute; conocerte. Abajo hay un espacio para que escribas y un bot&oacute;n para enviar la nota. Ahora los dejo para que conversen.";
 			$notes[] = clone $dynamicNote;
-			$about = $this->view->friendProfile->about_me;
-=======
-		if (count($notes) == 0) // never chat with this user?
-		{
-			$dynamicNote = new stdClass();
-			$dynamicNote->profile = clone $this->view->friendProfile;
-			$dynamicNote->profile->picture_public = "/res/images/icon.png";
-			$dynamicNote->sent = date("d/m/Y h:i:s a");
-			$dynamicNote->username = "pizarra";
-			$dynamicNote->text = "Te propongo que le cuentes a @{$this->view->friendProfile->username} acerca de ti, seguro le gustar&aacute; conocerte. Abajo hay un espacio para que escribas y un bot&oacute;n para enviar la nota. Ahora los dejo para que conversen.";
-			$notes[] = clone $dynamicNote;
-			$about = $this->view->friendProfile->about_me;
->>>>>>> 16ef768b3f45b625b235186ad011a674d5fc536b
 
+			$about = $this->view->friendProfile->about_me;
 			$about = str_replace("soy profeso", "profesa", $about);
 			$about = str_replace("soy", "es", $about);
 			$about = str_replace("tengo", "tiene", $about);
