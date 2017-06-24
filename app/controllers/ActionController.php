@@ -27,14 +27,19 @@ class ActionController extends Controller
 		$this->defaultResponse($result);
 	}
 
-	public function emailAction($email)
+	public function emailAction()
 	{
+		$email = $this->request->get('email');
+
 		$result = Api::start($email);
 		$this->defaultResponse($result);
 	}
 
-	public function loginAction($email, $pin)
+	public function loginAction()
 	{
+		$email = $this->request->get('email');
+		$pin = $this->request->get('pin');
+
 		$result = Api::login($email, $pin);
 
 		if ($result->code == "ok")

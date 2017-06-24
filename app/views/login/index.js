@@ -9,9 +9,7 @@ $(function(){
 			return false;
 		}
 
-		if (e.keyCode == 13){
-			login();
-		}
+		if (e.keyCode == 13) login();
 	});
 })
 
@@ -48,7 +46,7 @@ function pass(){
 	if (is_email(email))
 	{
 		$("#shadow-layer").show();
-		var r = pizarra.action("email/" + email, false, false, true, function(r){
+		var r = pizarra.action("email/", {email:email}, false, true, function(r){
 			if (r.code == 'ok' || r.code == 200)
 			{
 				$("#login-div").hide();
@@ -70,7 +68,7 @@ function login() {
 
 	$("#shadow-layer").show();
 
-	var result = pizarra.action("login/" + email + "/" + pin, false, false, true, function(result){
+	var result = pizarra.action("login/", {email:email, pin:pin}, false, true, function(result){
 		if (result.code == "error" || result.code == 215)
 		{
 			pizarra.messageBox('Su c&oacute;digo es incorrecto. Por favor, revise su email e intente nuevamente.');
