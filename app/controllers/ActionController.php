@@ -68,6 +68,7 @@ class ActionController extends Controller
 			$note = Helper::processProfileFromNote($note);
 			$note->hideOwnLinks = $note->username == $currentProfile->username? "hidden" : "";
 			$note->followcolor = $note->friend==true ? 'red' : 'black';
+			$note->inserted = Helper::getPerfectDate($note->inserted);
 		}
 
 		$this->defaultResponse($result);

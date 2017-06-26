@@ -176,4 +176,12 @@ class Helper
 		$di = \Phalcon\DI\FactoryDefault::getDefault();
 		return $di->getShared("session")->has($flag);
 	}
+
+	static function getPerfectDate($date)
+    {
+        $d = date("d/m/Y h:i a", date_create($date)->getTimestamp());
+        $d = str_replace(["/0", " 0"], ["/", " "], $d);
+        if ($d[0] == "0") $d = substr($d, 1);
+        return $d;
+    }
 }
