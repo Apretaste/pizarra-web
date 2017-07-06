@@ -10,7 +10,8 @@ class FeedController extends ProtectedController
 
 		if (isset($result->payload->notes))
 		{
-			$this->view->notes = $result->payload->notes;
+
+		    $this->view->notes = $result->payload->notes;
 			$this->view->showRefreshButton = true;
 			$this->view->showCloseButton = false;
 			$this->view->closeLink = "/logout";

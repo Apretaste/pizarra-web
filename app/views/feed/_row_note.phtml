@@ -5,6 +5,8 @@
 		if (is_array($notes))
 		{
 			foreach ($notes as $note) {
+			    if ($note->likes < 0)
+			        $note->likes = 0;
 				echo Helper::parseTpl("feed/_row", [
 					[$note, "", ""]
 				]);

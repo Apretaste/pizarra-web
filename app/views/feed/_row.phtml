@@ -11,6 +11,9 @@
 			<span class="flag-icon flag-icon-ca user-country"></span>
 			<h2 class="title-new inline">
 				<a class="action-profile user-title" href="/profile/of/{{ username }}" onclick = "$('#shadow-layer').show();">@{{ username }}</a>
+                <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="block/{{ username }}" data-confirm="true" data-confirm-msg="De verdad quieres bloquear a <b>@{{ username }}</b>? No ver&aacute;s m&aacute;s sus notas." data-confirm-title="Bloquear usuario">
+                    <i class="ion-close button-symbol"></i>
+                </a>
 			</h2>
 			<span class="ion-female user-genre female"></span>
 			<span class="notes-time">| {{ inserted }}</span>
@@ -22,15 +25,13 @@
 			<a class="action category-link {{ hideOwnLinks }}" href="#" data-action="like/{{ id }}" data-callback="$('#likes-{{ id }}').html(intval($('#likes-{{ id }}').html()) + 1);">
 				<i class="ion-ios-heart like"></i><i id="likes-{{ id }}" class="like-number">{{ likes }}</i>
 			</a>
-			<a class="action category-link {{ hideOwnLinks }}" href="#" data-action="follow/{{ username }}" data-callback="$('#follow-heart-{{ id }}').css('color','red');">
-				<i id="follow-heart-{{ id }}" class="ion-person-add button-symbol" style="color:{{ followcolor }};"></i>
-			</a>
+            <a id="unlikes-{{ id }}" class="action category-link {{ hideOwnLinks }}" href="#" data-action="unlike/{{ id }}" data-callback="$('#likes-{{ id }}').html(intval($('#likes-{{ id }}').html()) > 0 ? intval($('#likes-{{ id }}').html())-1 : 0); $('#unlikes-{{ id }}').hide();">
+                <i class="ion-ios-heart" style="color:black;text-decoration:overline;"></i>
+            </a>
 			<a class="category-link {{ hideOwnLinks }}" href="/chats/with/{{ username }}">
 				<i class="icon ion-ios-chatbubble"></i>
 			</a>
-			<!--<a class="action category-link {{ hideOwnLinks }}" href="#" data-action="block/{{ username }}" data-confirm="true" data-confirm-msg="De verdad quieres bloquear a <b>@{{ username }}</b>? No ver&aacute;s m&aacute;s sus notas." data-confirm-title="Bloquear usuario">
-				<i class="ion-close button-symbol"></i>
-			</a>-->
+
 		</div>
 	</td>
 </tr>
