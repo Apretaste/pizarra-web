@@ -412,7 +412,7 @@ a {
 
 .logo-login {
 	height: 250px;
-	background-image: url('../images/logo.png');
+	background-image: url('../images/logo390px.png');
 	background-position: 50% 50%;
 	background-size: 250px;
 	background-repeat: no-repeat;
@@ -870,7 +870,7 @@ a {
 
 .splash-logo {
 	height: 305px;
-	background-image: url('../images/logo.png');
+	background-image: url('../images/logo390px.png');
 	background-position: 50% 50%;
 	background-size: 200px;
 	background-repeat: no-repeat;

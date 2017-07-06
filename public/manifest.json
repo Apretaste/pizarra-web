@@ -1,0 +1,26 @@
+{
+	"short_name": "Pizarra",
+	"name": "La Pizarra de Cuba",
+	"icons": [
+		{
+			"src": "/res/images/logo96px.png",
+			"sizes": "96x96",
+			"type": "image/png"
+		},
+		{
+			"src": "res/images/logo144px.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		},
+		{
+			"src": "res/images/logo192px.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait",
+	"gcm_sender_id": "669935767414",
+	"gcm_user_visible_only": true
+}
