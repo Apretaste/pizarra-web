@@ -102,8 +102,11 @@ class Helper
 				$vars = ["value" => $data];
 
 			foreach ($vars as $tag => $v)
-				if (is_scalar($v))
-					$html = str_replace("{{ {$prefix}{$tag}{$suffix} }}", $v, $html);
+			{
+			    if (is_array($v)) $v = count($v);
+                if (is_scalar($v))
+                    $html = str_replace("{{ {$prefix}{$tag}{$suffix} }}", $v, $html);
+            }
 		}
 
 		return $html;
@@ -144,6 +147,7 @@ class Helper
 	{
 		if (empty($note->picture)) $note->picture = "/res/images/user.png";
 		else $note->picture = "https://apretaste.com/profile/{$note->picture}";
+
 		return $note;
 	}
 

@@ -1,0 +1,16 @@
+<div class="news-container">
+	<table id = "list-news" class="w-clearfix list-news">
+		<!-- dynamic zone -->
+		<?php
+		if (is_array($note->comments))
+		{
+			foreach ($note->comments as $note) {
+				echo Helper::parseTpl("note/_row", [
+					[$note, "", ""]
+				]);
+			}
+		}
+		?>
+	</table>
+	<br/><br/><br/><br/>
+</div>

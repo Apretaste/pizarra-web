@@ -4,6 +4,11 @@ use Phalcon\Mvc\Controller;
 
 class ProfileController extends ProtectedController
 {
+    public function initialize()
+    {
+        parent::initialize();
+    }
+
     public function indexAction($username = null)
     {
         $this->view->showSearchButton = false;

@@ -10,6 +10,13 @@ class ActionController extends Controller
 		$this->defaultResponse($result);
 	}
 
+	public function submitCommentAction($note, $text)
+    {
+        $note = intval($note);
+        $result = Api::run("PIZARRA $note* $text");
+        $this->defaultResponse($result);
+    }
+
 	public function submitChatAction($username, $text)
 	{
 		$result = Api::run("NOTA $username $text");
@@ -69,6 +76,13 @@ class ActionController extends Controller
 			$note->hideOwnLinks = $note->username == $currentProfile->username? "hidden" : "";
 			$note->followcolor = $note->friend==true ? 'red' : 'black';
 			$note->inserted = Helper::getPerfectDate($note->inserted);
+			if (!isset($note->gender))
+			{
+                $note->gender = "male";
+                if (isset($note->profile))
+                    $note->gender = $note->profile->gender;
+            }
+            $note->gender = strtolower($note->gender[0]) == 'f' ? 'female': 'male';
 		}
 
 		$this->defaultResponse($result);
@@ -170,6 +184,39 @@ class ActionController extends Controller
 
 		$this->defaultResponse($result);
 	}
+
+	public function noteAction($id)
+    {
+        $currentProfile = Helper::getCurrentProfile();
+        $result = Api::run("PIZARRA NOTA $id");
+        $note = $result->note;
+        $note = Helper::processProfileFromNote($note);
+        $note->hideOwnLinks = $note->username == $currentProfile->username? "hidden" : "";
+        $note->followcolor = $note->friend==true ? 'red' : 'black';
+        $note->inserted = Helper::getPerfectDate($note->inserted);
+        if (!isset($note->gender))
+        {
+            $note->gender = "male";
+            if (isset($note->profile))
+                $note->gender = $note->profile->gender;
+        }
+        $note->gender = strtolower($note->gender[0]) == 'f' ? 'female': 'male';
+
+        if (isset($note->comments))
+            if (is_array($note->comments))
+                foreach($note->comments as $comment)
+                {
+                    $comment = Helper::processProfileFromNote($comment);
+                    $comment->gender = strtolower($comment->gender[0]) == 'f' ? 'female': 'male';
+                    if (stripos($comment->picture, '.jpg') === false && stripos($comment->picture, '.png') === false);
+                        $comment->picture .= ".jpg";
+
+                }
+        $result->note = $note;
+
+
+        $this->defaultResponse($result);
+    }
 
 	//@NOTE added by Salvi
 	public function updateAppIdAction()

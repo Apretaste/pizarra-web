@@ -73,9 +73,9 @@ var pizarra = {
 	logout: function () {
 		var session = $.cookie('apretaste-pizarra');
 		if (session !== false) {
-			sdk.logout(session);
+
 			$.cookie('apretaste-pizarra', null);
-			this.pages.login.show();
+			this.redirect("logout");
 		}
 	},
 
@@ -192,16 +192,16 @@ var pizarra = {
 		}
 
 		// fix birthday
+		if (isset(this.currentProfile))
+			if (strpos(this.currentProfile.date_of_birth, "-") !== false)
+			{
+				var parts = explode('-', this.currentProfile.date_of_birth);
 
-		if (strpos(this.currentProfile.date_of_birth, "-") !== false)
-		{
-			var parts = explode('-', this.currentProfile.date_of_birth);
+				if (intval(parts[2]) < 10) parts[2] = "0" + intval(parts[2]);
+				if (intval(parts[1]) < 10) parts[1] = "0" + intval(parts[1]);
 
-			if (intval(parts[2]) < 10) parts[2] = "0" + intval(parts[2]);
-			if (intval(parts[1]) < 10) parts[1] = "0" + intval(parts[1]);
-
-			this.currentProfile.date_of_birth = parts[2] + "/" + parts[1] + "/" + parts[0];
-		}
+				this.currentProfile.date_of_birth = parts[2] + "/" + parts[1] + "/" + parts[0];
+			}
 
 		return this.currentProfile;
 	},
@@ -215,16 +215,16 @@ var pizarra = {
 		profile = this.action('profile/' + username, null, false, false);
 		profile = profile.profile;
 
-		var d = profile.date_of_birth;
-		if (strpos(d, '-') !== false)
-		{
-			var parts = explode('-', d);
-			var y = parts[0];
-			var m = parts[1];
-			var d = parts[2];
-			profile.date_of_birth = d + '/' + m  + '/' + y;
-		}
-
+		if (isset(profile)) {
+            var d = profile.date_of_birth;
+            if (strpos(d, '-') !== false) {
+                var parts = explode('-', d);
+                var y = parts[0];
+                var m = parts[1];
+                var d = parts[2];
+                profile.date_of_birth = d + '/' + m + '/' + y;
+            }
+        }
 		return profile;
 
 	},

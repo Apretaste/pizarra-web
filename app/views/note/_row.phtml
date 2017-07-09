@@ -26,14 +26,8 @@
 		<p class="note">{{ text }}</p>
 
 		<div class="buttons-section">
-			<a class="action category-link {{ hideOwnLinks }}" href="#" data-action="like/{{ id }}" data-callback="$('#likes-{{ id }}').html(intval($('#likes-{{ id }}').html()) + 1);">
-				<i class="ion-thumbsup like"></i><i id="likes-{{ id }}" class="like-number">{{ likes }}</i>
-			</a>
-            <a class="action category-link {{ hideOwnLinks }}" href="#" data-action="unlike/{{ id }}" data-callback="$('#unlikes-{{ id }}').html(intval($('#unlikes-{{ id }}').html()) + 1);">
-                <i class="ion-thumbsdown"></i><i id="unlikes-{{ id }}" class="like-number">{{ unlikes }}</i>
-            </a>
-			<a class="category-link {{ hideOwnLinks }}" href="/note/{{ id }}">
-				<i class="icon ion-ios-chatbubble">&nbsp;{{ comments }}</i>
+			<a class="category-link {{ hideOwnLinks }}" href="/chats/with/{{ username }}">
+				<i class="icon ion-ios-chatbubble"></i>
 			</a>
             <a class="category-link {{ hideOwnLinks }}" href="/feed/search/@{{ username }}">
                 <i class="icon ion-ios-paper"></i>
