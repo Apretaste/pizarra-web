@@ -49,6 +49,19 @@
 		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 		ga('create', 'UA-100216557-1', 'auto');
 		ga('send', 'pageview');
+
+		// register service worker
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', function() {
+			navigator.serviceWorker.register('/js/sw.js').then(
+				function(registration) {
+					console.log('ServiceWorker registration successful with scope: ', registration.scope);
+				},
+				function(err) {
+					console.log('ServiceWorker registration failed: ', err);
+				});
+			});
+		}
 	</script>
 </head>
 <body>
