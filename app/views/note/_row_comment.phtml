@@ -2,12 +2,10 @@
 	<table id = "list-news" class="w-clearfix list-news">
 		<!-- dynamic zone -->
 		<?php
-		if (is_array($notes))
+		if (is_array($note->comments))
 		{
-			foreach ($notes as $note) {
-			    if ($note->likes < 0)
-			        $note->likes = 0;
-				echo Helper::parseTpl("feed/_row", [
+			foreach ($note->comments as $note) {
+				echo Helper::parseTpl("note/_row", [
 					[$note, "", ""]
 				]);
 			}
