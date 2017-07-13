@@ -76,6 +76,7 @@ class ActionController extends Controller
 			$note->hideOwnLinks = $note->username == $currentProfile->username? "hidden" : "";
 			$note->followcolor = $note->friend==true ? 'red' : 'black';
 			$note->inserted = Helper::getPerfectDate($note->inserted);
+			$note->isliked = $note->isliked ? "is-liked": "non-liked";
 			if (!isset($note->gender))
 			{
                 $note->gender = "male";

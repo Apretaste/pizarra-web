@@ -28,25 +28,38 @@
     <div>
         <?php  if ($currentProfile->username != $profile->username): ?>
         <div class="w-clearfix options-new">
-            <?php if (!$profile->follow): ?>
-            <a id="btn-follow" class="action w-clearfix w-inline-block action-button profile-button"
-               data-action="follow/<?php echo $profile->username ; ?>"
-               data-callback="$('#btn-follow').hide();"
-               data-showloading="true" href="#">
-                <div class="icon-button bigger">
-                    <div class="icon ion-person-add"></div>
-                </div>
-                Seguir
-            </a>
-            <?php endif; ?>
+
             <a id="btn-chat" href="<?php echo "/chats/with/{$profile->username}"; ?>"
                class="w-button w-inline-block action-button profile-button"
                onclick = "$('#shadow-layer').show();">
                 <div class="icon-button bigger">
                     <div class="icon ion-ios-chatbubble"></div>
                 </div>
-                Chat
+                Chatear
             </a>
+
+            <a id="btn-chat" href="<?php echo "/feed/search/@{$profile->username}"; ?>"
+               class="w-button w-inline-block action-button profile-button"
+               onclick = "$('#shadow-layer').show();">
+                <div class="icon-button bigger">
+                    <div class="icon ion-ios-email"></div>
+                </div>
+                Mensajes
+            </a>
+
+            <a title="Bloquear este usuario" class="action w-clearfix w-inline-block action-button profile-button"
+               style="background: red;"
+               href="#"
+               data-action="block/<?php echo $profile->username ; ?>"
+               data-confirm="true"
+               data-confirm-msg="De verdad quieres bloquear a <b>@<?php echo $profile->username ; ?></b>? No ver&aacute;s m&aacute;s sus notas."
+               data-confirm-title="Bloquear usuario">
+                <div class="icon-button bigger" >
+                    <div class="icon ion-close"></div>
+                </div>
+                Bloquear
+            </a>&nbsp;
+
         </div>
         <?php endif; ?>
     </div>

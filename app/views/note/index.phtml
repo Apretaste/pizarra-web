@@ -10,18 +10,26 @@
     <div class="news-container">
         <table id = "list-news" class="w-clearfix list-news">
            <?php
-                echo Helper::parseTpl("feed/_row", [
+                echo Helper::parseTpl("note/_note", [
                 [$note, "", ""]
                 ]);
-            ?>
-            <tr>
-                <td>
 
-                </td>
-                <td>
-                    <?php include "_row_comment.phtml"; ?>
-                </td>
-            </tr>
+                if (!is_array($note->comments))
+                    $note->comments = [];
+
+                if (count($note->comments) > 0)
+                {
+                   foreach ($note->comments as $note) {
+                       echo Helper::parseTpl("note/_row", [
+                           [$note, "", ""]
+                       ]);
+                   }
+                } else {
+                    ?>
+                    <tr><td></td><td>Esta nota a&uacute;n no tiene comentarios. Sea el primero en escribir un comentario y dejar saber a otros lo que piensa.</td></tr>
+                    <?php
+                }
+           ?>
         </table>
         <br/><br/><br/><br/>
     </div>

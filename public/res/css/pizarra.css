@@ -1118,7 +1118,6 @@ a {
 	transition: all 0.2s linear;
 }
 
-.like,
 .is-liked {
 	color: red;
 }

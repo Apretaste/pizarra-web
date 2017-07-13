@@ -1,6 +1,6 @@
 <tr class="list-item-new">
-	<td width="50" align="right">
-		<div class="image-message">
+	<td width="40" align="right">
+		<div class="image-message" style="width:40px;height:40px;">
 			<a href="/profile/of/{{ username }}" onclick = "$('#shadow-layer').show();">
 				<img src="{{ picture }}" width="100%" height="100%"/>
 			</a>
@@ -8,30 +8,17 @@
 	</td>
 	<td style="padding-left:10px;">
 		<div>
-			<!-- <span class="flag-icon flag-icon-ca user-country"></span> -->
-			<h2 class="title-new inline">
-                <div style="display: table-cell; width:20px; float:left;"><span class="ion-{{ gender }} user-genre {{ gender }}"></span></div>
+			<h2 class="title-new inline" style="padding:0px;margin:0px;">
+                <div style="display: table-cell; width:20px; float:left;">
+                    <img src="/res/flags/{{ country }}.png" width="18">
+                </div>
                 <a class="action-profile user-title" href="/profile/of/{{ username }}" onclick = "$('#shadow-layer').show();">@{{ username }}</a>
-
-                <a title="Bloquear este usuario" class="action {{ hideOwnLinks }}" href="#" data-action="block/{{ username }}" data-confirm="true" data-confirm-msg="De verdad quieres bloquear a <b>@{{ username }}</b>? No ver&aacute;s m&aacute;s sus notas." data-confirm-title="Bloquear usuario">
-                    <i class="ion-close button-symbol" style="font-size:10px;"></i>
-                </a>&nbsp;
-
+                <span class="ion-{{ gender }} user-genre {{ gender }}"></span>
                 <span class="notes-time">| {{ inserted }}</span>
 			</h2>
-
-
 		</div>
 
-		<p class="note">{{ text }}</p>
+		<p class="note" style="padding:0px;margin:0px;">{{ text }}</p>
 
-		<div class="buttons-section">
-			<a class="category-link {{ hideOwnLinks }}" href="/chats/with/{{ username }}">
-				<i class="icon ion-ios-chatbubble"></i>
-			</a>
-            <a class="category-link {{ hideOwnLinks }}" href="/feed/search/@{{ username }}">
-                <i class="icon ion-ios-paper"></i>
-            </a>
-		</div>
 	</td>
 </tr>
