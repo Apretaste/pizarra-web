@@ -11,9 +11,9 @@
 			<!-- <span class="flag-icon flag-icon-ca user-country"></span> -->
 			<h2 class="title-new inline">
                 <div style="display: table-cell; width:20px; float:left;">
-                    <img src="/res/flags/{{ country }}.png" width="18">
+					<img src="" class="flag flag-{{ country }}" alt="{{ country }}" />
                 </div>
-                <a class="action-profile user-title" href="/chat/with/{{ username }}" onclick = "$('#shadow-layer').show();">@{{ username }}</a>
+                <a class="action-profile user-title" href="/chats/with/{{ username }}" onclick = "$('#shadow-layer').show();">@{{ username }}</a>
                 <span class="ion-{{ gender }} user-genre {{ gender }}"></span>
                 <span class="notes-time">| {{ inserted }}</span>
 			</h2>
