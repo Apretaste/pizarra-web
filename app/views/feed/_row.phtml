@@ -13,7 +13,7 @@
                 <div style="display: table-cell; width:20px; float:left;">
                     <img src="/res/flags/{{ country }}.png" width="18">
                 </div>
-                <a class="action-profile user-title" href="/profile/of/{{ username }}" onclick = "$('#shadow-layer').show();">@{{ username }}</a>
+                <a class="action-profile user-title" href="/chat/with/{{ username }}" onclick = "$('#shadow-layer').show();">@{{ username }}</a>
                 <span class="ion-{{ gender }} user-genre {{ gender }}"></span>
                 <span class="notes-time">| {{ inserted }}</span>
 			</h2>
@@ -31,9 +31,6 @@
 			<a class="category-link {{ hideOwnLinks }}" href="/note/{{ id }}">
 				<i class="icon ion-ios-chatbubble">&nbsp;{{ comments }}</i>
 			</a>
-            <a class="category-link {{ hideOwnLinks }}" href="/feed/search/@{{ username }}">
-                <i class="icon ion-ios-paper"></i>
-            </a>
 		</div>
 	</td>
 </tr>
