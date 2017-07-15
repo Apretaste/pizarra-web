@@ -77,6 +77,7 @@ class ActionController extends Controller
 			$note->followcolor = $note->friend==true ? 'red' : 'black';
 			$note->inserted = Helper::getPerfectDate($note->inserted);
 			$note->isliked = $note->isliked ? "is-liked": "non-liked";
+			$note->country = strtolower($note->country);
 			if (!isset($note->gender))
 			{
                 $note->gender = "male";
