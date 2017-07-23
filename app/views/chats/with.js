@@ -48,8 +48,13 @@ function paintNotes(notes)
     var tplRight = base64_decode(trim($("#chat-right-template").html()));
 
     for (var i in notes.chats) {
+
         var tpl = tplLeft;
         var chat = notes.chats[i];
+
+        if(chat.dynamic != "")
+            continue;
+
         if (chat.username != $("#friend-username").val())
             tpl = tplRight;
 
@@ -66,14 +71,18 @@ function paintNotes(notes)
 }
 
 function sendNote(){
-    var note = $("#edtNote").val();
 
+    $(".dynamic").hide();
+
+    var note = $("#edtNote").val();
+    note = substr(note, 1, 130);
     array_unshift(pizarra.currentChat.chats, {
         profile: pizarra.currentProfile,
         id: -1,
         username: pizarra.currentProfile.username,
         text: strip_tags(note),
-        sent: date("d/m/Y h:i:s a")
+        sent: date("d/m/Y h:i:s a"),
+        dynamic: ""
     });
 
     paintNotes(pizarra.currentChat);
@@ -83,4 +92,6 @@ function sendNote(){
     pizarra.action('submitChat/' + $("#friend-username").val() + "/" + note, null, false, true, function(){
         //refreshChat(false, true);
     });
+
+
 }

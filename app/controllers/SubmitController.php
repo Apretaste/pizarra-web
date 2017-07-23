@@ -18,6 +18,7 @@ class SubmitController extends Controller
 
     public function chatAction($username, $text)
     {
+        $text = substr($text, 1, 130);
         $result = Helper::getActionResult("submitChat", [$username, $text]);
         $this->response->redirect("chats/$username");
         return $result;

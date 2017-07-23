@@ -42,6 +42,7 @@ class ChatsController extends ProtectedController
 		if (count($notes) == 0) // never chat with this user?
 		{
 			$dynamicNote = new stdClass();
+            $dynamicNote->dynamic = "dynamic";
 			$dynamicNote->profile = clone $this->view->friendProfile;
 			$dynamicNote->profile->picture_public = "/res/images/icon.png";
 			$dynamicNote->sent = date("d/m/Y h:i:s");
@@ -62,7 +63,7 @@ class ChatsController extends ProtectedController
 
 			$dynamicNote->text = "Hola soy @pizarra y quisiera presentarte a @{$this->view->friendProfile->username} pues nunca han conversado en este chat. $about";
 			$notes[] = clone $dynamicNote;
-		}
+		} else foreach($notes as $note) $note->dynamic = "";
 
 		$this->view->notes = $notes;
 		$this->view->showSearchButton = false;

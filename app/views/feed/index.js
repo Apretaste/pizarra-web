@@ -80,6 +80,26 @@ function refreshNotes(showLoading, autoRefresh)
 
 function sendNote(){
 	var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
-	refreshNotes();
+	//refreshNotes();
 	$("#edtNote").val('');
+
+	var currentProfile = pizarra.currentProfile;
+	var note = {
+		id: 0,
+		country: currentProfile.country,
+		username: currentProfile.username,
+		gender: currentProfile.gender,
+		text: $("#edtNote").val(),
+		likes: 0,
+		unlikes: 0,
+		isliked: false,
+		comments: [],
+		source: "",
+		email: pizarra.currentProfile.email,
+		friend: false
+	};
+    var tpl = base64_decode(trim($("#news-template").html()));
+    tpl = pizarra.replaceTags(tpl, pizarra.currentProfile, 'note.profile.');
+    tpl = pizarra.replaceTags(tpl, note, '');
+    $("#list-news").html(tpl + $("#list-news").html());
 }
