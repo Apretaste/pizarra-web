@@ -79,27 +79,34 @@ function refreshNotes(showLoading, autoRefresh)
 }
 
 function sendNote(){
-	var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()));
-	//refreshNotes();
-	$("#edtNote").val('');
+	var result = pizarra.action('submitPublish/' + urlencode($("#edtNote").val()),
+		{}, false, true, function(){
+            var currentProfile = pizarra.currentProfile;
+            var note = {
+                id: 0,
+                country: strtolower(currentProfile.country),
+                username: currentProfile.username,
+                gender: currentProfile.gender,
+                text: $("#edtNote").val(),
+                likes: 0,
+                unlikes: 0,
+                isliked: false,
+                comments: [],
+                source: "",
+                email: pizarra.currentProfile.email,
+                friend: false,
+				inserted: date("d/m/Y h:i a"),
+				gender: currentProfile.gender == "F" ? "female": "male",
+				picture: currentProfile.picture_public,
+                hideOwnLinks: "hidden"
+            };
 
-	var currentProfile = pizarra.currentProfile;
-	var note = {
-		id: 0,
-		country: currentProfile.country,
-		username: currentProfile.username,
-		gender: currentProfile.gender,
-		text: $("#edtNote").val(),
-		likes: 0,
-		unlikes: 0,
-		isliked: false,
-		comments: [],
-		source: "",
-		email: pizarra.currentProfile.email,
-		friend: false
-	};
-    var tpl = base64_decode(trim($("#news-template").html()));
-    tpl = pizarra.replaceTags(tpl, pizarra.currentProfile, 'note.profile.');
-    tpl = pizarra.replaceTags(tpl, note, '');
-    $("#list-news").html(tpl + $("#list-news").html());
+            $("#edtNote").val('');
+            var tpl = base64_decode(trim($("#news-template").html()));
+            tpl = pizarra.replaceTags(tpl, pizarra.currentProfile, 'note.profile.');
+            tpl = pizarra.replaceTags(tpl, note, '');
+            $("#list-news").html(tpl + str_replace("</tbody>", "", str_replace("<tbody>", "", $("#list-news").html())));
+		});
+	//refreshNotes();
+
 }

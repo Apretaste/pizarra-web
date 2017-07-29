@@ -45,23 +45,9 @@ class ChatsController extends ProtectedController
             $dynamicNote->dynamic = "dynamic";
 			$dynamicNote->profile = clone $this->view->friendProfile;
 			$dynamicNote->profile->picture_public = "/res/images/icon.png";
-			$dynamicNote->sent = date("d/m/Y h:i:s");
+			$dynamicNote->sent ="";
 			$dynamicNote->username = "pizarra";
-			$dynamicNote->text = "Te propongo que le cuentes a @{$this->view->friendProfile->username} acerca de ti, seguro le gustar&aacute; conocerte. Abajo hay un espacio para que escribas y un bot&oacute;n para enviar la nota. Ahora los dejo para que conversen.";
-			$notes[] = clone $dynamicNote;
-
-			$about = $this->view->friendProfile->about_me;
-			$about = str_replace("soy profeso", "profesa", $about);
-			$about = str_replace("soy", "es", $about);
-			$about = str_replace("tengo", "tiene", $about);
-			$about = str_replace("Vivo", "Vive", $about);
-			$about = str_replace("estoy", "est&aacute;", $about);
-			$about = str_replace("Hola,", "", $about);
-			$about = str_replace("mi nombre es", "Su nombre es", $about);
-			$about = str_replace("annos", "a&ntilde;os", $about);
-			$about = str_replace("trabajo", "trabaja", $about);
-
-			$dynamicNote->text = "Hola soy @pizarra y quisiera presentarte a @{$this->view->friendProfile->username} pues nunca han conversado en este chat. $about";
+			$dynamicNote->text = "Hola soy @pizarra y quisiera presentarte a @{$this->view->friendProfile->username} pues nunca han conversado en este chat. Cu&eacute;ntale a  @{$this->view->friendProfile->username} acercad e ti. M&aacute;s abajo hay un espacio prara que escribas y un bot&oacute;n para enviar. Ahora los dejo solos para que conversen.";
 			$notes[] = clone $dynamicNote;
 		} else foreach($notes as $note) $note->dynamic = "";
 

@@ -20,6 +20,9 @@
                 if (count($note->comments) > 0)
                 {
                    foreach ($note->comments as $note) {
+                       if (isset($note->country))
+                           $note->country = strtolower($note->country);
+
                        echo Helper::parseTpl("note/_row", [
                            [$note, "", ""]
                        ]);

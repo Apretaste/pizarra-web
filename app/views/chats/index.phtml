@@ -66,7 +66,7 @@
             </td>
             <td align="right">
                 <a class="action category-link" href="#" data-action="block/<?php echo $note->profile->username; ?>"
-                   data-callback="pizarra.redirect('chats');"
+                   data-callback="pizarra.redirect('chats&rand='+rand());"
                    data-confirm="true"
                    data-confirm-msg="De verdad quieres bloquear a <b>@<?php echo $note->profile->username; ?></b>? No ver&aacute;s m&aacute;s sus notas."
                    data-confirm-title="Bloquear usuario">

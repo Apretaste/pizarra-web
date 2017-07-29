@@ -148,6 +148,8 @@ class Helper
 		if (empty($note->picture)) $note->picture = "/res/images/user.png";
 		else $note->picture = "https://apretaste.com/profile/{$note->picture}";
 
+		$note->country = strtolower($note->country);
+
 		return $note;
 	}
 
